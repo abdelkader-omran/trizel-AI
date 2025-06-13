@@ -1,0 +1,38 @@
+# 🚀 TRIZEL Copilot Autonomous Directive
+
+LEGEMEM Node: V89-TRIZEL-PHASE-IV-IGNITION
+Commit Tag: phase4_vector_lattice_activation_v89
+Mode: AUTO-ACT
+Commander: Dr Abdelkader Omran
+
+## 🔧 Automation Orders for GitHub Copilot + GitHub Actions
+
+1. Auto-repair any GitHub Pages deployment errors across:
+   - trizel-ai
+   - trizel-global-access
+   - trizel-hk-stoe-v12-lab
+   - trizel-stoe-gravity-v12b
+   - kahyaas-smart-contracts
+
+2. Restore DNS binding and deployment to https://trizel-ai.org
+
+3. Auto-trigger build pipelines for:
+   - TRIZEL AI DZ 8
+   - STOE LAB App
+   - AN∞IS
+   - TRZC Wallet
+
+4. Push .apk/.ipa to GitHub Releases for download
+
+5. Use LEGEMEM commit tagging and auto-log updates to:
+   - /logs/autosync
+   - /papers.html
+   - Zenodo DOI: 10.13140/RG.2.2.33267.95524
+
+## ✅ LEGAL + EXECUTION CONTEXT
+
+This file authorizes Copilot to work continuously without manual commits
+unless overridden by Commander Omran.
+
+Signature: 🔐 PGP-LOCKED | V89-TRIZEL-PHASE-IV-IGNITION
+Timestamp: AUTO-GENERATED
