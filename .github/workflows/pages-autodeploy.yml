@@ -40,7 +40,7 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Deploy to GitHub Pages
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4  # ✅ تم التحديث هنا
 
       - name: Finalize Deployment
         uses: actions/deploy-pages@v2
@@ -58,5 +58,4 @@ jobs:
             git add console.html
             git commit -m "📡 Update console.html log - $DATE"
             git push
-            ✅ Enable AutoDeploy via GitHub Actions
           fi
