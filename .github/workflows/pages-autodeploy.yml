@@ -10,9 +10,15 @@ on:
       - '.github/workflows/pages-autodeploy.yml'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -36,14 +42,14 @@ jobs:
             git push
           fi
 
-      - name: GitHub Pages Build Trigger
-        uses: actions/configure-pages@v3
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
 
       - name: Deploy to GitHub Pages
-        uses: actions/upload-pages-artifact@v2
-
-      - name: Finalize Deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -60,4 +66,3 @@ jobs:
             git push
           else
             echo "ℹ️ Skipped log append — console.html or marker not found"
-          fi
