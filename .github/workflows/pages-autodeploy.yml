@@ -1,0 +1,62 @@
+name: TRIZEL AI — GitHub Pages AutoDeploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.html'
+      - '**.md'
+      - '.github/workflows/pages-autodeploy.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Ensure index.html exists
+        run: |
+          if [ ! -f index.html ]; then
+            echo "::error ::Missing index.html at repo root!"
+            exit 1
+          fi
+
+      - name: Validate README.md LEGEMEM Footer
+        run: |
+          FOOTER='© All Rights Reserved\nHONGKONG TRIZEL INTERNATIONAL GROUP LIMITED\nGeneral Manager: Dr Abdelkader Omran\nLEGEMEM Node: phase4_vector_lattice_activation_v89\nDOI: 10.5281/zenodo.15633937\nLicense: CC BY-NC 4.0 — Redistribution prohibited without citation.'
+          if ! grep -q "LEGEMEM Node" README.md; then
+            echo -e "\n$FOOTER" >> README.md
+            git config user.name "auto-dz8"
+            git config user.email "admin1@trizel-ai.com"
+            git add README.md
+            git commit -m "🛡 Enforce LEGEMEM Footer in README.md"
+            git push
+          fi
+
+      - name: GitHub Pages Build Trigger
+        uses: actions/configure-pages@v3
+
+      - name: Deploy to GitHub Pages
+        uses: actions/upload-pages-artifact@v2
+
+      - name: Finalize Deployment
+        uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Append Log to /console.html (if exists)
+        run: |
+          DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          DOMAIN="https://abdelkader-omran.github.io/trizel-AI"
+          if grep -q "<!-- AUTO LOG -->" console.html; then
+            echo "<li>✅ [$DATE] Deployed to <a href='$DOMAIN'>$DOMAIN</a></li>" >> temp.log
+            sed -i '/<!-- AUTO LOG -->/r temp.log' console.html
+            rm temp.log
+            git add console.html
+            git commit -m "📡 Update console.html log - $DATE"
+            git push
+            ✅ Enable AutoDeploy via GitHub Actions
+          fi
