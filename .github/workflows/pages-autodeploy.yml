@@ -40,7 +40,7 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Deploy to GitHub Pages
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3  # ✅ الإصدار المصحح
 
       - name: Finalize Deployment
         uses: actions/deploy-pages@v2
