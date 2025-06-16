@@ -40,7 +40,7 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Deploy to GitHub Pages
-        uses: actions/upload-pages-artifact@v3  # ✅ الإصدار المصحح
+        uses: actions/upload-pages-artifact@v2
 
       - name: Finalize Deployment
         uses: actions/deploy-pages@v2
@@ -51,11 +51,13 @@ jobs:
         run: |
           DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
           DOMAIN="https://abdelkader-omran.github.io/trizel-AI"
-          if grep -q "<!-- AUTO LOG -->" console.html; then
+          if [ -f console.html ] && grep -q "<!-- AUTO LOG -->" console.html; then
             echo "<li>✅ [$DATE] Deployed to <a href='$DOMAIN'>$DOMAIN</a></li>" >> temp.log
-            sed -i '/<!-- AUTO LOG -->/r temp.log' console.html
+            sed -i'' '/<!-- AUTO LOG -->/r temp.log' console.html
             rm temp.log
             git add console.html
             git commit -m "📡 Update console.html log - $DATE"
             git push
+          else
+            echo "ℹ️ Skipped log append — console.html or marker not found"
           fi
