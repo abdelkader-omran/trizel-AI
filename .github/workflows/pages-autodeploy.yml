@@ -14,7 +14,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout Repository
+      - name: 🧾 Checkout Repository
         uses: actions/checkout@v4
 
       - name: 🔍 Ensure index.html exists
@@ -47,7 +47,7 @@ License: CC BY-NC 4.0 — Redistribution prohibited without citation.'
       - name: 📦 Upload Static Content for GitHub Pages
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: . # رفع من الجذر مباشرة
 
       - name: 🚀 Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
@@ -69,5 +69,5 @@ License: CC BY-NC 4.0 — Redistribution prohibited without citation.'
             git commit -m "📡 Update console.html log - $DATE"
             git push
           else
-            echo "📭 No console.html or no AUTO LOG marker"
+            echo "🔕 No console.html or no AUTO LOG marker"
           fi
