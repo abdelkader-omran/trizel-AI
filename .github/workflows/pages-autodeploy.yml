@@ -13,7 +13,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
@@ -25,7 +24,7 @@ jobs:
             exit 1
           fi
 
-      - name: 🛡 Validate README.md LEGEMEM Footer
+      - name: 🛡️ Validate README.md LEGEMEM Footer
         run: |
           FOOTER='© All Rights Reserved
 HONGKONG TRIZEL INTERNATIONAL GROUP LIMITED
@@ -38,17 +37,17 @@ License: CC BY-NC 4.0 — Redistribution prohibited without citation.'
             git config user.name "auto-dz8"
             git config user.email "admin1@trizel-ai.com"
             git add README.md
-            git commit -m "🛡 Enforce LEGEMEM Footer in README.md"
+            git commit -m "🛡️ Enforce LEGEMEM Footer"
             git push
           fi
 
-      - name: 🏗 Configure GitHub Pages
-        uses: actions/configure-pages@v3
+      - name: 🏁 Configure GitHub Pages
+        uses: actions/configure-pages@v4
 
       - name: 📦 Upload Static Content for GitHub Pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: . # ← رفع كل ملفات الجذر، وليس `_site/`
+          path: .
 
       - name: 🚀 Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
@@ -61,7 +60,7 @@ License: CC BY-NC 4.0 — Redistribution prohibited without citation.'
           DOMAIN="https://abdelkader-omran.github.io/trizel-AI"
           if [ -f console.html ] && grep -q "<!-- AUTO LOG -->" console.html; then
             echo "<li>✅ [$DATE] Deployed to <a href='$DOMAIN'>$DOMAIN</a></li>" >> temp.log
-            cat console.html | awk '/<!-- AUTO LOG -->/{print; system("cat temp.log"); next}1' > temp_console.html
+            cat console.html | awk '/<!-- AUTO LOG -->/ { system("cat temp.log"); print; next }1' > temp_console.html
             mv temp_console.html console.html
             rm temp.log
             git config user.name "auto-dz8"
@@ -70,5 +69,5 @@ License: CC BY-NC 4.0 — Redistribution prohibited without citation.'
             git commit -m "📡 Update console.html log - $DATE"
             git push
           else
-            echo "🔕 No console.html or no AUTO LOG marker. Skipping."
+            echo "📭 No console.html or no AUTO LOG marker"
           fi
