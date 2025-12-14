@@ -1,3 +1,15 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17924541.svg)](https://doi.org/10.5281/zenodo.17924541)
+
+## AUTO DZ ACT — Scientific Algorithm (v2.2)
+
+**Official software DOI (Zenodo):**  
+https://doi.org/10.5281/zenodo.17924541
+
+**Author:** Abdelkader Omran  
+**ORCID:** https://orcid.org/0000-0003-9884-3697
+
+---
+
 # 🌐 TRIZEL AI | AUTO DZ 8
 Official Web Access and Landing Page  
 Hosted by: HONGKONG TRIZEL INTERNATIONAL GROUP LIMITED  
