@@ -1,97 +1,73 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17924541.svg)](https://doi.org/10.5281/zenodo.17924541)
+# AUTO DZ ACT — Special Edition (v3.0 Gateway)
 
-## AUTO DZ ACT — Scientific Algorithm (v2.2)
+## Status
+⚠️ **Special Edition / Presentation Repository**
 
-**Official software DOI (Zenodo):**  
-https://doi.org/10.5281/zenodo.17924541
+This repository provides **documentation, presentation material, and a public access gateway**
+for **AUTO DZ ACT v3.0**.
 
-**Author:** Abdelkader Omran  
-**ORCID:** https://orcid.org/0000-0003-9884-3697
-
----
-
-# 🌐 TRIZEL AI | AUTO DZ 8
-Official Web Access and Landing Page  
-Hosted by: HONGKONG TRIZEL INTERNATIONAL GROUP LIMITED  
-🧠 Scientific Coordination: Dr. Abdelkader Omran  
-🔗 [Visit Website](https://abdelkader-omran.github.io/trizel-AI/)
+It is **NOT** the canonical definition of the algorithm.
 
 ---
 
-## 📁 Contents
+## Canonical reference (authoritative)
 
-| File | Description |
-|------|-------------|
-| `index.html` | Main landing page for TRIZEL AI projects. |
-| `downloads.html` | Direct download hub (PDFs, CSVs, Markdown). |
-| `console.html` | Live deployment and diagnostics logs. |
-| `anis.html` | Symbolic logic dashboard (AN∞IS module). |
-| `CNAME` | (Optional) Custom domain configuration for `trizel-ai.org` |
+**Omran, A. (2026).**  
+*AUTO DZ ACT – Scientific Algorithm for Epistemic Validation (v3.0).*  
+Zenodo.  
+https://doi.org/10.5281/zenodo.18134257
 
----
-
-## 📡 Deployment via GitHub Pages
-
-TRIZEL AI is published using **GitHub Pages**. To activate your version:
-
-### 🔧 GitHub Pages Setup:
-1. Go to `Settings > Pages`
-2. Choose:
-   - **Branch**: `main`
-   - **Folder**: `/ (root)`
-3. Click "Save"
+All scientific citations of AUTO DZ ACT **must reference the Zenodo DOI above**.
 
 ---
 
-## 🌐 Optional Custom Domain: `trizel-ai.org`
+## What AUTO DZ ACT is
 
-### 📝 Add File `CNAME`
-Create a file named `CNAME` (no extension), with this content:
-```
-trizel-ai.org
-```
+AUTO DZ ACT is a **deterministic, verification-first epistemic validation algorithm**.
+It evaluates scientific claims by explicitly comparing theoretical outputs (**T**)
+to empirical or observational data (**E**) under declared thresholds.
 
-### 🛰️ DNS Configuration (Google Domains)
+The algorithm assigns one of four epistemic states:
 
-| Type | Name | Value |
-|------|------|-------|
-| A | @ | 185.199.108.153 |
-| A | @ | 185.199.109.153 |
-| A | @ | 185.199.110.153 |
-| A | @ | 185.199.111.153 |
-| CNAME | www | abdelkader-omran.github.io. |
+- **0/0 — Confirmed**
+- **D0/DZ — Indeterminate**
+- **DZ — Contradicted**
+- **∞/∞ — Not Testable**
 
-➡️ Then enable **HTTPS** under GitHub Pages > "Enforce HTTPS"
+AUTO DZ ACT deliberately separates **validation** from **interpretation**.
+It does not propose physical models, fit parameters, or probabilistic confidence.
 
 ---
 
-## 🔬 Scientific Reference
+## Role of this repository
 
-This project is part of the **STOE V12–V22** research vector:  
-> **"The Simplified Theory of Everything"**  
-> DOI: [10.5281/zenodo.15633937](https://doi.org/10.5281/zenodo.15633937)  
+This Special Edition repository provides:
 
-Published by Dr. Abdelkader Omran under LEGEMEM Node: `phase4_vector_lattice_activation_v89`
+- Human-readable documentation
+- Presentation and educational material
+- GitHub Pages website access
+- Navigation to the canonical Zenodo release
+- Optional legacy or historical context (non-canonical)
 
----
-
-## ⚖️ LEGAL ATTRIBUTION
-
-```
-© All Rights Reserved  
-HONGKONG TRIZEL INTERNATIONAL GROUP LIMITED  
-General Manager: Dr. Abdelkader Omran  
-LEGEMEM Node: phase4_vector_lattice_activation_v89  
-DOI: 10.5281/zenodo.15633937  
-License: CC BY-NC 4.0 — Redistribution prohibited without citation.
-```
+This repository **does not redefine the algorithm**.
 
 ---
 
-## 📬 Contact
+## Author
 
-For inquiries, collaboration, or institutional outreach:  
-📧 admin1trizel@proton.me  
-🌍 [Company Listing](https://www.ltddir.com/companies/hongkong-trizel-international-group-limited/)
+**Abdelkader Omran**  
+Affiliation: HONGKONG TRIZEL INTERNATIONAL GROUP LIMITED  
+ORCID: https://orcid.org/0009-0003-9884-3697
 
 ---
+
+## License
+
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+---
+
+## Citation rule (strict)
+
+- Cite the **Zenodo DOI** when referring to the algorithm itself.
+- Reference this repository **only** as a presentation or access resource.
