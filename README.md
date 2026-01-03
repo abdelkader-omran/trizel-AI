@@ -64,10 +64,17 @@ ORCID: https://orcid.org/0009-0003-9884-3697
 ## License
 
 Creative Commons Attribution 4.0 International (CC BY 4.0)
+## License scope clarification
+- The **repository code, configuration files, and website assets** are licensed under the MIT License (see `LICENSE`).
+- The **AUTO DZ ACT scientific algorithm and its formal definition** are licensed under **CC BY 4.0** and are
+  **canonically published on Zenodo**: https://doi.org/10.5281/zenodo.18134257
 
+This repository does not relicense or redefine the scientific method.
 ---
 
 ## Citation rule (strict)
 
 - Cite the **Zenodo DOI** when referring to the algorithm itself.
 - Reference this repository **only** as a presentation or access resource.
+Copyright (c) 2025 abdelkader-omran
+Copyright (c) 2025–2026 Abdelkader Omran
