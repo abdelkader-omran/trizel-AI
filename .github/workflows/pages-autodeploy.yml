@@ -1,97 +1,38 @@
-name: TRIZEL AI — GitHub Pages AutoDeploy (AUTO DZ ACT v3.0 Gateway)
+name: TRIZEL AI — GitHub Pages Deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
     paths:
-      - "**.html"
-      - "**.md"
+      - "index.html"
+      - "assets/**"
       - ".github/workflows/pages-autodeploy.yml"
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧾 Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 🔍 Ensure index.html exists
+      - name: Ensure index.html exists
         run: |
-          if [ ! -f index.html ]; then
-            echo "::error ::Missing index.html at repo root!"
-            exit 1
-          fi
+          test -f index.html || (echo "::error ::Missing index.html at repo root" && exit 1)
 
-      - name: 🛡️ Ensure README contains Special Edition / Canonical DOI notice
-        run: |
-          HEADER_MARKER="AUTO DZ ACT — Special Edition (v3.0 Gateway)"
-          DOI_URL="https://doi.org/10.5281/zenodo.18134257"
-          NOTICE_BLOCK="## Status
-⚠️ **Special Edition / Presentation Repository**
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
 
-This repository provides documentation, presentation material, and a public access gateway for **AUTO DZ ACT v3.0**.
-It is **NOT** the canonical definition of the algorithm.
-
-## Canonical reference (authoritative)
-**Omran, A. (2026).**  
-*AUTO DZ ACT – Scientific Algorithm for Epistemic Validation (v3.0).*  
-Zenodo. ${DOI_URL}
-
-All scientific citations of AUTO DZ ACT **must reference the Zenodo DOI above**."
-
-          # If README missing the Special Edition header or canonical DOI, append the notice.
-          if [ -f README.md ]; then
-            if ! grep -q "${HEADER_MARKER}" README.md || ! grep -q "${DOI_URL}" README.md; then
-              echo -e "\n\n${NOTICE_BLOCK}\n" >> README.md
-              git config user.name "auto-dz-act-bot"
-              git config user.email "admin1@trizel-ai.com"
-              git add README.md
-              git commit -m "docs: enforce Special Edition gateway notice + canonical Zenodo DOI"
-              git push
-            fi
-          else
-            echo "::warning ::README.md not found; skipping README notice enforcement."
-          fi
-
-      - name: 🏁 Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: 📦 Upload Static Content for GitHub Pages
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: .  # publish from repo root
+          path: .
 
-      - name: 🚀 Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-
-      - name: 🧠 Append Log to /console.html (if exists)
-        run: |
-          DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-          DOMAIN="https://abdelkader-omran.github.io/trizel-AI"
-
-          if [ -f console.html ] && grep -q "<!-- AUTO LOG -->" console.html; then
-            echo "<li>✅ [$DATE] Deployed to <a href='$DOMAIN'>$DOMAIN</a> — Canonical DOI: <a href='https://doi.org/10.5281/zenodo.18134257'>10.5281/zenodo.18134257</a></li>" >> temp.log
-            awk '/<!-- AUTO LOG -->/ { system("cat temp.log"); print; next }1' console.html > temp_console.html
-            mv temp_console.html console.html
-            rm temp.log
-
-            git config user.name "auto-dz-act-bot"
-            git config user.email "admin1@trizel-ai.com"
-            git add console.html
-            git commit -m "docs: update console.html deploy log - $DATE"
-            git push
-          else
-            echo "🔕 No console.html or no AUTO LOG marker; skipping log update."
-          fi
+      - name: Deploy
+        uses: actions/deploy-pages@v2
