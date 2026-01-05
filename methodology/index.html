@@ -7,8 +7,9 @@ File: methodology/index.html
 Route: /methodology
 Comment: Methodological boundary page. Descriptive only. No interpretation.
 Precise scientific reference links:
-  - ORCID: https://orcid.org/0009-0007-1842-3844
+  - ORCID: https://orcid.org/0009-0003-9884-3697
   - Zenodo: https://zenodo.org/
+  - Latest Zenodo DOI (record): https://doi.org/10.5281/zenodo.18149691
   - MPC: https://minorplanetcenter.net/
   - NASA/JPL: https://ssd.jpl.nasa.gov/
   - ESA: https://www.esa.int/
@@ -53,7 +54,8 @@ Precise scientific reference links:
         radial-gradient(800px 500px at 50% 100%, rgba(122,167,255,.10), transparent 65%),
         var(--bg);
     }
-    a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
     header{
       position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
       background:color-mix(in srgb, var(--bg), transparent 25%);
@@ -64,7 +66,10 @@ Precise scientific reference links:
     .brand b{font-size:14px; letter-spacing:.10em; text-transform:uppercase}
     .brand span{color:var(--muted); font-size:13px}
     .navlinks{display:flex; flex-wrap:wrap; gap:10px 14px; justify-content:flex-end; align-items:center}
-    .navlinks a{font-size:13px; color:var(--text); opacity:.85; padding:6px 10px; border-radius:999px; border:1px solid transparent}
+    .navlinks a{
+      font-size:13px; color:var(--text); opacity:.85;
+      padding:6px 10px; border-radius:999px; border:1px solid transparent
+    }
     .navlinks a:hover{opacity:1; border-color:var(--line); background:var(--soft); text-decoration:none}
 
     .lang{
@@ -86,19 +91,22 @@ Precise scientific reference links:
       border:1px solid var(--line); border-radius:999px; background:color-mix(in srgb, var(--panel), transparent 10%);
       box-shadow:var(--shadow); font-size:12px; color:var(--muted);
     }
-    .dot{width:8px; height:8px; border-radius:999px; background:var(--ok);
+    .dot{
+      width:8px; height:8px; border-radius:999px; background:var(--ok);
       box-shadow:0 0 0 6px color-mix(in srgb, var(--ok), transparent 85%);
     }
     h1{margin:10px 0 8px; font-size:28px; letter-spacing:-.01em}
     h2{margin:18px 0 10px; font-size:15px; letter-spacing:.02em; text-transform:uppercase; color:color-mix(in srgb, var(--text), var(--muted) 30%)}
     h3{margin:14px 0 8px; font-size:18px; letter-spacing:-.01em}
-    ul{margin:8px 0 0 20px} li{margin:6px 0}
+    ul{margin:8px 0 0 20px}
+    li{margin:6px 0}
     .muted{color:var(--muted)}
     .hr{height:1px; background:var(--line); margin:18px 0}
     .box{border:1px solid var(--line); background:color-mix(in srgb, var(--panel), transparent 12%); border-radius:12px; padding:12px}
     footer{margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:12px}
     .smallcaps{letter-spacing:.08em; text-transform:uppercase; font-size:11px; color:color-mix(in srgb, var(--muted), var(--text) 10%)}
 
+    /* i18n */
     [data-lang]{display:none}
     [data-lang].active{display:block}
     .rtl{direction:rtl}
@@ -110,7 +118,7 @@ Precise scientific reference links:
   <div class="nav">
     <div class="brand">
       <b>TRIZEL-AI</b>
-      <span>Methodology</span>
+      <span id="navTitle">Methodology</span>
     </div>
 
     <nav class="navlinks" aria-label="Primary">
@@ -172,9 +180,24 @@ Precise scientific reference links:
         <span data-lang="zh">TRIZEL-AI 不发布</span>
       </h3>
       <ul>
-        <li><span data-lang="en" class="active">Interpretations or hypotheses</span><span data-lang="fr">Interprétations ou hypothèses</span><span data-lang="ar" class="rtl">تفسيرات أو فرضيات</span><span data-lang="zh">解释或假设</span></li>
-        <li><span data-lang="en" class="active">Object classifications or theoretical claims</span><span data-lang="fr">Classifications d’objets ou revendications théoriques</span><span data-lang="ar" class="rtl">تصنيفات أو ادعاءات نظرية</span><span data-lang="zh">对象分类或理论主张</span></li>
-        <li><span data-lang="en" class="active">Derived datasets, conclusions, or rankings</span><span data-lang="fr">Données dérivées, conclusions, ou classements</span><span data-lang="ar" class="rtl">بيانات مشتقة أو استنتاجات أو تصنيفات</span><span data-lang="zh">派生数据、结论或排名</span></li>
+        <li>
+          <span data-lang="en" class="active">Interpretations or hypotheses</span>
+          <span data-lang="fr">Interprétations ou hypothèses</span>
+          <span data-lang="ar" class="rtl">تفسيرات أو فرضيات</span>
+          <span data-lang="zh">解释或假设</span>
+        </li>
+        <li>
+          <span data-lang="en" class="active">Object classifications or theoretical claims</span>
+          <span data-lang="fr">Classifications d’objets ou revendications théoriques</span>
+          <span data-lang="ar" class="rtl">تصنيفات أو ادعاءات نظرية</span>
+          <span data-lang="zh">对象分类或理论主张</span>
+        </li>
+        <li>
+          <span data-lang="en" class="active">Derived datasets, conclusions, or rankings</span>
+          <span data-lang="fr">Données dérivées, conclusions, ou classements</span>
+          <span data-lang="ar" class="rtl">بيانات مشتقة أو استنتاجات أو تصنيفات</span>
+          <span data-lang="zh">派生数据、结论或排名</span>
+        </li>
       </ul>
 
       <h3 style="margin-top:14px;">
@@ -184,9 +207,24 @@ Precise scientific reference links:
         <span data-lang="zh">TRIZEL-AI 发布</span>
       </h3>
       <ul>
-        <li><span data-lang="en" class="active">Evidence existence at specific times</span><span data-lang="fr">Existence de la preuve à des instants précis</span><span data-lang="ar" class="rtl">إثبات وجود البيانات في أوقات محددة</span><span data-lang="zh">特定时间点的数据存在性</span></li>
-        <li><span data-lang="en" class="active">Source provenance and institutional origin</span><span data-lang="fr">Provenance et origine institutionnelle</span><span data-lang="ar" class="rtl">المصدر والمنشأ المؤسسي</span><span data-lang="zh">来源谱系与机构出处</span></li>
-        <li><span data-lang="en" class="active">Immutable archival pointers (DOIs)</span><span data-lang="fr">Pointeurs immuables (DOI)</span><span data-lang="ar" class="rtl">مؤشرات أرشفة غير قابلة للتغيير (DOI)</span><span data-lang="zh">不可变归档指针（DOI）</span></li>
+        <li>
+          <span data-lang="en" class="active">Evidence existence at specific times</span>
+          <span data-lang="fr">Existence de la preuve à des instants précis</span>
+          <span data-lang="ar" class="rtl">إثبات وجود البيانات في أوقات محددة</span>
+          <span data-lang="zh">特定时间点的数据存在性</span>
+        </li>
+        <li>
+          <span data-lang="en" class="active">Source provenance and institutional origin</span>
+          <span data-lang="fr">Provenance et origine institutionnelle</span>
+          <span data-lang="ar" class="rtl">المصدر والمنشأ المؤسسي</span>
+          <span data-lang="zh">来源谱系与机构出处</span>
+        </li>
+        <li>
+          <span data-lang="en" class="active">Immutable archival pointers (DOIs)</span>
+          <span data-lang="fr">Pointeurs immuables (DOI)</span>
+          <span data-lang="ar" class="rtl">مؤشرات أرشفة غير قابلة للتغيير (DOI)</span>
+          <span data-lang="zh">不可变归档指针（DOI）</span>
+        </li>
       </ul>
     </div>
 
@@ -198,12 +236,30 @@ Precise scientific reference links:
       <span data-lang="ar" class="rtl">2. حوكمة المراحل</span>
       <span data-lang="zh">2. 阶段治理</span>
     </h2>
+
     <p class="muted">
       <span data-lang="en" class="active">Current phase: Phase-5 — Documentation and Evidence Freezing.</span>
       <span data-lang="fr">Phase actuelle : Phase-5 — Documentation et gel des preuves.</span>
       <span data-lang="ar" class="rtl">المرحلة الحالية: Phase-5 — التوثيق وتجميد الأدلة.</span>
       <span data-lang="zh">当前阶段：Phase-5 — 文档与证据冻结。</span>
     </p>
+
+    <div class="box">
+      <ul>
+        <li>
+          <span data-lang="en" class="active">Phase-5 outputs are documentation-only and evidence pointers (e.g., DOIs). No executable logic, inference, scoring, or interpretation.</span>
+          <span data-lang="fr">Les sorties de la Phase-5 sont uniquement de la documentation et des pointeurs de preuve (ex. DOI). Aucun code exécutable, inférence, scoring ou interprétation.</span>
+          <span data-lang="ar" class="rtl">مخرجات Phase-5 هي توثيق فقط ومؤشرات للأدلة (مثل DOI). لا منطق تنفيذي ولا استدلال ولا تقييم ولا تفسير.</span>
+          <span data-lang="zh">Phase-5 输出仅限文档与证据指针（如 DOI）。不包含可执行逻辑、推断、评分或解释。</span>
+        </li>
+        <li>
+          <span data-lang="en" class="active">Any interpretative publication requires explicit authorization beyond Phase-5.</span>
+          <span data-lang="fr">Toute publication interprétative nécessite une autorisation explicite au-delà de la Phase-5.</span>
+          <span data-lang="ar" class="rtl">أي نشر تفسيري يتطلب إذنًا صريحًا خارج Phase-5.</span>
+          <span data-lang="zh">任何解释性发布都需要在 Phase-5 之外的明确授权。</span>
+        </li>
+      </ul>
+    </div>
 
     <div class="hr" role="separator"></div>
 
@@ -225,8 +281,18 @@ Precise scientific reference links:
     <div class="hr" role="separator"></div>
 
     <div class="muted" style="display:flex; gap:18px; flex-wrap:wrap;">
-      <span><strong>ORCID:</strong> <a href="https://orcid.org/0009-0007-1842-3844" rel="noopener">0009-0007-1842-3844</a></span>
-      <span><strong>Zenodo:</strong> <a href="https://zenodo.org/" rel="noopener">zenodo.org</a></span>
+      <span>
+        <strong>ORCID:</strong>
+        <a href="https://orcid.org/0009-0003-9884-3697" rel="noopener">0009-0003-9884-3697</a>
+      </span>
+      <span>
+        <strong>Zenodo:</strong>
+        <a href="https://zenodo.org/" rel="noopener">zenodo.org</a>
+      </span>
+      <span>
+        <strong>Latest DOI:</strong>
+        <a href="https://doi.org/10.5281/zenodo.18149691" rel="noopener">10.5281/zenodo.18149691</a>
+      </span>
     </div>
   </div>
 
@@ -256,21 +322,26 @@ Precise scientific reference links:
   function setLang(next){
     localStorage.setItem('trizel_lang', next);
     document.documentElement.lang = next === 'zh' ? 'zh' : next;
+
     document.querySelectorAll('[data-lang]').forEach(el=>{
       el.classList.toggle('active', el.getAttribute('data-lang') === next);
     });
+
     const isRTL = next === 'ar';
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
     document.querySelectorAll('.rtl').forEach(el=>{
       el.style.direction = isRTL ? 'rtl' : 'ltr';
     });
+
     document.querySelectorAll('button[data-setlang]').forEach(b=>{
       b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
     });
   }
+
   document.querySelectorAll('button[data-setlang]').forEach(btn=>{
     btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-setlang')));
   });
+
   setLang(lang);
 })();
 </script>
