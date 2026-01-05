@@ -1,139 +1,164 @@
-GOVERNANCE INVARIANTS — PHASE-5 FINAL_EXECUTION
-==============================================
+# GOVERNANCE_INVARIANTS
 
-Project: TRIZEL Epistemic Operational Portal
-Target : https://trizel-ai.com/
-Phase  : 5 — FINAL_EXECUTION
+Project: TRIZEL  
+Phase: FINAL_EXECUTION  
+Authority Level: ABSOLUTE  
+Override: NONE  
 
-----------------------------------------------------------------
-0. PURPOSE
-----------------------------------------------------------------
-This document defines governance invariants that are non-negotiable.
-They are binding for all contributors, maintainers, and connected
-repositories feeding the TRIZEL portal.
+---
 
-Any breach of an invariant invalidates deployment eligibility.
+## 1. Definition
 
-----------------------------------------------------------------
-1. DEPLOYMENT GATE INVARIANT (ABSOLUTE)
-----------------------------------------------------------------
-Invariant G1 (BLOCK_DEPLOYMENT):
-If any FINAL_EXECUTION requirement is not met, deployment MUST be
-blocked. No override is permitted except explicit governance waiver
-recorded in writing and versioned in-repository.
+Governance invariants are **non-negotiable rules** that apply across all phases,
+repositories, and deployments.
 
-Default: BLOCKER + CRITICAL + MAJOR => BLOCK DEPLOYMENT.
+They define what TRIZEL **can** and **cannot** do — permanently.
 
-----------------------------------------------------------------
-2. EPISTEMIC ROLE INVARIANT (VIEWER-ONLY)
-----------------------------------------------------------------
-Invariant G2 (NO_KNOWLEDGE_GENERATION):
-The website is a read-only epistemic surface.
-It must not generate, reinterpret, rank, score, infer, or editorialize
-scientific content.
+Violation of any invariant results in:
+- immediate deployment block,
+- invalidation of the affected output,
+- mandatory corrective action.
 
-The website may only expose declared artifacts and their provenance.
+---
 
-----------------------------------------------------------------
-3. TRACEABILITY INVARIANT (NO ORPHANS)
-----------------------------------------------------------------
-Invariant G3 (PROVENANCE_REQUIRED):
-Every displayed result MUST be traceable to:
-- repository identity,
-- version/commit reference,
-- generation timestamp,
-- epistemic status label.
+## 2. Epistemic Authority Invariant
 
-No orphan content is permitted.
+TRIZEL does NOT generate knowledge.
 
-----------------------------------------------------------------
-4. INTEGRATOR PRIORITY INVARIANT
-----------------------------------------------------------------
-Invariant G4 (INTEGRATORS_FIRST):
-Integrator outputs represent system intelligence and MUST be displayed
-before producer outputs across all relevant portal views.
+TRIZEL:
+- exposes,
+- evaluates,
+- verifies,
+- connects.
 
-Producers may not visually dominate integrators.
+All epistemic authority remains with:
+- data sources,
+- repository authors,
+- explicitly consented contributors.
 
-----------------------------------------------------------------
-5. DECLARATION INVARIANT (DECLARED-ONLY)
-----------------------------------------------------------------
-Invariant G5 (DECLARED_OUTPUTS_ONLY):
-Only artifacts explicitly declared in repository indexes are eligible
-for exposure. Undeclared artifacts are invisible by design.
+No internal reinterpretation may override original authorship.
 
-No manual exceptions.
+---
 
-----------------------------------------------------------------
-6. MULTILINGUAL PARITY INVARIANT (EN/FR)
-----------------------------------------------------------------
-Invariant G6 (NO_LANGUAGE_ASYMMETRY):
-All public content MUST exist in EN and FR with equivalent meaning and
-structure.
+## 3. Non-Appropriation Invariant
 
-Any of the following blocks deployment:
-- page exists in one language only,
-- missing section in one language,
-- extra claims or legal terms in one language.
+TRIZEL shall never:
+- claim ownership of external theories,
+- absorb external work into internal doctrine,
+- rebrand external results as TRIZEL output.
 
-----------------------------------------------------------------
-7. NO PLACEHOLDER INVARIANT
-----------------------------------------------------------------
-Invariant G7 (ZERO_PLACEHOLDERS):
-Placeholder content is forbidden in all public surfaces:
-- no “coming soon”, “TBD”, “demo”, “sample data”,
-- no empty shells.
-
-If a feature is not ready, it must be disabled and invisible.
-
-----------------------------------------------------------------
-8. NO INFORMALITY INVARIANT (PROFESSIONAL SCIENTIFIC)
-----------------------------------------------------------------
-Invariant G8 (PRO_SCIENTIFIC_PRESENTATION):
-The portal must maintain professional scientific presentation:
-- precise typography and hierarchy,
-- coherent, disciplined color palette,
-- maximum semantic clarity,
-- no marketing tone or decorative-first design.
-
-----------------------------------------------------------------
-9. AUTHORSHIP AND IP INVARIANT (NON-APPROPRIATION)
-----------------------------------------------------------------
-Invariant G9 (AUTHOR_RIGHTS_PRESERVED):
-Authorship and intellectual property remain with authors and source
-repositories.
-
-No theory or work is analyzed or displayed without:
+All external work requires:
 - explicit author consent,
-- traceable reference.
+- clear provenance,
+- immutable attribution.
 
-TRIZEL functions as evaluator and connector, not rights holder.
+See: `docs/legal/IP_NON_APPROPRIATION_POLICY.md`
 
-----------------------------------------------------------------
-10. AUDITABILITY INVARIANT (PUBLIC METADATA)
-----------------------------------------------------------------
-Invariant G10 (AUDIT_VISIBLE):
-Audit metadata must be publicly accessible, including:
-- portal build timestamp,
-- included repositories list,
-- gate validation outcomes,
-- blocking reasons (if any).
+---
 
-----------------------------------------------------------------
-11. PHASE TRANSITION INVARIANT
-----------------------------------------------------------------
-Invariant G11 (PHASE5_CLOSE_CONDITION):
-Phase-5 ends only when:
-- all Phase-5 documentation is merged,
-- FINAL_EXECUTION acceptance criteria are satisfied,
-- governance approves Phase-5 closure in a versioned record.
+## 4. Consent & Visibility Invariant
 
-No Phase-6 work is permitted without an explicit Phase-6 directive.
+No theory, dataset, or analysis is displayed unless:
 
-----------------------------------------------------------------
-AUTHORITY
-----------------------------------------------------------------
-These invariants are binding for Phase-5 FINAL_EXECUTION.
+- the author has granted explicit consent, AND
+- the epistemic status is declared, AND
+- the provenance is traceable.
 
-Any deviation requires a formal governance amendment committed to the
-repository and must be explicitly referenced by commit hash.
+Silence does NOT imply consent.
+
+---
+
+## 5. Repository Boundary Invariant
+
+Each repository is sovereign.
+
+TRIZEL shall not:
+- modify external repositories,
+- inject logic into producer repositories,
+- alter declared outputs.
+
+The portal is a **viewer and aggregator only**.
+
+---
+
+## 6. Integrator Priority Invariant
+
+Integrator outputs define system-level intelligence.
+
+Therefore:
+- integrator results MUST be displayed before producer results,
+- producers cannot dominate global conclusions,
+- isolated outputs cannot override integrated analysis.
+
+---
+
+## 7. Transparency Invariant
+
+All public outputs must expose:
+- source repository,
+- commit or version,
+- generation timestamp,
+- epistemic status.
+
+Opaque outputs are forbidden.
+
+---
+
+## 8. Audit Supremacy Invariant
+
+The audit layer is authoritative.
+
+If audit reports:
+- failure,
+- ambiguity,
+- missing declaration,
+
+then deployment is BLOCKED regardless of intent or urgency.
+
+---
+
+## 9. Language Parity Invariant (EN / FR)
+
+All public content must exist in:
+- English
+- French
+
+With:
+- structural equivalence,
+- semantic equivalence,
+- legal equivalence.
+
+Language asymmetry is a governance violation.
+
+---
+
+## 10. Immutability of Published Records
+
+Once published:
+- audit records are immutable,
+- provenance links are immutable,
+- historical outputs remain accessible.
+
+Corrections require:
+- new versions,
+- new audits,
+- explicit supersession.
+
+---
+
+## 11. No Exception Clause
+
+There are:
+- no emergency overrides,
+- no administrative shortcuts,
+- no implicit approvals.
+
+Governance invariants apply universally.
+
+---
+
+## 12. Final Rule
+
+IF any governance invariant is violated  
+THEN deployment is BLOCKED  
+AND remediation is mandatory.
