@@ -1,0 +1,118 @@
+{
+  "project": {
+    "name": "TRIZEL",
+    "portal_type": "EPISTEMIC_OPERATIONAL_PORTAL",
+    "target": "https://trizel-ai.com/",
+    "phase": "FINAL_EXECUTION",
+    "quality_standard": "PROFESSIONAL_SCIENTIFIC"
+  },
+  "governance": {
+    "execution_rule": {
+      "if_requirements_not_met": "BLOCK_DEPLOYMENT"
+    },
+    "deployment_gate": {
+      "default_policy": "BLOCKER+CRITICAL+MAJOR_BLOCKS_DEPLOYMENT",
+      "severity_levels": [
+        "BLOCKER",
+        "CRITICAL",
+        "MAJOR",
+        "MINOR"
+      ]
+    },
+    "no_placeholder_content": true,
+    "no_informal_design": true,
+    "no_language_asymmetry": true
+  },
+  "i18n": {
+    "enabled": true,
+    "languages": [
+      "EN",
+      "FR"
+    ],
+    "public_scope": "ALL_PUBLIC_CONTENT",
+    "parity": {
+      "mode": "CONTENT_EQUIVALENCE_ACROSS_LANGUAGES",
+      "block_deploy_on_violation": true
+    },
+    "routing": {
+      "strategy": "PREFIX",
+      "prefix_map": {
+        "EN": "/en",
+        "FR": "/fr"
+      },
+      "root_redirect": "EN",
+      "hreflang_required": true,
+      "canonical_required": true
+    }
+  },
+  "epistemic_model": {
+    "role": "VIEWER_AGGREGATOR_AUDITOR_ONLY",
+    "prohibited_capabilities": [
+      "INFERENCE",
+      "SCORING",
+      "RANKING",
+      "INTERPRETATION",
+      "EDITORIALIZATION",
+      "RUNTIME_COMPUTATION"
+    ],
+    "status_labels": [
+      "Stable",
+      "Beta",
+      "In Progress"
+    ],
+    "integrator_priority": {
+      "enabled": true,
+      "rule": "INTEGRATORS_FIRST",
+      "block_deploy_on_violation": true
+    }
+  },
+  "publishing": {
+    "declared_outputs_only": true,
+    "no_content_duplication": true,
+    "exposure_mode": "METADATA_AND_LINKS_BY_DEFAULT",
+    "provenance_required": {
+      "repository_id": true,
+      "repository_role": true,
+      "version_or_commit": true,
+      "generation_timestamp": true,
+      "epistemic_status": true
+    },
+    "forbidden_public_content": [
+      "PLACEHOLDERS",
+      "DEMO_DATA",
+      "SAMPLE_DATA",
+      "DRAFT_THEORY_UNCONSENTED",
+      "PRIVATE_CORRESPONDENCE",
+      "INTERNAL_LOGS",
+      "UNDECLARED_ARTIFACTS",
+      "NARRATIVE_SPECULATION"
+    ]
+  },
+  "sources": {
+    "registry_file": "repos.registry.json",
+    "required_repository_interface": [
+      "manifest.json",
+      "outputs.index.json",
+      "status.json"
+    ],
+    "repository_roles": [
+      "producer",
+      "integrator"
+    ]
+  },
+  "build": {
+    "mode": "STATIC_GENERATION",
+    "live_queries_disabled": true,
+    "audit_artifacts": {
+      "public_audit_path": "public/audit",
+      "gate_report_path": "public/audit/gate-report.json",
+      "required_fields": [
+        "timestamp",
+        "portal_commit",
+        "included_repositories",
+        "validation_results",
+        "blocking_reasons"
+      ]
+    }
+  }
+}
