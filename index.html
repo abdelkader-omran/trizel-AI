@@ -1,670 +1,612 @@
+<!--
+====================================================================
+METADATA (COPY / AUDIT HEADER)
+Repository: abdelkader-omran/trizel-AI
+Branch: main
+File: index.html
+Route: /
+Comment: Academic, multilingual homepage. Read-only gateway:
+         - Explains scope & boundary (non-interpretative)
+         - Exposes navigation to Status / Methodology / Evidence / Repositories
+         - Integrates professional research-themed visuals
+Precise scientific reference links:
+  - ORCID: https://orcid.org/0009-0007-1842-3844
+  - Zenodo: https://zenodo.org/
+  - DOI resolver: https://doi.org/
+====================================================================
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
+  <title>TRIZEL-AI — Epistemic Monitoring & Scientific Evidence Preservation</title>
+  <meta name="description" content="TRIZEL-AI is a non-interpretative scientific infrastructure for preserving official institutional observational records with immutable, DOI-referenced snapshots." />
 
-  <title>TRIZEL-AI — Epistemic Monitoring and Scientific Evidence Preservation Framework</title>
-  <meta name="description" content="TRIZEL-AI is a verification-first scientific infrastructure for preserving authoritative institutional observational records over time with immutable provenance. No interpretation is published." />
-  <meta name="robots" content="index,follow" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="TRIZEL-AI — Epistemic Monitoring and Scientific Evidence Preservation Framework" />
-  <meta property="og:description" content="System status and provenance interface for daily institutional evidence preservation (e.g., 3I/ATLAS). No interpretation is published." />
-  <meta property="og:type" content="website" />
-
-  <!-- Basic typography (system fonts only) -->
   <style>
     :root{
-      --bg: #0b0d12;
-      --panel: #111521;
-      --text: #e9eef7;
-      --muted: #a9b4c6;
-      --soft: rgba(255,255,255,.08);
-      --line: rgba(255,255,255,.14);
-      --accent: #7aa7ff;
-      --accent2: #7dffcf;
-      --warn: #ffdd7a;
-      --ok: #7dffcf;
-      --radius: 14px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      --max: 1120px;
+      --bg:#070A12;
+      --panel:#0D1222;
+      --panel2:#0B1020;
+      --text:#EAF1FF;
+      --muted:#A8B4CC;
+      --line:rgba(255,255,255,.14);
+      --soft:rgba(255,255,255,.08);
+
+      /* Scientific accent system (calibrated) */
+      --a1:#7AA7FF;   /* spectral-blue */
+      --a2:#7DFFCF;   /* teal-green */
+      --a3:#9B8CFF;   /* violet */
+      --warn:#FFDD7A;
+
+      --radius:16px;
+      --shadow:0 14px 40px rgba(0,0,0,.42);
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      --max:1180px;
     }
 
     @media (prefers-color-scheme: light){
       :root{
-        --bg: #f6f8fc;
-        --panel: #ffffff;
-        --text: #0f172a;
-        --muted: #475569;
-        --soft: rgba(15,23,42,.06);
-        --line: rgba(15,23,42,.12);
-        --accent: #1d4ed8;
-        --accent2: #0f766e;
-        --warn: #8a6a00;
-        --ok: #0f766e;
-        --shadow: 0 12px 34px rgba(15,23,42,.10);
+        --bg:#F6F8FC;
+        --panel:#FFFFFF;
+        --panel2:#FFFFFF;
+        --text:#0F172A;
+        --muted:#475569;
+        --line:rgba(15,23,42,.12);
+        --soft:rgba(15,23,42,.06);
+        --shadow:0 14px 38px rgba(15,23,42,.10);
+
+        --a1:#1D4ED8;
+        --a2:#0F766E;
+        --a3:#6D28D9;
+        --warn:#8A6A00;
       }
     }
 
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
+    *{box-sizing:border-box}
     body{
-      margin: 0;
-      font-family: var(--sans);
-      color: var(--text);
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      line-height:1.6;
       background:
-        radial-gradient(1200px 600px at 15% 0%, rgba(122,167,255,.18), transparent 60%),
-        radial-gradient(900px 500px at 85% 10%, rgba(125,255,207,.12), transparent 55%),
-        radial-gradient(800px 500px at 50% 100%, rgba(122,167,255,.10), transparent 65%),
+        radial-gradient(1100px 650px at 15% 0%, rgba(122,167,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 85% 15%, rgba(125,255,207,.12), transparent 58%),
+        radial-gradient(900px 600px at 50% 100%, rgba(155,140,255,.10), transparent 62%),
         var(--bg);
-      line-height: 1.55;
     }
 
-    a{ color: var(--accent); text-decoration: none; }
-    a:hover{ text-decoration: underline; }
-
-    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 20px 54px; }
+    a{color:var(--a1); text-decoration:none}
+    a:hover{text-decoration:underline}
 
     header{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
-      background: color-mix(in srgb, var(--bg), transparent 25%);
-      border-bottom: 1px solid var(--line);
+      position:sticky; top:0; z-index:60;
+      backdrop-filter:blur(12px);
+      background:color-mix(in srgb, var(--bg), transparent 22%);
+      border-bottom:1px solid var(--line);
     }
-    .nav{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+
+    .topbar{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
     }
+
     .brand{
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      min-width: 240px;
+      display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
     }
     .brand b{
-      font-size: 14px;
-      letter-spacing: .10em;
-      text-transform: uppercase;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-size:14px;
     }
     .brand span{
-      color: var(--muted);
-      font-size: 13px;
+      color:var(--muted);
+      font-size:13px;
     }
-    .navlinks{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 14px;
-      justify-content: flex-end;
+
+    nav{
+      display:flex; align-items:center; gap:10px 12px; flex-wrap:wrap;
     }
-    .navlinks a{
-      font-size: 13px;
-      color: var(--text);
-      opacity: .85;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
+    nav a{
+      font-size:13px;
+      color:var(--text);
+      opacity:.88;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
     }
-    .navlinks a:hover{
-      opacity: 1;
-      border-color: var(--line);
-      background: var(--soft);
-      text-decoration: none;
+    nav a:hover{
+      opacity:1;
+      border-color:var(--line);
+      background:var(--soft);
+      text-decoration:none;
+    }
+
+    /* CLEARLY VISIBLE multilingual interface */
+    .lang{
+      display:flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:color-mix(in srgb, var(--panel), transparent 10%);
+      box-shadow:var(--shadow);
+    }
+    .lang .label{
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .lang button{
+      font-size:12px;
+      cursor:pointer;
+      border:1px solid transparent;
+      background:transparent;
+      color:var(--text);
+      opacity:.86;
+      padding:5px 9px;
+      border-radius:999px;
+    }
+    .lang button:hover{
+      opacity:1;
+      border-color:var(--line);
+      background:var(--soft);
+    }
+    .lang button[aria-pressed="true"]{
+      opacity:1;
+      border-color:color-mix(in srgb, var(--a1), transparent 45%);
+      background:color-mix(in srgb, var(--a1), transparent 86%);
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:28px 20px 64px;
     }
 
     .hero{
-      padding: 28px 0 10px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:stretch;
     }
+    @media (max-width:980px){ .hero{grid-template-columns:1fr;} }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .heroMedia{
+      position:relative;
+      min-height:360px;
+      background:var(--panel2);
+    }
+    .heroMedia img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      filter:saturate(1.05) contrast(1.04);
+    }
+    .heroMedia::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(90deg,
+        color-mix(in srgb, var(--bg), transparent 35%) 0%,
+        transparent 45%,
+        color-mix(in srgb, var(--bg), transparent 45%) 100%);
+      pointer-events:none;
+    }
+
+    .heroText{
+      padding:18px 18px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
     .kicker{
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 7px 10px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--panel), transparent 10%);
-      box-shadow: var(--shadow);
-      font-size: 12px;
-      color: var(--muted);
+      display:inline-flex; align-items:center; gap:10px;
+      padding:7px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      width:max-content;
+      background:color-mix(in srgb, var(--panel), transparent 10%);
+      color:var(--muted);
+      font-size:12px;
     }
     .dot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: var(--ok);
-      box-shadow: 0 0 0 6px color-mix(in srgb, var(--ok), transparent 85%);
+      width:8px; height:8px; border-radius:999px;
+      background:var(--a2);
+      box-shadow:0 0 0 6px color-mix(in srgb, var(--a2), transparent 86%);
     }
 
     h1{
-      margin: 16px 0 6px;
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
+      margin:0;
+      font-size:30px;
+      letter-spacing:-.02em;
+      line-height:1.18;
     }
-    .subtitle{
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 80ch;
-    }
-
-    .grid{
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 18px;
-      align-items: start;
-    }
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-      .brand{ min-width: auto; }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
     }
 
-    .card{
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: var(--shadow);
+    .ctaRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:6px;
     }
-    .card h2{
-      margin: 0 0 10px;
-      font-size: 15px;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-      color: color-mix(in srgb, var(--text), var(--muted) 30%);
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:var(--soft);
+      color:var(--text);
+      font-size:13px;
+      text-decoration:none;
     }
-    .card p{ margin: 10px 0; color: var(--text); }
-    .muted{ color: var(--muted); }
-    .hr{
-      height: 1px;
-      background: var(--line);
-      margin: 18px 0;
+    .btn.primary{
+      border-color:color-mix(in srgb, var(--a1), transparent 35%);
+      background:linear-gradient(135deg,
+        color-mix(in srgb, var(--a1), transparent 84%),
+        color-mix(in srgb, var(--a3), transparent 88%));
+    }
+    .btn:hover{ text-decoration:none; transform:translateY(-1px); }
+
+    .grid3{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    @media (max-width:980px){ .grid3{grid-template-columns:1fr;} }
+
+    .tile{
+      padding:14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:color-mix(in srgb, var(--panel), transparent 10%);
+    }
+    .tile h2{
+      margin:0 0 6px;
+      font-size:14px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:color-mix(in srgb, var(--text), var(--muted) 30%);
+    }
+    .tile p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
     }
 
-    .statrow{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 10px;
+    .section{
+      margin-top:16px;
+      padding:16px;
     }
-    .stat{
-      border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--panel), transparent 12%);
-      border-radius: 12px;
-      padding: 12px;
+    .sectionTitle{
+      margin:0 0 10px;
+      font-size:15px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:color-mix(in srgb, var(--text), var(--muted) 30%);
     }
-    .stat .label{
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-    .stat .value{
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--text);
-      word-break: break-word;
-    }
+    .hr{height:1px; background:var(--line); margin:14px 0}
 
-    section{
-      scroll-margin-top: 78px;
-      margin-top: 18px;
+    .feature{
+      display:grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap:14px;
+      align-items:stretch;
     }
-    section h3{
-      margin: 0 0 10px;
-      font-size: 18px;
-      letter-spacing: -0.01em;
-    }
+    @media (max-width:980px){ .feature{grid-template-columns:1fr;} }
 
-    ul{ margin: 8px 0 0 20px; }
-    li{ margin: 6px 0; color: var(--text); }
-    .pill{
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: var(--soft);
-      color: var(--text);
-      font-size: 12px;
-      margin-left: 8px;
+    .featureMedia{
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:var(--panel2);
+      min-height:260px;
     }
-    .warn{
-      color: var(--warn);
-      border-color: color-mix(in srgb, var(--warn), transparent 60%);
-      background: color-mix(in srgb, var(--warn), transparent 90%);
+    .featureMedia img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      filter:saturate(1.03) contrast(1.03);
     }
-
-    .repo{
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 12px;
-      margin-top: 10px;
-      background: color-mix(in srgb, var(--panel), transparent 12%);
+    .featureText{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:color-mix(in srgb, var(--panel), transparent 10%);
+      padding:14px;
     }
-    .repo .title{
-      display: flex;
-      gap: 10px;
-      align-items: baseline;
-      flex-wrap: wrap;
-      margin-bottom: 6px;
-    }
-    .repo code{
-      font-family: var(--mono);
-      font-size: 13px;
-      background: color-mix(in srgb, var(--bg), transparent 40%);
-      border: 1px solid var(--line);
-      padding: 2px 8px;
-      border-radius: 999px;
-    }
-    .repo .role{
-      color: var(--muted);
-      font-size: 13px;
-    }
+    .featureText ul{margin:10px 0 0 18px}
+    .featureText li{margin:6px 0; color:var(--muted); font-size:13px}
 
     footer{
-      margin-top: 26px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
+      margin-top:18px;
+      padding:14px 16px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:12px;
+      display:flex; gap:14px; flex-wrap:wrap; justify-content:space-between; align-items:center;
     }
-    footer .cols{
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 16px;
-      align-items: start;
-    }
-    @media (max-width: 980px){
-      footer .cols{ grid-template-columns: 1fr; }
-    }
-    .smallcaps{
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-size: 11px;
-      color: color-mix(in srgb, var(--muted), var(--text) 10%);
-    }
+    .mono{font-family:var(--mono)}
 
-    .topbtn{
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--panel), transparent 10%);
-      color: var(--text);
-      opacity: .9;
-      box-shadow: var(--shadow);
-      font-size: 12px;
-    }
-    .topbtn:hover{ opacity: 1; text-decoration: none; }
+    /* i18n */
+    [data-lang]{display:none}
+    [data-lang].active{display:block}
+    .rtl{direction:rtl}
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="nav">
-      <div class="brand">
-        <b>TRIZEL-AI</b>
-        <span>Epistemic Monitoring & Evidence Preservation</span>
-      </div>
-      <nav class="navlinks" aria-label="Primary">
-        <a href="#definition">Definition</a>
-        <a href="#status">System Status</a>
-        <a href="#boundaries">Methodological Boundaries</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#plan">Execution Plan</a>
-        <a href="#disclosure">Disclosure Policy</a>
-      </nav>
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <b>TRIZEL-AI</b>
+      <span data-lang="en" class="active">Epistemic Monitoring & Evidence Preservation</span>
+      <span data-lang="fr">Surveillance épistémique & préservation des preuves</span>
+      <span data-lang="ar" class="rtl">المراقبة الإبستيمية وحفظ الأدلة</span>
+      <span data-lang="zh">认识论监测与证据保存</span>
     </div>
-  </header>
 
-  <main class="wrap">
-    <div class="hero">
-      <div class="kicker" role="note" aria-label="Project phase indicator">
+    <nav aria-label="Primary navigation">
+      <a href="/status/">Status</a>
+      <a href="/methodology/">Methodology</a>
+      <a href="/evidence/">Evidence</a>
+      <a href="/repositories/">Repositories</a>
+
+      <div class="lang" aria-label="Language selector">
+        <span class="label">Language</span>
+        <button type="button" data-setlang="en" aria-pressed="true">EN</button>
+        <button type="button" data-setlang="fr" aria-pressed="false">FR</button>
+        <button type="button" data-setlang="ar" aria-pressed="false">AR</button>
+        <button type="button" data-setlang="zh" aria-pressed="false">中文</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="card heroMedia" aria-label="TRIZEL-AI hero visual">
+      <img src="assets/img/hero-trizel-ai.png" alt="Abstract scientific visualization illustrating institutional data preservation and observation provenance." />
+    </div>
+
+    <div class="card heroText">
+      <div class="kicker">
         <span class="dot" aria-hidden="true"></span>
-        Phase-5 — Documentation and Evidence Freezing
-        <span class="pill">Non-interpretative</span>
+        <span data-lang="en" class="active">Read-only scientific gateway</span>
+        <span data-lang="fr">Portail scientifique en lecture seule</span>
+        <span data-lang="ar" class="rtl">بوابة علمية للقراءة فقط</span>
+        <span data-lang="zh">只读科学入口</span>
       </div>
 
-      <h1>TRIZEL-AI</h1>
-      <p class="subtitle">
-        <strong>Epistemic Monitoring and Scientific Evidence Preservation Framework.</strong>
-        A verification-first infrastructure for systematic preservation of authoritative institutional
-        observational records over time, with immutable provenance and explicit methodological boundaries.
+      <h1>
+        <span data-lang="en" class="active">Temporal Evidence Preservation for Institutional Observations</span>
+        <span data-lang="fr">Préservation temporelle des preuves d’observations institutionnelles</span>
+        <span data-lang="ar" class="rtl">حفظ الأدلة الزمنية للمشاهدات المؤسسية</span>
+        <span data-lang="zh">面向机构观测的时间证据保存</span>
+      </h1>
+
+      <p class="sub">
+        <span data-lang="en" class="active">
+          TRIZEL-AI performs continuous acquisition of verbatim institutional records and archives them with immutable DOI-referenced snapshots.
+          No interpretation, classification, scoring, or theoretical inference is published.
+        </span>
+        <span data-lang="fr">
+          TRIZEL-AI effectue une acquisition continue de registres institutionnels verbatim et les archive via des instantanés immuables référencés par DOI.
+          Aucune interprétation, classification, notation ou inférence théorique n’est publiée.
+        </span>
+        <span data-lang="ar" class="rtl">
+          يقوم TRIZEL-AI بالتقاط مستمر للسجلات المؤسسية حرفيًا وأرشفتها عبر لقطات غير قابلة للتغيير مرتبطة بمعرفات DOI.
+          لا يتم نشر أي تفسير أو تصنيف أو تقييم أو استدلال نظري.
+        </span>
+        <span data-lang="zh">
+          TRIZEL-AI 持续获取机构来源的逐字记录，并以 DOI 引用的不可变快照进行归档。
+          平台不发布解释、分类、评分或理论推断。
+        </span>
       </p>
-    </div>
 
-    <div class="grid">
-      <!-- Left: Narrative + sections -->
-      <div class="card">
-        <h2 id="definition">1. Project Definition</h2>
-        <p>
-          TRIZEL-AI is a scientific infrastructure project dedicated to the systematic preservation of official
-          observational records over time.
-        </p>
-        <p>
-          The framework performs continuous, automated acquisition of verbatim institutional data from authoritative
-          scientific sources and archives these records with immutable timestamps.<br />
-          No interpretation, classification, scoring, or theoretical inference is performed or published within this framework.
-        </p>
-        <p class="muted">
-          The public website serves exclusively as a system status and provenance interface, not as a platform for scientific conclusions.
-        </p>
-
-        <div class="hr" role="separator"></div>
-
-        <h2 id="status">2. Current System Status</h2>
-        <ul>
-          <li><strong>Monitoring Domain:</strong> Institutional observational records of interstellar objects (current monitored case: 3I/ATLAS)</li>
-          <li><strong>Operational Since:</strong> December 2025</li>
-          <li><strong>Acquisition Frequency:</strong> Daily automated snapshots</li>
-          <li><strong>Primary Archival Layer:</strong> Zenodo (DOI-based, immutable records)</li>
-          <li><strong>Automation and Version Control:</strong> GitHub (auditable repositories)</li>
-          <li><strong>Interpretation Policy:</strong> Explicitly deferred</li>
-          <li><strong>Project Phase:</strong> Phase-5 — Documentation and Evidence Freezing</li>
-        </ul>
-
-        <div class="hr" role="separator"></div>
-
-        <h2 id="boundaries">3. Methodological Boundary Statement</h2>
-        <p><strong>TRIZEL-AI explicitly does not publish:</strong></p>
-        <ul>
-          <li>Scientific interpretations or hypotheses</li>
-          <li>Object classifications or theoretical claims</li>
-          <li>Reprocessed or derived datasets</li>
-          <li>Analytical conclusions or rankings</li>
-        </ul>
-
-        <p style="margin-top:14px;"><strong>TRIZEL-AI does publish:</strong></p>
-        <ul>
-          <li>Proof of data existence at specific points in time</li>
-          <li>Source provenance and institutional origin</li>
-          <li>Temporal integrity of records</li>
-          <li>Verifiable references to primary archives</li>
-        </ul>
-
-        <p class="muted">
-          This boundary is intentional, enforced, and methodologically fundamental to the project.
-        </p>
-
-        <div class="hr" role="separator"></div>
-
-        <h2 id="architecture">4. Evidence and Provenance Architecture</h2>
-        <p class="muted">
-          The project is composed of interconnected repositories, each fulfilling a strictly delimited role within the overall system.
-        </p>
-
-        <div class="repo">
-          <div class="title">
-            <strong>A. Core Documentation Repository</strong>
-            <code>abdelkader-omran/trizel-AI</code>
-          </div>
-          <div class="role">
-            Function: Central methodological documentation; definition of scope and constraints; phase governance references.<br />
-            Role: Defines what the system is authorized to do, not what it concludes.
-          </div>
-        </div>
-
-        <div class="repo">
-          <div class="title">
-            <strong>B. Epistemic Governance Engine</strong>
-            <code>trizel-ai/trizel-epistemic-engine</code>
-          </div>
-          <div class="role">
-            Function: Formal definition of epistemic rules; enforcement of phase separation; governance constraints preventing interpretation leakage.<br />
-            Structure includes: Phase-2 (epistemic foundations), Phase-3 (analytical boundary definitions), Phase-4 (governance and control logic).<br />
-            Role: Ensures methodological consistency and prevents unauthorized analytical behavior.
-          </div>
-        </div>
-
-        <div class="repo">
-          <div class="title">
-            <strong>C. Monitoring and Orchestration Layer</strong>
-            <code>abdelkader-omran/trizel-monitor</code>
-          </div>
-          <div class="role">
-            Function: Coordination of monitoring logic; automation scheduling; execution control.<br />
-            Role: Maintains continuous operation without subjective intervention.
-          </div>
-        </div>
-
-        <div class="repo">
-          <div class="title">
-            <strong>D. Daily Official Evidence Archive</strong>
-            <code>abdelkader-omran/AUTO-DZ-ACT-3I-ATLAS-DAILY</code>
-          </div>
-          <div class="role">
-            Function: Daily capture of official institutional records; verbatim HTML and API snapshots; integrity hashing and timestamping.<br />
-            Primary sources include: Minor Planet Center (MPC), NASA/JPL, ESA, JPL Horizons, CNEOS.<br />
-            Role: Primary evidentiary record of institutional data states.
-          </div>
-        </div>
-
-        <div class="repo">
-          <div class="title">
-            <strong>E. Analytical Separation Repository</strong>
-            <code>abdelkader-omran/AUTO-DZ-ACT-ANALYSIS-3I-ATLAS</code>
-            <span class="pill warn">Reserved / Inactive</span>
-          </div>
-          <div class="role">
-            Function: Reserved for potential future analytical work; currently inactive for public interpretation.<br />
-            Role: Preserves strict separation between evidence preservation and analysis.
-          </div>
-        </div>
-
-        <div class="hr" role="separator"></div>
-
-        <h2>5. External Archival Layer</h2>
-        <p>
-          All daily evidence snapshots are archived on Zenodo with assigned DOIs.
-        </p>
-        <p><strong>Each DOI corresponds to:</strong></p>
-        <ul>
-          <li>A single UTC calendar day</li>
-          <li>A fixed and immutable record state</li>
-          <li>A citable scientific artifact</li>
-        </ul>
-        <p class="muted">
-          Zenodo is used exclusively as a preservation and citation layer, not as an interpretative medium.
-        </p>
-
-        <div class="hr" role="separator"></div>
-
-        <h2>6. Rationale for the Architecture</h2>
-        <ul>
-          <li>Prevent retrospective alteration of scientific records</li>
-          <li>Preserve temporal priority of observations</li>
-          <li>Enable future independent verification</li>
-          <li>Maintain strict neutrality during active observation phases</li>
-          <li>Treat time as an explicit scientific variable</li>
-        </ul>
-        <p class="muted">
-          The system is intentionally non-interpretative. Its scientific value becomes evident when institutional narratives evolve,
-          not at the moment of initial publication.
-        </p>
-
-        <div class="hr" role="separator"></div>
-
-        <h2 id="disclosure">7. Public Disclosure Policy</h2>
-        <ul>
-          <li>The website exposes system status and provenance only</li>
-          <li>All repositories remain publicly accessible for auditability</li>
-          <li>No scientific claims are advanced</li>
-        </ul>
-        <p class="muted">
-          Any transition to interpretative publication requires a formally declared new phase with explicit governance authorization.
-        </p>
-
-        <div class="hr" role="separator"></div>
-
-        <h2>8. Summary Statement</h2>
-        <p>
-          TRIZEL-AI is not a theory-publishing platform; it is a temporal scientific evidence preservation system.
-        </p>
-
-        <div class="hr" role="separator"></div>
-
-        <h2 id="plan">TRIZEL-AI — Website &amp; Infrastructure Integration (Execution Plan)</h2>
-
-        <h3>Objective</h3>
-        <p>
-          Expose system status, provenance, and project structure on the public website while preserving strict separation between
-          evidence, governance, and interpretation. No raw datasets or scientific conclusions will be published.
-        </p>
-
-        <h3>1. Architectural Principle</h3>
-        <p><strong>Single Source of Truth:</strong></p>
-        <ul>
-          <li>GitHub = operational logic, documentation, automation</li>
-          <li>Zenodo = immutable evidence archive</li>
-          <li>Website = read-only public interface (status + provenance)</li>
-        </ul>
-        <p class="muted">The website must reflect, not replicate, repositories.</p>
-
-        <h3>2. Repository Role Consolidation</h3>
-        <ul>
-          <li><strong>Core Governance &amp; Documentation:</strong> <span class="muted">Project Core Documentation</span></li>
-          <li><strong>Epistemic &amp; Governance Engine:</strong> <span class="muted">Methodological Framework</span></li>
-          <li><strong>Monitoring &amp; Orchestration:</strong> <span class="muted">Operational Layer</span></li>
-          <li><strong>Daily Evidence Capture:</strong> <span class="muted">Daily Evidence Archive</span></li>
-          <li><strong>Analytical Separation (Inactive):</strong> <span class="muted">Reserved / Not Publicly Active</span></li>
-        </ul>
-
-        <h3>3. Website Page Structure (Mandatory)</h3>
-        <ul>
-          <li><strong>/</strong> — Home (Landing Page): definition, phase indicator, system operational status, links (Status, Methodology, Evidence)</li>
-          <li><strong>/status</strong> — Monitoring transparency: last snapshot (UTC), latest Zenodo DOI, institutions monitored, automation state</li>
-          <li><strong>/methodology</strong> — Epistemic boundaries, phase logic, non-interpretation policy, repository roles</li>
-          <li><strong>/evidence</strong> — Zenodo community link, DOI index (not datasets), snapshot meaning, immutability statement</li>
-          <li><strong>/repositories</strong> — structured repository list, roles, explicit dependency graph (textual)</li>
-        </ul>
-
-        <h3>4. Content Governance Rules</h3>
-        <ul>
-          <li>Website content is manually curated, not auto-generated narratives</li>
-          <li>All dynamic values are factual only (dates, DOIs, status)</li>
-          <li>No interpretative text added without Phase-6 authorization</li>
-          <li>README files redirect users to the website, not the opposite</li>
-        </ul>
-
-        <h3>5. Implementation Order (Strict)</h3>
-        <ol>
-          <li>Freeze Phase-5 documentation (no logic changes)</li>
-          <li>Prepare /methodology content (from reviewed academic text)</li>
-          <li>Create /status minimal data feed (read-only)</li>
-          <li>Update homepage to reference system state</li>
-          <li>Align all READMEs to point to website pages</li>
-          <li>Validate consistency (no duplicated explanations)</li>
-        </ol>
-
-        <h3>6. Success Criteria</h3>
-        <ul>
-          <li>The website clearly explains what exists and why</li>
-          <li>No visitor can mistake the project for a theory-publishing platform</li>
-          <li>Every public claim is traceable to a repository or DOI</li>
-          <li>The system can remain silent scientifically without appearing inactive</li>
-        </ul>
-
-        <div class="hr" role="separator"></div>
-
-        <p><strong>Final One-Line Definition:</strong><br />
-          TRIZEL-AI exposes the state of scientific evidence preservation, not the interpretation of that evidence.
-        </p>
+      <div class="ctaRow">
+        <a class="btn primary" href="/status/">
+          <span data-lang="en" class="active">View System Status</span>
+          <span data-lang="fr">Voir le statut</span>
+          <span data-lang="ar" class="rtl">عرض الحالة</span>
+          <span data-lang="zh">查看系统状态</span>
+        </a>
+        <a class="btn" href="/evidence/">
+          <span data-lang="en" class="active">Browse DOI Evidence Index</span>
+          <span data-lang="fr">Parcourir l’index DOI</span>
+          <span data-lang="ar" class="rtl">تصفح فهرس DOI</span>
+          <span data-lang="zh">浏览 DOI 索引</span>
+        </a>
+        <a class="btn" href="/methodology/">
+          <span data-lang="en" class="active">Read Methodology</span>
+          <span data-lang="fr">Lire la méthodologie</span>
+          <span data-lang="ar" class="rtl">قراءة المنهجية</span>
+          <span data-lang="zh">阅读方法论</span>
+        </a>
       </div>
 
-      <!-- Right: Quick status / links panel -->
-      <aside class="card" aria-label="At-a-glance panel">
-        <h2>At a glance</h2>
-        <p class="muted">
-          This landing page is intentionally non-interpretative. It is a provenance and system-status interface.
-        </p>
-
-        <div class="statrow" role="list">
-          <div class="stat" role="listitem">
-            <div class="label">Project Phase</div>
-            <div class="value">Phase-5 (Documentation &amp; Evidence Freezing)</div>
-          </div>
-          <div class="stat" role="listitem">
-            <div class="label">Interpretation Policy</div>
-            <div class="value">Deferred (No hypotheses published here)</div>
-          </div>
-          <div class="stat" role="listitem">
-            <div class="label">Cadence</div>
-            <div class="value">Daily snapshots</div>
-          </div>
-          <div class="stat" role="listitem">
-            <div class="label">Archive Layer</div>
-            <div class="value">Zenodo (DOI-based records)</div>
-          </div>
-        </div>
-
-        <div class="hr" role="separator"></div>
-
-        <h2>Required pages</h2>
-        <p class="muted">Create these as separate static pages when ready:</p>
-        <ul>
-          <li><a href="/status">/status</a> <span class="pill">facts only</span></li>
-          <li><a href="/methodology">/methodology</a> <span class="pill">boundaries</span></li>
-          <li><a href="/evidence">/evidence</a> <span class="pill">DOI index</span></li>
-          <li><a href="/repositories">/repositories</a> <span class="pill">auditability</span></li>
-        </ul>
-
-        <div class="hr" role="separator"></div>
-
-        <h2>Repositories</h2>
-        <p class="muted">Listed here for transparency; link them to GitHub in production.</p>
-        <ul>
-          <li><span class="muted">Core:</span> <span style="font-family:var(--mono)">abdelkader-omran/trizel-AI</span></li>
-          <li><span class="muted">Engine:</span> <span style="font-family:var(--mono)">trizel-ai/trizel-epistemic-engine</span></li>
-          <li><span class="muted">Monitor:</span> <span style="font-family:var(--mono)">abdelkader-omran/trizel-monitor</span></li>
-          <li><span class="muted">Daily:</span> <span style="font-family:var(--mono)">abdelkader-omran/AUTO-DZ-ACT-3I-ATLAS-DAILY</span></li>
-          <li><span class="muted">Analysis:</span> <span style="font-family:var(--mono)">abdelkader-omran/AUTO-DZ-ACT-ANALYSIS-3I-ATLAS</span> <span class="pill warn">inactive</span></li>
-        </ul>
-
-        <div class="hr" role="separator"></div>
-
-        <h2>Boundary reminder</h2>
-        <p class="muted">
-          If you add any text that sounds like a conclusion, classification, ranking, or hypothesis, it must be moved out of Phase-5
-          and require explicit governance authorization.
-        </p>
-      </aside>
-    </div>
-
-    <footer aria-label="Footer">
-      <div class="cols">
-        <div>
-          <div class="smallcaps">Scientific integrity & rights</div>
+      <div class="grid3" aria-label="Academic summary tiles">
+        <div class="tile">
+          <h2><span data-lang="en" class="active">Scope</span><span data-lang="fr">Portée</span><span data-lang="ar" class="rtl">النطاق</span><span data-lang="zh">范围</span></h2>
           <p>
-            This website is a read-only provenance interface. Any reuse, redistribution, or derivative work must preserve attribution,
-            identify the exact version and DOI used, document modifications, and must not misrepresent validation outcomes.
-          </p>
-          <p class="muted">
-            AUTO DZ ACT™, STOE™, and related terms designate specific framework definitions and decision logic.
+            <span data-lang="en" class="active">Preserve official observational records as they existed over time.</span>
+            <span data-lang="fr">Préserver les registres officiels tels qu’ils existaient dans le temps.</span>
+            <span data-lang="ar" class="rtl">حفظ السجلات الرسمية كما كانت عبر الزمن.</span>
+            <span data-lang="zh">保存官方观测记录在不同时间点的原始状态。</span>
           </p>
         </div>
-        <div>
-          <div class="smallcaps">Methodological position</div>
-          <p class="muted">
-            TRIZEL-AI publishes verifiable references to primary archives and evidence existence over time.
-            It does not publish interpretations or conclusions.
+
+        <div class="tile">
+          <h2><span data-lang="en" class="active">Boundary</span><span data-lang="fr">Limite</span><span data-lang="ar" class="rtl">الحد</span><span data-lang="zh">边界</span></h2>
+          <p>
+            <span data-lang="en" class="active">No interpretative publishing. Time-stamped provenance only.</span>
+            <span data-lang="fr">Aucune publication interprétative. Provenance horodatée uniquement.</span>
+            <span data-lang="ar" class="rtl">لا نشر تفسيري. فقط مصدر موثق بزمن.</span>
+            <span data-lang="zh">不发布解释性内容，仅提供带时间戳的来源信息。</span>
           </p>
-          <p class="muted">
-            © 2025–2026. All rights reserved where applicable. Licensed components may be CC BY 4.0 as specified in their releases.
+        </div>
+
+        <div class="tile">
+          <h2><span data-lang="en" class="active">Phase</span><span data-lang="fr">Phase</span><span data-lang="ar" class="rtl">المرحلة</span><span data-lang="zh">阶段</span></h2>
+          <p>
+            <span data-lang="en" class="active">Phase-5 — Documentation and Evidence Freezing.</span>
+            <span data-lang="fr">Phase-5 — Documentation et gel des preuves.</span>
+            <span data-lang="ar" class="rtl">Phase-5 — التوثيق وتجميد الأدلة.</span>
+            <span data-lang="zh">Phase-5 — 文档与证据冻结。</span>
           </p>
         </div>
       </div>
-    </footer>
-  </main>
+    </div>
+  </section>
 
-  <a class="topbtn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Top</a>
+  <!-- ACADEMIC STRUCTURE SECTION -->
+  <section class="card section" aria-label="Architecture overview">
+    <div class="sectionTitle">
+      <span data-lang="en" class="active">Scientific architecture (non-interpretative)</span>
+      <span data-lang="fr">Architecture scientifique (non interprétative)</span>
+      <span data-lang="ar" class="rtl">البنية العلمية (غير تفسيرية)</span>
+      <span data-lang="zh">科学架构（非解释性）</span>
+    </div>
+
+    <div class="feature">
+      <div class="featureMedia">
+        <img src="assets/img/panel-evidence-governance.png" alt="Visual metaphor of evidence archive and governance separation (non-interpretative)."/>
+      </div>
+
+      <div class="featureText">
+        <div class="kicker" style="box-shadow:none;">
+          <span class="dot" aria-hidden="true" style="background:var(--a1); box-shadow:0 0 0 6px color-mix(in srgb, var(--a1), transparent 86%);"></span>
+          <span data-lang="en" class="active">Separation of concerns</span>
+          <span data-lang="fr">Séparation des responsabilités</span>
+          <span data-lang="ar" class="rtl">فصل المهام</span>
+          <span data-lang="zh">关注点分离</span>
+        </div>
+
+        <ul>
+          <li>
+            <span data-lang="en" class="active"><strong>Evidence</strong>: DOI-indexed snapshots (Zenodo) preserve immutable record states.</span>
+            <span data-lang="fr"><strong>Preuve</strong> : instantanés indexés par DOI (Zenodo) conservant des états immuables.</span>
+            <span data-lang="ar" class="rtl"><strong>الأدلة</strong>: لقطات مفهرسة بـ DOI (Zenodo) لحالات غير قابلة للتغيير.</span>
+            <span data-lang="zh"><strong>证据</strong>：以 DOI 索引的快照（Zenodo）保存不可变记录状态。</span>
+          </li>
+          <li>
+            <span data-lang="en" class="active"><strong>Governance</strong>: phase boundaries prevent interpretative leakage.</span>
+            <span data-lang="fr"><strong>Gouvernance</strong> : des limites de phase empêchent la fuite interprétative.</span>
+            <span data-lang="ar" class="rtl"><strong>الحوكمة</strong>: حدود المراحل تمنع تسرب التفسير.</span>
+            <span data-lang="zh"><strong>治理</strong>：阶段边界防止解释性内容渗出。</span>
+          </li>
+          <li>
+            <span data-lang="en" class="active"><strong>Website</strong>: read-only interface exposing status and provenance, not conclusions.</span>
+            <span data-lang="fr"><strong>Site</strong> : interface en lecture seule exposant statut et provenance, pas des conclusions.</span>
+            <span data-lang="ar" class="rtl"><strong>الموقع</strong>: واجهة قراءة فقط تعرض الحالة والمصدر دون استنتاجات.</span>
+            <span data-lang="zh"><strong>网站</strong>：只读界面展示状态与来源，不展示结论。</span>
+          </li>
+        </ul>
+
+        <div class="hr"></div>
+
+        <div style="display:flex; gap:14px; flex-wrap:wrap; color:var(--muted); font-size:13px;">
+          <span><strong>ORCID:</strong> <a href="https://orcid.org/0009-0007-1842-3844" rel="noopener">0009-0007-1842-3844</a></span>
+          <span><strong>Zenodo:</strong> <a href="https://zenodo.org/" rel="noopener">zenodo.org</a></span>
+          <span><strong>DOI:</strong> <a href="https://doi.org/" rel="noopener">doi.org</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPTIONAL: if you added composite-banner.png -->
+  <!--
+  <section class="card section" aria-label="Composite banner">
+    <div class="sectionTitle">Visual context</div>
+    <div class="featureMedia" style="min-height:320px;">
+      <img src="assets/img/composite-banner.png" alt="Composite banner illustrating the gateway’s non-interpretative architecture." />
+    </div>
+  </section>
+  -->
+
+  <footer class="card">
+    <div>
+      <div style="letter-spacing:.10em; text-transform:uppercase; font-size:11px; color:color-mix(in srgb, var(--muted), var(--text) 12%);">
+        <span data-lang="en" class="active">Methodological boundary</span>
+        <span data-lang="fr">Limite méthodologique</span>
+        <span data-lang="ar" class="rtl">الحد المنهجي</span>
+        <span data-lang="zh">方法边界</span>
+      </div>
+      <div style="margin-top:6px;">
+        <span data-lang="en" class="active">TRIZEL-AI is an evidence preservation system; it is not a theory-publishing platform.</span>
+        <span data-lang="fr">TRIZEL-AI est un système de préservation des preuves ; ce n’est pas une plateforme de publication théorique.</span>
+        <span data-lang="ar" class="rtl">TRIZEL-AI نظام لحفظ الأدلة؛ وليس منصة لنشر النظريات.</span>
+        <span data-lang="zh">TRIZEL-AI 是证据保存系统，而非理论发布平台。</span>
+      </div>
+    </div>
+
+    <div class="mono" style="opacity:.9;">
+      <span data-lang="en" class="active">Phase:</span>
+      <span data-lang="fr">Phase :</span>
+      <span data-lang="ar" class="rtl">المرحلة:</span>
+      <span data-lang="zh">阶段：</span>
+      Phase-5
+    </div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  const supported = ['en','fr','ar','zh'];
+
+  const qsLang = new URLSearchParams(location.search).get('lang');
+  const stored = localStorage.getItem('trizel_lang');
+  const lang = supported.includes(qsLang) ? qsLang : (supported.includes(stored) ? stored : 'en');
+
+  function setLang(next){
+    localStorage.setItem('trizel_lang', next);
+
+    document.documentElement.lang = (next === 'zh') ? 'zh' : next;
+    const isRTL = (next === 'ar');
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-lang]').forEach(el=>{
+      el.classList.toggle('active', el.getAttribute('data-lang') === next);
+    });
+
+    document.querySelectorAll('.rtl').forEach(el=>{
+      el.style.direction = isRTL ? 'rtl' : 'ltr';
+    });
+
+    document.querySelectorAll('button[data-setlang]').forEach(b=>{
+      b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('button[data-setlang]').forEach(btn=>{
+    btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-setlang')));
+  });
+
+  setLang(lang);
+})();
+</script>
 </body>
 </html>
