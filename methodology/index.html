@@ -1,11 +1,30 @@
+<!--
+====================================================================
+METADATA (COPY / AUDIT HEADER)
+Repository: abdelkader-omran/trizel-AI
+Branch: main
+File: methodology/index.html
+Route: /methodology
+Comment: Methodological boundary page. Descriptive only. No interpretation.
+Precise scientific reference links:
+  - ORCID: https://orcid.org/0009-0007-1842-3844
+  - Zenodo: https://zenodo.org/
+  - MPC: https://minorplanetcenter.net/
+  - NASA/JPL: https://ssd.jpl.nasa.gov/
+  - ESA: https://www.esa.int/
+  - JPL Horizons: https://ssd.jpl.nasa.gov/horizons/
+  - CNEOS: https://cneos.jpl.nasa.gov/
+====================================================================
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
-  <title>TRIZEL-AI — Status</title>
-  <meta name="description" content="TRIZEL-AI facts-only status: UTC timestamp, latest DOI, and active/inactive booleans." />
+  <title>TRIZEL-AI — Methodology</title>
+  <meta name="description" content="TRIZEL-AI methodological boundaries, governance, and phase separation. No interpretation published." />
 
   <style>
     :root{
@@ -25,7 +44,7 @@
         --shadow:0 12px 34px rgba(15,23,42,.10);
       }
     }
-    *{box-sizing:border-box} html,body{height:100%}
+    *{box-sizing:border-box}
     body{
       margin:0; font-family:var(--sans); color:var(--text); line-height:1.55;
       background:
@@ -36,9 +55,8 @@
     }
     a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
     header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: color-mix(in srgb, var(--bg), transparent 25%);
+      position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
+      background:color-mix(in srgb, var(--bg), transparent 25%);
       border-bottom:1px solid var(--line);
     }
     .nav{max-width:var(--max); margin:0 auto; padding:14px 20px; display:flex; gap:12px; justify-content:space-between; align-items:center}
@@ -46,10 +64,7 @@
     .brand b{font-size:14px; letter-spacing:.10em; text-transform:uppercase}
     .brand span{color:var(--muted); font-size:13px}
     .navlinks{display:flex; flex-wrap:wrap; gap:10px 14px; justify-content:flex-end; align-items:center}
-    .navlinks a{
-      font-size:13px; color:var(--text); opacity:.85;
-      padding:6px 10px; border-radius:999px; border:1px solid transparent;
-    }
+    .navlinks a{font-size:13px; color:var(--text); opacity:.85; padding:6px 10px; border-radius:999px; border:1px solid transparent}
     .navlinks a:hover{opacity:1; border-color:var(--line); background:var(--soft); text-decoration:none}
 
     .lang{
@@ -75,21 +90,15 @@
       box-shadow:0 0 0 6px color-mix(in srgb, var(--ok), transparent 85%);
     }
     h1{margin:10px 0 8px; font-size:28px; letter-spacing:-.01em}
+    h2{margin:18px 0 10px; font-size:15px; letter-spacing:.02em; text-transform:uppercase; color:color-mix(in srgb, var(--text), var(--muted) 30%)}
+    h3{margin:14px 0 8px; font-size:18px; letter-spacing:-.01em}
+    ul{margin:8px 0 0 20px} li{margin:6px 0}
     .muted{color:var(--muted)}
     .hr{height:1px; background:var(--line); margin:18px 0}
-
-    .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}}
-    .stat{
-      border:1px solid var(--line); background:color-mix(in srgb, var(--panel), transparent 12%);
-      border-radius:12px; padding:12px;
-    }
-    .label{font-size:12px; color:var(--muted); margin-bottom:6px}
-    .value{font-family:var(--mono); font-size:13px; color:var(--text); word-break:break-word}
+    .box{border:1px solid var(--line); background:color-mix(in srgb, var(--panel), transparent 12%); border-radius:12px; padding:12px}
     footer{margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:12px}
     .smallcaps{letter-spacing:.08em; text-transform:uppercase; font-size:11px; color:color-mix(in srgb, var(--muted), var(--text) 10%)}
 
-    /* i18n */
     [data-lang]{display:none}
     [data-lang].active{display:block}
     .rtl{direction:rtl}
@@ -101,7 +110,7 @@
   <div class="nav">
     <div class="brand">
       <b>TRIZEL-AI</b>
-      <span id="navTitle">Status</span>
+      <span>Methodology</span>
     </div>
 
     <nav class="navlinks" aria-label="Primary">
@@ -126,93 +135,113 @@
   <div class="card">
     <div class="kicker" role="note">
       <span class="dot" aria-hidden="true"></span>
-      <span data-lang="en" class="active">Facts-only operational fields</span>
-      <span data-lang="fr">Champs opérationnels — faits uniquement</span>
-      <span data-lang="ar" class="rtl">حقول تشغيلية — حقائق فقط</span>
-      <span data-lang="zh">仅事实字段（运行状态）</span>
+      <span data-lang="en" class="active">Methodological boundaries & phase governance</span>
+      <span data-lang="fr">Limites méthodologiques & gouvernance par phases</span>
+      <span data-lang="ar" class="rtl">الحدود المنهجية وحوكمة المراحل</span>
+      <span data-lang="zh">方法边界与阶段治理</span>
     </div>
 
     <h1>
-      <span data-lang="en" class="active">System Status</span>
-      <span data-lang="fr">Statut du système</span>
-      <span data-lang="ar" class="rtl">حالة النظام</span>
-      <span data-lang="zh">系统状态</span>
+      <span data-lang="en" class="active">Methodology</span>
+      <span data-lang="fr">Méthodologie</span>
+      <span data-lang="ar" class="rtl">المنهجية</span>
+      <span data-lang="zh">方法论</span>
     </h1>
 
-    <div class="grid" role="list" aria-label="Facts-only status grid">
-      <div class="stat" role="listitem">
-        <div class="label">
-          <span data-lang="en" class="active">UTC timestamp</span>
-          <span data-lang="fr">Horodatage UTC</span>
-          <span data-lang="ar" class="rtl">الطابع الزمني UTC</span>
-          <span data-lang="zh">UTC 时间戳</span>
-        </div>
-        <div class="value" id="utc_timestamp">YYYY-MM-DDTHH:MM:SSZ</div>
-      </div>
+    <p class="muted">
+      <span data-lang="en" class="active">This page is descriptive and governance-oriented. It does not publish interpretation.</span>
+      <span data-lang="fr">Cette page est descriptive et orientée gouvernance. Elle ne publie aucune interprétation.</span>
+      <span data-lang="ar" class="rtl">هذه الصفحة وصفية وموجهة للحوكمة. لا تنشر أي تفسير.</span>
+      <span data-lang="zh">本页面为描述性与治理导向，不发布任何解释性结论。</span>
+    </p>
 
-      <div class="stat" role="listitem">
-        <div class="label">
-          <span data-lang="en" class="active">Latest DOI</span>
-          <span data-lang="fr">Dernier DOI</span>
-          <span data-lang="ar" class="rtl">أحدث DOI</span>
-          <span data-lang="zh">最新 DOI</span>
-        </div>
-        <div class="value" id="latest_doi">10.5281/zenodo.XXXXXXXX</div>
-      </div>
+    <div class="hr" role="separator"></div>
 
-      <div class="stat" role="listitem">
-        <div class="label">
-          <span data-lang="en" class="active">Active (boolean)</span>
-          <span data-lang="fr">Actif (booléen)</span>
-          <span data-lang="ar" class="rtl">نشط (قيمة منطقية)</span>
-          <span data-lang="zh">Active（布尔）</span>
-        </div>
-        <div class="value" id="active_bool">true</div>
-      </div>
+    <h2>
+      <span data-lang="en" class="active">1. Boundary statement</span>
+      <span data-lang="fr">1. Déclaration de limite</span>
+      <span data-lang="ar" class="rtl">1. بيان الحدود</span>
+      <span data-lang="zh">1. 边界声明</span>
+    </h2>
 
-      <div class="stat" role="listitem">
-        <div class="label">
-          <span data-lang="en" class="active">Inactive (boolean)</span>
-          <span data-lang="fr">Inactif (booléen)</span>
-          <span data-lang="ar" class="rtl">غير نشط (قيمة منطقية)</span>
-          <span data-lang="zh">Inactive（布尔）</span>
-        </div>
-        <div class="value" id="inactive_bool">false</div>
-      </div>
+    <div class="box">
+      <h3>
+        <span data-lang="en" class="active">TRIZEL-AI does not publish</span>
+        <span data-lang="fr">TRIZEL-AI ne publie pas</span>
+        <span data-lang="ar" class="rtl">لا ينشر TRIZEL-AI</span>
+        <span data-lang="zh">TRIZEL-AI 不发布</span>
+      </h3>
+      <ul>
+        <li><span data-lang="en" class="active">Interpretations or hypotheses</span><span data-lang="fr">Interprétations ou hypothèses</span><span data-lang="ar" class="rtl">تفسيرات أو فرضيات</span><span data-lang="zh">解释或假设</span></li>
+        <li><span data-lang="en" class="active">Object classifications or theoretical claims</span><span data-lang="fr">Classifications d’objets ou revendications théoriques</span><span data-lang="ar" class="rtl">تصنيفات أو ادعاءات نظرية</span><span data-lang="zh">对象分类或理论主张</span></li>
+        <li><span data-lang="en" class="active">Derived datasets, conclusions, or rankings</span><span data-lang="fr">Données dérivées, conclusions, ou classements</span><span data-lang="ar" class="rtl">بيانات مشتقة أو استنتاجات أو تصنيفات</span><span data-lang="zh">派生数据、结论或排名</span></li>
+      </ul>
+
+      <h3 style="margin-top:14px;">
+        <span data-lang="en" class="active">TRIZEL-AI publishes</span>
+        <span data-lang="fr">TRIZEL-AI publie</span>
+        <span data-lang="ar" class="rtl">ينشر TRIZEL-AI</span>
+        <span data-lang="zh">TRIZEL-AI 发布</span>
+      </h3>
+      <ul>
+        <li><span data-lang="en" class="active">Evidence existence at specific times</span><span data-lang="fr">Existence de la preuve à des instants précis</span><span data-lang="ar" class="rtl">إثبات وجود البيانات في أوقات محددة</span><span data-lang="zh">特定时间点的数据存在性</span></li>
+        <li><span data-lang="en" class="active">Source provenance and institutional origin</span><span data-lang="fr">Provenance et origine institutionnelle</span><span data-lang="ar" class="rtl">المصدر والمنشأ المؤسسي</span><span data-lang="zh">来源谱系与机构出处</span></li>
+        <li><span data-lang="en" class="active">Immutable archival pointers (DOIs)</span><span data-lang="fr">Pointeurs immuables (DOI)</span><span data-lang="ar" class="rtl">مؤشرات أرشفة غير قابلة للتغيير (DOI)</span><span data-lang="zh">不可变归档指针（DOI）</span></li>
+      </ul>
     </div>
 
     <div class="hr" role="separator"></div>
 
+    <h2>
+      <span data-lang="en" class="active">2. Phase governance</span>
+      <span data-lang="fr">2. Gouvernance par phases</span>
+      <span data-lang="ar" class="rtl">2. حوكمة المراحل</span>
+      <span data-lang="zh">2. 阶段治理</span>
+    </h2>
+    <p class="muted">
+      <span data-lang="en" class="active">Current phase: Phase-5 — Documentation and Evidence Freezing.</span>
+      <span data-lang="fr">Phase actuelle : Phase-5 — Documentation et gel des preuves.</span>
+      <span data-lang="ar" class="rtl">المرحلة الحالية: Phase-5 — التوثيق وتجميد الأدلة.</span>
+      <span data-lang="zh">当前阶段：Phase-5 — 文档与证据冻结。</span>
+    </p>
+
+    <div class="hr" role="separator"></div>
+
+    <h2>
+      <span data-lang="en" class="active">3. Authoritative sources monitored (examples)</span>
+      <span data-lang="fr">3. Sources faisant autorité surveillées (exemples)</span>
+      <span data-lang="ar" class="rtl">3. مصادر موثوقة تتم مراقبتها (أمثلة)</span>
+      <span data-lang="zh">3. 监测的权威来源（示例）</span>
+    </h2>
+
+    <ul>
+      <li><a href="https://minorplanetcenter.net/" rel="noopener">Minor Planet Center (MPC)</a></li>
+      <li><a href="https://ssd.jpl.nasa.gov/" rel="noopener">NASA/JPL (SSD)</a></li>
+      <li><a href="https://www.esa.int/" rel="noopener">ESA</a></li>
+      <li><a href="https://ssd.jpl.nasa.gov/horizons/" rel="noopener">JPL Horizons</a></li>
+      <li><a href="https://cneos.jpl.nasa.gov/" rel="noopener">CNEOS</a></li>
+    </ul>
+
+    <div class="hr" role="separator"></div>
+
     <div class="muted" style="display:flex; gap:18px; flex-wrap:wrap;">
-      <span>
-        <span data-lang="en" class="active">ORCID:</span>
-        <span data-lang="fr">ORCID :</span>
-        <span data-lang="ar" class="rtl">أوركيد:</span>
-        <span data-lang="zh">ORCID：</span>
-        <a href="https://orcid.org/0009-0007-1842-3844" rel="noopener">0009-0007-1842-3844</a>
-      </span>
-      <span>
-        <span data-lang="en" class="active">Zenodo:</span>
-        <span data-lang="fr">Zenodo :</span>
-        <span data-lang="ar" class="rtl">زينودو:</span>
-        <span data-lang="zh">Zenodo：</span>
-        <a href="https://zenodo.org/" rel="noopener">zenodo.org</a>
-      </span>
+      <span><strong>ORCID:</strong> <a href="https://orcid.org/0009-0007-1842-3844" rel="noopener">0009-0007-1842-3844</a></span>
+      <span><strong>Zenodo:</strong> <a href="https://zenodo.org/" rel="noopener">zenodo.org</a></span>
     </div>
   </div>
 
   <footer>
     <div class="smallcaps">
-      <span data-lang="en" class="active">Boundary</span>
-      <span data-lang="fr">Limite</span>
-      <span data-lang="ar" class="rtl">الحد</span>
-      <span data-lang="zh">边界</span>
+      <span data-lang="en" class="active">Non-interpretation policy</span>
+      <span data-lang="fr">Politique de non-interprétation</span>
+      <span data-lang="ar" class="rtl">سياسة عدم التفسير</span>
+      <span data-lang="zh">非解释性政策</span>
     </div>
     <div class="muted">
-      <span data-lang="en" class="active">This page is strictly limited to factual operational fields.</span>
-      <span data-lang="fr">Cette page est strictement limitée à des champs opérationnels factuels.</span>
-      <span data-lang="ar" class="rtl">هذه الصفحة مقيدة حصريًا بالحقول التشغيلية الواقعية.</span>
-      <span data-lang="zh">本页面严格限制为事实性运行字段。</span>
+      <span data-lang="en" class="active">Any interpretative publication requires explicit authorization beyond Phase-5.</span>
+      <span data-lang="fr">Toute publication interprétative nécessite une autorisation explicite au-delà de la Phase-5.</span>
+      <span data-lang="ar" class="rtl">أي نشر تفسيري يتطلب إذنًا صريحًا خارج Phase-5.</span>
+      <span data-lang="zh">任何解释性发布都需要在 Phase-5 之外的明确授权。</span>
     </div>
   </footer>
 </main>
@@ -227,26 +256,21 @@
   function setLang(next){
     localStorage.setItem('trizel_lang', next);
     document.documentElement.lang = next === 'zh' ? 'zh' : next;
-    // Toggle language blocks
     document.querySelectorAll('[data-lang]').forEach(el=>{
       el.classList.toggle('active', el.getAttribute('data-lang') === next);
     });
-    // RTL handling
     const isRTL = next === 'ar';
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
     document.querySelectorAll('.rtl').forEach(el=>{
       el.style.direction = isRTL ? 'rtl' : 'ltr';
     });
-    // Buttons state
     document.querySelectorAll('button[data-setlang]').forEach(b=>{
       b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
     });
   }
-
   document.querySelectorAll('button[data-setlang]').forEach(btn=>{
     btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-setlang')));
   });
-
   setLang(lang);
 })();
 </script>
