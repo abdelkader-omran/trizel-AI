@@ -1,612 +1,267 @@
-<!--
-====================================================================
-METADATA (COPY / AUDIT HEADER)
-Repository: abdelkader-omran/trizel-AI
-Branch: main
-File: index.html
-Route: /
-Comment: Academic, multilingual homepage. Read-only gateway:
-         - Explains scope & boundary (non-interpretative)
-         - Exposes navigation to Status / Methodology / Evidence / Repositories
-         - Integrates professional research-themed visuals
-Precise scientific reference links:
-  - ORCID: https://orcid.org/0009-0007-1842-3844
-  - Zenodo: https://zenodo.org/
-  - DOI resolver: https://doi.org/
-====================================================================
--->
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
-  <title>TRIZEL-AI — Epistemic Monitoring & Scientific Evidence Preservation</title>
-  <meta name="description" content="TRIZEL-AI is a non-interpretative scientific infrastructure for preserving official institutional observational records with immutable, DOI-referenced snapshots." />
+  <title>TRIZEL-AI — Immutable Scientific Gateway</title>
+  <meta name="description" content="Evidentiary archive with strict provenance, DOI-referenced snapshots, and phase-separated methodology." />
+
+  <!-- Canonical identity (NON-NEGOTIABLE) -->
+  <link rel="me" href="https://orcid.org/0009-0003-9884-3697" />
+  <meta name="citation_author" content="Abdelkader Omran" />
+  <meta name="citation_author_orcid" content="https://orcid.org/0009-0003-9884-3697" />
+  <meta name="citation_doi" content="10.5281/zenodo.18149691" />
 
   <style>
     :root{
-      --bg:#070A12;
-      --panel:#0D1222;
-      --panel2:#0B1020;
-      --text:#EAF1FF;
-      --muted:#A8B4CC;
-      --line:rgba(255,255,255,.14);
-      --soft:rgba(255,255,255,.08);
-
-      /* Scientific accent system (calibrated) */
-      --a1:#7AA7FF;   /* spectral-blue */
-      --a2:#7DFFCF;   /* teal-green */
-      --a3:#9B8CFF;   /* violet */
-      --warn:#FFDD7A;
-
-      --radius:16px;
-      --shadow:0 14px 40px rgba(0,0,0,.42);
-      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      --max:1180px;
+      --bg0:#070b14;
+      --bg1:#0b1426;
+      --card:rgba(10,18,38,.72);
+      --line:rgba(148,178,255,.20);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.72);
+      --accent:#6aa6ff;
+      --accent2:#32d1ff;
+      --ok:#2dd4bf;
     }
-
-    @media (prefers-color-scheme: light){
-      :root{
-        --bg:#F6F8FC;
-        --panel:#FFFFFF;
-        --panel2:#FFFFFF;
-        --text:#0F172A;
-        --muted:#475569;
-        --line:rgba(15,23,42,.12);
-        --soft:rgba(15,23,42,.06);
-        --shadow:0 14px 38px rgba(15,23,42,.10);
-
-        --a1:#1D4ED8;
-        --a2:#0F766E;
-        --a3:#6D28D9;
-        --warn:#8A6A00;
-      }
-    }
-
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:var(--sans);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:var(--text);
-      line-height:1.6;
       background:
-        radial-gradient(1100px 650px at 15% 0%, rgba(122,167,255,.18), transparent 60%),
-        radial-gradient(900px 520px at 85% 15%, rgba(125,255,207,.12), transparent 58%),
-        radial-gradient(900px 600px at 50% 100%, rgba(155,140,255,.10), transparent 62%),
-        var(--bg);
+        radial-gradient(1200px 700px at 75% 10%, rgba(106,166,255,.18), transparent 55%),
+        radial-gradient(900px 500px at 15% 30%, rgba(50,209,255,.14), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
     }
-
-    a{color:var(--a1); text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    header{
-      position:sticky; top:0; z-index:60;
-      backdrop-filter:blur(12px);
-      background:color-mix(in srgb, var(--bg), transparent 22%);
-      border-bottom:1px solid var(--line);
-    }
-
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:18px 16px 40px}
     .topbar{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:14px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(5,8,16,.55);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      margin:10px 0 18px;
     }
-
-    .brand{
-      display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
-    }
-    .brand b{
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      font-size:14px;
-    }
-    .brand span{
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    nav{
-      display:flex; align-items:center; gap:10px 12px; flex-wrap:wrap;
-    }
-    nav a{
-      font-size:13px;
-      color:var(--text);
-      opacity:.88;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-    }
-    nav a:hover{
-      opacity:1;
-      border-color:var(--line);
-      background:var(--soft);
-      text-decoration:none;
-    }
-
-    /* CLEARLY VISIBLE multilingual interface */
+    .brand{display:flex;align-items:baseline;gap:10px}
+    .brand .name{font-weight:800;letter-spacing:.12em}
+    .brand .tag{font-size:12px;color:var(--muted)}
+    .nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center}
+    .nav a{font-size:14px;color:var(--muted);text-decoration:none}
+    .nav a:hover{color:var(--text)}
     .lang{
-      display:flex; align-items:center; gap:8px;
-      padding:7px 10px;
+      display:flex; gap:6px; align-items:center; flex-wrap:wrap;
+      background: rgba(255,255,255,.06);
       border:1px solid var(--line);
       border-radius:999px;
-      background:color-mix(in srgb, var(--panel), transparent 10%);
-      box-shadow:var(--shadow);
+      padding:6px;
     }
-    .lang .label{
-      font-size:12px;
-      color:var(--muted);
-      letter-spacing:.08em;
-      text-transform:uppercase;
-    }
-    .lang button{
-      font-size:12px;
-      cursor:pointer;
+    .lang span{font-size:12px;color:var(--muted);padding:0 8px}
+    .lang a{
+      font-size:12px; text-decoration:none;
+      padding:6px 10px; border-radius:999px;
       border:1px solid transparent;
-      background:transparent;
-      color:var(--text);
-      opacity:.86;
-      padding:5px 9px;
-      border-radius:999px;
+      color:var(--muted);
     }
-    .lang button:hover{
-      opacity:1;
-      border-color:var(--line);
-      background:var(--soft);
-    }
-    .lang button[aria-pressed="true"]{
-      opacity:1;
-      border-color:color-mix(in srgb, var(--a1), transparent 45%);
-      background:color-mix(in srgb, var(--a1), transparent 86%);
-    }
-
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:28px 20px 64px;
+    .lang a:hover{border-color:var(--line); color:var(--text)}
+    .lang a[aria-current="true"]{
+      background: rgba(106,166,255,.20);
+      border-color: rgba(106,166,255,.55);
+      color: var(--text);
     }
 
     .hero{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:16px;
-      align-items:stretch;
-    }
-    @media (max-width:980px){ .hero{grid-template-columns:1fr;} }
-
-    .card{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
-
-    .heroMedia{
       position:relative;
-      min-height:360px;
-      background:var(--panel2);
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+      min-height:420px;
     }
-    .heroMedia img{
+    .hero img{
+      position:absolute; inset:0;
       width:100%; height:100%;
       object-fit:cover;
-      display:block;
-      filter:saturate(1.05) contrast(1.04);
+      transform: scale(1.02);
+      filter: saturate(1.08) contrast(1.05);
+      opacity:.95;
     }
-    .heroMedia::after{
-      content:"";
+    .hero .shade{
       position:absolute; inset:0;
-      background:linear-gradient(90deg,
-        color-mix(in srgb, var(--bg), transparent 35%) 0%,
-        transparent 45%,
-        color-mix(in srgb, var(--bg), transparent 45%) 100%);
-      pointer-events:none;
+      background:
+        radial-gradient(900px 520px at 10% 35%, rgba(50,209,255,.14), transparent 60%),
+        radial-gradient(900px 520px at 85% 25%, rgba(106,166,255,.16), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.60));
     }
-
-    .heroText{
-      padding:18px 18px 16px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
+    .hero .content{
+      position:relative;
+      padding:42px 26px 26px;
+      max-width:760px;
     }
-
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:7px 10px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      width:max-content;
-      background:color-mix(in srgb, var(--panel), transparent 10%);
-      color:var(--muted);
-      font-size:12px;
-    }
-    .dot{
-      width:8px; height:8px; border-radius:999px;
-      background:var(--a2);
-      box-shadow:0 0 0 6px color-mix(in srgb, var(--a2), transparent 86%);
-    }
-
-    h1{
-      margin:0;
-      font-size:30px;
-      letter-spacing:-.02em;
-      line-height:1.18;
-    }
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .ctaRow{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:6px;
-    }
+    h1{margin:0 0 10px;font-size:44px;line-height:1.08}
+    .subtitle{margin:0 0 18px;color:var(--muted);font-size:18px}
+    .cta{display:flex;gap:10px;flex-wrap:wrap}
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:10px 14px;
+      display:inline-flex; align-items:center; gap:10px;
+      text-decoration:none;
+      padding:12px 16px;
       border-radius:12px;
       border:1px solid var(--line);
-      background:var(--soft);
+      background: rgba(255,255,255,.06);
       color:var(--text);
-      font-size:13px;
-      text-decoration:none;
+      font-weight:650;
+      font-size:14px;
     }
     .btn.primary{
-      border-color:color-mix(in srgb, var(--a1), transparent 35%);
-      background:linear-gradient(135deg,
-        color-mix(in srgb, var(--a1), transparent 84%),
-        color-mix(in srgb, var(--a3), transparent 88%));
+      background: linear-gradient(135deg, rgba(106,166,255,.40), rgba(50,209,255,.26));
+      border-color: rgba(106,166,255,.45);
     }
-    .btn:hover{ text-decoration:none; transform:translateY(-1px); }
-
-    .grid3{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
+    .btn.good{
+      background: linear-gradient(135deg, rgba(45,212,191,.28), rgba(106,166,255,.22));
+      border-color: rgba(45,212,191,.42);
     }
-    @media (max-width:980px){ .grid3{grid-template-columns:1fr;} }
+    .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+    @media (min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
 
-    .tile{
-      padding:14px;
-      border-radius:14px;
+    .card{
       border:1px solid var(--line);
-      background:color-mix(in srgb, var(--panel), transparent 10%);
-    }
-    .tile h2{
-      margin:0 0 6px;
-      font-size:14px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:color-mix(in srgb, var(--text), var(--muted) 30%);
-    }
-    .tile p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .section{
-      margin-top:16px;
-      padding:16px;
-    }
-    .sectionTitle{
-      margin:0 0 10px;
-      font-size:15px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:color-mix(in srgb, var(--text), var(--muted) 30%);
-    }
-    .hr{height:1px; background:var(--line); margin:14px 0}
-
-    .feature{
-      display:grid;
-      grid-template-columns: .95fr 1.05fr;
-      gap:14px;
-      align-items:stretch;
-    }
-    @media (max-width:980px){ .feature{grid-template-columns:1fr;} }
-
-    .featureMedia{
-      border:1px solid var(--line);
-      border-radius:14px;
+      border-radius:18px;
+      background: var(--card);
       overflow:hidden;
-      background:var(--panel2);
-      min-height:260px;
     }
-    .featureMedia img{
-      width:100%; height:100%;
-      object-fit:cover;
-      display:block;
-      filter:saturate(1.03) contrast(1.03);
-    }
-    .featureText{
+    .card .media{height:190px; position:relative}
+    .card .media img{width:100%;height:100%;object-fit:cover;opacity:.92}
+    .card .inner{padding:18px}
+    .card h2{margin:0 0 8px;font-size:22px}
+    .card p{margin:0 0 12px;color:var(--muted);line-height:1.5}
+    .pillrow{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{
+      font-size:12px;
       border:1px solid var(--line);
-      border-radius:14px;
-      background:color-mix(in srgb, var(--panel), transparent 10%);
-      padding:14px;
+      color:var(--muted);
+      border-radius:999px;
+      padding:6px 10px;
+      background: rgba(255,255,255,.04);
     }
-    .featureText ul{margin:10px 0 0 18px}
-    .featureText li{margin:6px 0; color:var(--muted); font-size:13px}
 
     footer{
       margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background: rgba(0,0,0,.25);
       padding:14px 16px;
-      border-top:1px solid var(--line);
       color:var(--muted);
-      font-size:12px;
-      display:flex; gap:14px; flex-wrap:wrap; justify-content:space-between; align-items:center;
+      display:flex; flex-wrap:wrap; gap:10px;
+      justify-content:space-between; align-items:center;
     }
-    .mono{font-family:var(--mono)}
-
-    /* i18n */
-    [data-lang]{display:none}
-    [data-lang].active{display:block}
-    .rtl{direction:rtl}
+    footer a{color:var(--text); text-decoration:none; border-bottom:1px dotted rgba(234,240,255,.35)}
+    footer a:hover{border-bottom-color:rgba(234,240,255,.8)}
+    .idblock{display:flex;gap:14px;flex-wrap:wrap}
+    .idblock strong{color:var(--text)}
   </style>
 </head>
 
 <body>
-<header>
-  <div class="topbar">
-    <div class="brand">
-      <b>TRIZEL-AI</b>
-      <span data-lang="en" class="active">Epistemic Monitoring & Evidence Preservation</span>
-      <span data-lang="fr">Surveillance épistémique & préservation des preuves</span>
-      <span data-lang="ar" class="rtl">المراقبة الإبستيمية وحفظ الأدلة</span>
-      <span data-lang="zh">认识论监测与证据保存</span>
+  <div class="wrap">
+    <!-- Top bar: Navigation + Multilingual switch (clearly visible) -->
+    <div class="topbar" role="navigation" aria-label="Primary">
+      <div class="brand">
+        <div class="name">TRIZEL-AI</div>
+        <div class="tag">Epistemic surveillance & evidence preservation</div>
+      </div>
+
+      <div class="nav" aria-label="Sections">
+        <a href="/status/">Status</a>
+        <a href="/methodology/">Methodology</a>
+        <a href="/evidence/">Evidence</a>
+        <a href="/repositories/">Repositories</a>
+      </div>
+
+      <div class="lang" aria-label="Language">
+        <span>LANGUAGE</span>
+        <!-- Adjust targets if your language routing differs -->
+        <a href="/?lang=en" aria-current="true">EN</a>
+        <a href="/?lang=fr">FR</a>
+        <a href="/?lang=ar">AR</a>
+        <a href="/?lang=zh">中文</a>
+      </div>
     </div>
 
-    <nav aria-label="Primary navigation">
-      <a href="/status/">Status</a>
-      <a href="/methodology/">Methodology</a>
-      <a href="/evidence/">Evidence</a>
-      <a href="/repositories/">Repositories</a>
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+      <!-- IMPORTANT: filenames must match exactly (.PNG uppercase) -->
+      <img src="assets/img/hero-trizel-ai.PNG" alt="TRIZEL-AI hero image" />
+      <div class="shade"></div>
 
-      <div class="lang" aria-label="Language selector">
-        <span class="label">Language</span>
-        <button type="button" data-setlang="en" aria-pressed="true">EN</button>
-        <button type="button" data-setlang="fr" aria-pressed="false">FR</button>
-        <button type="button" data-setlang="ar" aria-pressed="false">AR</button>
-        <button type="button" data-setlang="zh" aria-pressed="false">中文</button>
+      <div class="content">
+        <h1>Immutable Scientific Gateway</h1>
+        <p class="subtitle">Evidentiary archive — no conclusions published. Provenance-first governance, DOI snapshots, and strict phase separation.</p>
+        <div class="cta">
+          <a class="btn primary" href="/methodology/">Read Methodology</a>
+          <a class="btn good" href="/evidence/">View Evidence</a>
+          <a class="btn" href="/status/">System Status</a>
+        </div>
       </div>
-    </nav>
+    </section>
+
+    <!-- PANELS -->
+    <section class="grid" aria-label="Core panels">
+      <article class="card">
+        <div class="media">
+          <img src="assets/img/panel-evidence-governance.PNG" alt="Evidence and governance panel image" />
+        </div>
+        <div class="inner">
+          <h2>Epistemic Governance & Provenance Focused</h2>
+          <p>Formal governance rules, DOI-referenced snapshots, and strict separation between documentation phases and any future implementation claims.</p>
+          <div class="pillrow">
+            <span class="pill">Governance Rules</span>
+            <span class="pill">DOI Provenance</span>
+            <span class="pill">Phase Separation</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="media">
+          <img src="assets/img/composite-banner.PNG" alt="Composite banner image" />
+        </div>
+        <div class="inner">
+          <h2>Snapshot Index of Immutable Evidence</h2>
+          <p>Citable, time-frozen records archived with DOIs, maintaining institutional provenance and immutable traces.</p>
+          <div class="pillrow">
+            <span class="pill">Zenodo Records</span>
+            <span class="pill">Immutable Snapshots</span>
+            <span class="pill">Auditability</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- FOOTER: canonical identity (correct ORCID + latest DOI) -->
+    <footer aria-label="Footer identity">
+      <div class="idblock">
+        <div><strong>ORCID:</strong> <a href="https://orcid.org/0009-0003-9884-3697">0009-0003-9884-3697</a></div>
+        <div><strong>Latest DOI:</strong> <a href="https://doi.org/10.5281/zenodo.18149691">10.5281/zenodo.18149691</a></div>
+      </div>
+      <div>TRIZEL-AI — provenance-first scientific record infrastructure</div>
+    </footer>
   </div>
-</header>
 
-<main class="wrap">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="card heroMedia" aria-label="TRIZEL-AI hero visual">
-      <img src="assets/img/hero-trizel-ai.png" alt="Abstract scientific visualization illustrating institutional data preservation and observation provenance." />
-    </div>
-
-    <div class="card heroText">
-      <div class="kicker">
-        <span class="dot" aria-hidden="true"></span>
-        <span data-lang="en" class="active">Read-only scientific gateway</span>
-        <span data-lang="fr">Portail scientifique en lecture seule</span>
-        <span data-lang="ar" class="rtl">بوابة علمية للقراءة فقط</span>
-        <span data-lang="zh">只读科学入口</span>
-      </div>
-
-      <h1>
-        <span data-lang="en" class="active">Temporal Evidence Preservation for Institutional Observations</span>
-        <span data-lang="fr">Préservation temporelle des preuves d’observations institutionnelles</span>
-        <span data-lang="ar" class="rtl">حفظ الأدلة الزمنية للمشاهدات المؤسسية</span>
-        <span data-lang="zh">面向机构观测的时间证据保存</span>
-      </h1>
-
-      <p class="sub">
-        <span data-lang="en" class="active">
-          TRIZEL-AI performs continuous acquisition of verbatim institutional records and archives them with immutable DOI-referenced snapshots.
-          No interpretation, classification, scoring, or theoretical inference is published.
-        </span>
-        <span data-lang="fr">
-          TRIZEL-AI effectue une acquisition continue de registres institutionnels verbatim et les archive via des instantanés immuables référencés par DOI.
-          Aucune interprétation, classification, notation ou inférence théorique n’est publiée.
-        </span>
-        <span data-lang="ar" class="rtl">
-          يقوم TRIZEL-AI بالتقاط مستمر للسجلات المؤسسية حرفيًا وأرشفتها عبر لقطات غير قابلة للتغيير مرتبطة بمعرفات DOI.
-          لا يتم نشر أي تفسير أو تصنيف أو تقييم أو استدلال نظري.
-        </span>
-        <span data-lang="zh">
-          TRIZEL-AI 持续获取机构来源的逐字记录，并以 DOI 引用的不可变快照进行归档。
-          平台不发布解释、分类、评分或理论推断。
-        </span>
-      </p>
-
-      <div class="ctaRow">
-        <a class="btn primary" href="/status/">
-          <span data-lang="en" class="active">View System Status</span>
-          <span data-lang="fr">Voir le statut</span>
-          <span data-lang="ar" class="rtl">عرض الحالة</span>
-          <span data-lang="zh">查看系统状态</span>
-        </a>
-        <a class="btn" href="/evidence/">
-          <span data-lang="en" class="active">Browse DOI Evidence Index</span>
-          <span data-lang="fr">Parcourir l’index DOI</span>
-          <span data-lang="ar" class="rtl">تصفح فهرس DOI</span>
-          <span data-lang="zh">浏览 DOI 索引</span>
-        </a>
-        <a class="btn" href="/methodology/">
-          <span data-lang="en" class="active">Read Methodology</span>
-          <span data-lang="fr">Lire la méthodologie</span>
-          <span data-lang="ar" class="rtl">قراءة المنهجية</span>
-          <span data-lang="zh">阅读方法论</span>
-        </a>
-      </div>
-
-      <div class="grid3" aria-label="Academic summary tiles">
-        <div class="tile">
-          <h2><span data-lang="en" class="active">Scope</span><span data-lang="fr">Portée</span><span data-lang="ar" class="rtl">النطاق</span><span data-lang="zh">范围</span></h2>
-          <p>
-            <span data-lang="en" class="active">Preserve official observational records as they existed over time.</span>
-            <span data-lang="fr">Préserver les registres officiels tels qu’ils existaient dans le temps.</span>
-            <span data-lang="ar" class="rtl">حفظ السجلات الرسمية كما كانت عبر الزمن.</span>
-            <span data-lang="zh">保存官方观测记录在不同时间点的原始状态。</span>
-          </p>
-        </div>
-
-        <div class="tile">
-          <h2><span data-lang="en" class="active">Boundary</span><span data-lang="fr">Limite</span><span data-lang="ar" class="rtl">الحد</span><span data-lang="zh">边界</span></h2>
-          <p>
-            <span data-lang="en" class="active">No interpretative publishing. Time-stamped provenance only.</span>
-            <span data-lang="fr">Aucune publication interprétative. Provenance horodatée uniquement.</span>
-            <span data-lang="ar" class="rtl">لا نشر تفسيري. فقط مصدر موثق بزمن.</span>
-            <span data-lang="zh">不发布解释性内容，仅提供带时间戳的来源信息。</span>
-          </p>
-        </div>
-
-        <div class="tile">
-          <h2><span data-lang="en" class="active">Phase</span><span data-lang="fr">Phase</span><span data-lang="ar" class="rtl">المرحلة</span><span data-lang="zh">阶段</span></h2>
-          <p>
-            <span data-lang="en" class="active">Phase-5 — Documentation and Evidence Freezing.</span>
-            <span data-lang="fr">Phase-5 — Documentation et gel des preuves.</span>
-            <span data-lang="ar" class="rtl">Phase-5 — التوثيق وتجميد الأدلة.</span>
-            <span data-lang="zh">Phase-5 — 文档与证据冻结。</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ACADEMIC STRUCTURE SECTION -->
-  <section class="card section" aria-label="Architecture overview">
-    <div class="sectionTitle">
-      <span data-lang="en" class="active">Scientific architecture (non-interpretative)</span>
-      <span data-lang="fr">Architecture scientifique (non interprétative)</span>
-      <span data-lang="ar" class="rtl">البنية العلمية (غير تفسيرية)</span>
-      <span data-lang="zh">科学架构（非解释性）</span>
-    </div>
-
-    <div class="feature">
-      <div class="featureMedia">
-        <img src="assets/img/panel-evidence-governance.png" alt="Visual metaphor of evidence archive and governance separation (non-interpretative)."/>
-      </div>
-
-      <div class="featureText">
-        <div class="kicker" style="box-shadow:none;">
-          <span class="dot" aria-hidden="true" style="background:var(--a1); box-shadow:0 0 0 6px color-mix(in srgb, var(--a1), transparent 86%);"></span>
-          <span data-lang="en" class="active">Separation of concerns</span>
-          <span data-lang="fr">Séparation des responsabilités</span>
-          <span data-lang="ar" class="rtl">فصل المهام</span>
-          <span data-lang="zh">关注点分离</span>
-        </div>
-
-        <ul>
-          <li>
-            <span data-lang="en" class="active"><strong>Evidence</strong>: DOI-indexed snapshots (Zenodo) preserve immutable record states.</span>
-            <span data-lang="fr"><strong>Preuve</strong> : instantanés indexés par DOI (Zenodo) conservant des états immuables.</span>
-            <span data-lang="ar" class="rtl"><strong>الأدلة</strong>: لقطات مفهرسة بـ DOI (Zenodo) لحالات غير قابلة للتغيير.</span>
-            <span data-lang="zh"><strong>证据</strong>：以 DOI 索引的快照（Zenodo）保存不可变记录状态。</span>
-          </li>
-          <li>
-            <span data-lang="en" class="active"><strong>Governance</strong>: phase boundaries prevent interpretative leakage.</span>
-            <span data-lang="fr"><strong>Gouvernance</strong> : des limites de phase empêchent la fuite interprétative.</span>
-            <span data-lang="ar" class="rtl"><strong>الحوكمة</strong>: حدود المراحل تمنع تسرب التفسير.</span>
-            <span data-lang="zh"><strong>治理</strong>：阶段边界防止解释性内容渗出。</span>
-          </li>
-          <li>
-            <span data-lang="en" class="active"><strong>Website</strong>: read-only interface exposing status and provenance, not conclusions.</span>
-            <span data-lang="fr"><strong>Site</strong> : interface en lecture seule exposant statut et provenance, pas des conclusions.</span>
-            <span data-lang="ar" class="rtl"><strong>الموقع</strong>: واجهة قراءة فقط تعرض الحالة والمصدر دون استنتاجات.</span>
-            <span data-lang="zh"><strong>网站</strong>：只读界面展示状态与来源，不展示结论。</span>
-          </li>
-        </ul>
-
-        <div class="hr"></div>
-
-        <div style="display:flex; gap:14px; flex-wrap:wrap; color:var(--muted); font-size:13px;">
-          <span><strong>ORCID:</strong> <a href="https://orcid.org/0009-0007-1842-3844" rel="noopener">0009-0007-1842-3844</a></span>
-          <span><strong>Zenodo:</strong> <a href="https://zenodo.org/" rel="noopener">zenodo.org</a></span>
-          <span><strong>DOI:</strong> <a href="https://doi.org/" rel="noopener">doi.org</a></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- OPTIONAL: if you added composite-banner.png -->
-  <!--
-  <section class="card section" aria-label="Composite banner">
-    <div class="sectionTitle">Visual context</div>
-    <div class="featureMedia" style="min-height:320px;">
-      <img src="assets/img/composite-banner.png" alt="Composite banner illustrating the gateway’s non-interpretative architecture." />
-    </div>
-  </section>
-  -->
-
-  <footer class="card">
-    <div>
-      <div style="letter-spacing:.10em; text-transform:uppercase; font-size:11px; color:color-mix(in srgb, var(--muted), var(--text) 12%);">
-        <span data-lang="en" class="active">Methodological boundary</span>
-        <span data-lang="fr">Limite méthodologique</span>
-        <span data-lang="ar" class="rtl">الحد المنهجي</span>
-        <span data-lang="zh">方法边界</span>
-      </div>
-      <div style="margin-top:6px;">
-        <span data-lang="en" class="active">TRIZEL-AI is an evidence preservation system; it is not a theory-publishing platform.</span>
-        <span data-lang="fr">TRIZEL-AI est un système de préservation des preuves ; ce n’est pas une plateforme de publication théorique.</span>
-        <span data-lang="ar" class="rtl">TRIZEL-AI نظام لحفظ الأدلة؛ وليس منصة لنشر النظريات.</span>
-        <span data-lang="zh">TRIZEL-AI 是证据保存系统，而非理论发布平台。</span>
-      </div>
-    </div>
-
-    <div class="mono" style="opacity:.9;">
-      <span data-lang="en" class="active">Phase:</span>
-      <span data-lang="fr">Phase :</span>
-      <span data-lang="ar" class="rtl">المرحلة:</span>
-      <span data-lang="zh">阶段：</span>
-      Phase-5
-    </div>
-  </footer>
-</main>
-
-<script>
-(function(){
-  const supported = ['en','fr','ar','zh'];
-
-  const qsLang = new URLSearchParams(location.search).get('lang');
-  const stored = localStorage.getItem('trizel_lang');
-  const lang = supported.includes(qsLang) ? qsLang : (supported.includes(stored) ? stored : 'en');
-
-  function setLang(next){
-    localStorage.setItem('trizel_lang', next);
-
-    document.documentElement.lang = (next === 'zh') ? 'zh' : next;
-    const isRTL = (next === 'ar');
-    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-
-    document.querySelectorAll('[data-lang]').forEach(el=>{
-      el.classList.toggle('active', el.getAttribute('data-lang') === next);
-    });
-
-    document.querySelectorAll('.rtl').forEach(el=>{
-      el.style.direction = isRTL ? 'rtl' : 'ltr';
-    });
-
-    document.querySelectorAll('button[data-setlang]').forEach(b=>{
-      b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
-    });
-  }
-
-  document.querySelectorAll('button[data-setlang]').forEach(btn=>{
-    btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-setlang')));
-  });
-
-  setLang(lang);
-})();
-</script>
+  <script>
+    // Optional: set aria-current on language pill based on ?lang=
+    (function(){
+      const p = new URLSearchParams(location.search);
+      const lang = (p.get("lang") || "en").toLowerCase();
+      document.querySelectorAll('.lang a').forEach(a => a.removeAttribute('aria-current'));
+      const map = {en:"EN", fr:"FR", ar:"AR", zh:"中文"};
+      const label = map[lang] || "EN";
+      const el = Array.from(document.querySelectorAll('.lang a')).find(a => a.textContent.trim() === label);
+      if(el) el.setAttribute('aria-current','true');
+    })();
+  </script>
 </body>
 </html>
