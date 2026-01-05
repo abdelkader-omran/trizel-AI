@@ -1,15 +1,27 @@
-export function renderNav(lang: "en" | "fr"): string {
-  const items =
-    lang === "en"
-      ? [
-          { href: "/en/index.html", label: "Home" },
-          { href: "/audit/gate-report.md", label: "Audit" },
-        ]
-      : [
-          { href: "/fr/index.html", label: "Accueil" },
-          { href: "/audit/gate-report.md", label: "Audit" },
-        ];
+import { Locale } from "./paths";
 
-  const links = items.map((it) => `<a href="${it.href}">${it.label}</a>`).join(" | ");
-  return `<nav>${links}</nav>`;
+export type NavItem = {
+  label: string;
+  href: string;
+};
+
+/**
+ * Build navigation HTML (shared renderer).
+ */
+export function buildNavHtml(opts: {
+  locale: Locale;
+  nav: NavItem[];
+  activePath?: string;
+}): string {
+  const { nav, activePath } = opts;
+
+  const items = nav
+    .map((item) => {
+      const isActive =
+        activePath && activePath === item.href ? "active" : "";
+      return `<a href="${item.href}" class="${isActive}">${item.label}</a>`;
+    })
+    .join("");
+
+  return `<nav>${items}</nav>`;
 }
