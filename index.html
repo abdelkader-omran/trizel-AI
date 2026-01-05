@@ -1,166 +1,670 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TRIZEL AI | AUTO DZ ACT — Special Edition (v3.0 Gateway)</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
 
-  <meta name="description" content="Special Edition documentation and public gateway for AUTO DZ ACT v3.0. Canonical definition published on Zenodo: 10.5281/zenodo.18134257." />
+  <title>TRIZEL-AI — Epistemic Monitoring and Scientific Evidence Preservation Framework</title>
+  <meta name="description" content="TRIZEL-AI is a verification-first scientific infrastructure for preserving authoritative institutional observational records over time with immutable provenance. No interpretation is published." />
+  <meta name="robots" content="index,follow" />
 
-  <link rel="stylesheet" href="assets/style.css" />
-
-  <!-- Optional: add an image at assets/og.jpg for social sharing -->
-  <meta property="og:title" content="AUTO DZ ACT — Special Edition (v3.0 Gateway)" />
-  <meta property="og:description" content="Documentation and public access gateway for AUTO DZ ACT v3.0. Canonical definition: 10.5281/zenodo.18134257." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="TRIZEL-AI — Epistemic Monitoring and Scientific Evidence Preservation Framework" />
+  <meta property="og:description" content="System status and provenance interface for daily institutional evidence preservation (e.g., 3I/ATLAS). No interpretation is published." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/og.jpg" />
+
+  <!-- Basic typography (system fonts only) -->
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --panel: #111521;
+      --text: #e9eef7;
+      --muted: #a9b4c6;
+      --soft: rgba(255,255,255,.08);
+      --line: rgba(255,255,255,.14);
+      --accent: #7aa7ff;
+      --accent2: #7dffcf;
+      --warn: #ffdd7a;
+      --ok: #7dffcf;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --max: 1120px;
+    }
+
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f6f8fc;
+        --panel: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --soft: rgba(15,23,42,.06);
+        --line: rgba(15,23,42,.12);
+        --accent: #1d4ed8;
+        --accent2: #0f766e;
+        --warn: #8a6a00;
+        --ok: #0f766e;
+        --shadow: 0 12px 34px rgba(15,23,42,.10);
+      }
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(122,167,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 10%, rgba(125,255,207,.12), transparent 55%),
+        radial-gradient(800px 500px at 50% 100%, rgba(122,167,255,.10), transparent 65%),
+        var(--bg);
+      line-height: 1.55;
+    }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 20px 54px; }
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--bg), transparent 25%);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand{
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      min-width: 240px;
+    }
+    .brand b{
+      font-size: 14px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+    .brand span{
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .navlinks{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      justify-content: flex-end;
+    }
+    .navlinks a{
+      font-size: 13px;
+      color: var(--text);
+      opacity: .85;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .navlinks a:hover{
+      opacity: 1;
+      border-color: var(--line);
+      background: var(--soft);
+      text-decoration: none;
+    }
+
+    .hero{
+      padding: 28px 0 10px;
+    }
+    .kicker{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--panel), transparent 10%);
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: var(--ok);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--ok), transparent 85%);
+    }
+
+    h1{
+      margin: 16px 0 6px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+    .subtitle{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 80ch;
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .brand{ min-width: auto; }
+    }
+
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--text), var(--muted) 30%);
+    }
+    .card p{ margin: 10px 0; color: var(--text); }
+    .muted{ color: var(--muted); }
+    .hr{
+      height: 1px;
+      background: var(--line);
+      margin: 18px 0;
+    }
+
+    .statrow{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .stat{
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel), transparent 12%);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .stat .label{
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .stat .value{
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    section{
+      scroll-margin-top: 78px;
+      margin-top: 18px;
+    }
+    section h3{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+
+    ul{ margin: 8px 0 0 20px; }
+    li{ margin: 6px 0; color: var(--text); }
+    .pill{
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      color: var(--text);
+      font-size: 12px;
+      margin-left: 8px;
+    }
+    .warn{
+      color: var(--warn);
+      border-color: color-mix(in srgb, var(--warn), transparent 60%);
+      background: color-mix(in srgb, var(--warn), transparent 90%);
+    }
+
+    .repo{
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 10px;
+      background: color-mix(in srgb, var(--panel), transparent 12%);
+    }
+    .repo .title{
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .repo code{
+      font-family: var(--mono);
+      font-size: 13px;
+      background: color-mix(in srgb, var(--bg), transparent 40%);
+      border: 1px solid var(--line);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+    .repo .role{
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer{
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    footer .cols{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 980px){
+      footer .cols{ grid-template-columns: 1fr; }
+    }
+    .smallcaps{
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: color-mix(in srgb, var(--muted), var(--text) 10%);
+    }
+
+    .topbtn{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel), transparent 10%);
+      color: var(--text);
+      opacity: .9;
+      box-shadow: var(--shadow);
+      font-size: 12px;
+    }
+    .topbtn:hover{ opacity: 1; text-decoration: none; }
+  </style>
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="container">
-      <div class="nav">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <div class="brand-title">
-            <strong>TRIZEL AI</strong>
-            <span>AUTO DZ ACT — v3.0 Gateway</span>
-          </div>
-        </div>
-
-        <nav class="navlinks" aria-label="Primary">
-          <a class="pill" href="https://doi.org/10.5281/zenodo.18134257" target="_blank" rel="noopener">Zenodo DOI</a>
-          <a class="pill" href="https://github.com/abdelkader-omran/trizel-AI" target="_blank" rel="noopener">Repository</a>
-          <a class="pill" href="#citation">Citation</a>
-          <a class="pill" href="#scope">Scope</a>
-        </nav>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <b>TRIZEL-AI</b>
+        <span>Epistemic Monitoring & Evidence Preservation</span>
       </div>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#definition">Definition</a>
+        <a href="#status">System Status</a>
+        <a href="#boundaries">Methodological Boundaries</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#plan">Execution Plan</a>
+        <a href="#disclosure">Disclosure Policy</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="card hero-left">
-          <div class="kicker"><span class="kdot" aria-hidden="true"></span>Special Edition — Documentation & Access Gateway</div>
+  <main class="wrap">
+    <div class="hero">
+      <div class="kicker" role="note" aria-label="Project phase indicator">
+        <span class="dot" aria-hidden="true"></span>
+        Phase-5 — Documentation and Evidence Freezing
+        <span class="pill">Non-interpretative</span>
+      </div>
 
-          <h1>AUTO DZ ACT — Special Edition (v3.0 Gateway)</h1>
+      <h1>TRIZEL-AI</h1>
+      <p class="subtitle">
+        <strong>Epistemic Monitoring and Scientific Evidence Preservation Framework.</strong>
+        A verification-first infrastructure for systematic preservation of authoritative institutional
+        observational records over time, with immutable provenance and explicit methodological boundaries.
+      </p>
+    </div>
 
-          <p class="lead">
-            This website is a documentation and presentation gateway for <strong>AUTO DZ ACT v3.0</strong>.
-            The <strong>canonical, citable definition</strong> is DOI-locked on Zenodo:
-            <a href="https://doi.org/10.5281/zenodo.18134257" target="_blank" rel="noopener">10.5281/zenodo.18134257</a>.
-          </p>
+    <div class="grid">
+      <!-- Left: Narrative + sections -->
+      <div class="card">
+        <h2 id="definition">1. Project Definition</h2>
+        <p>
+          TRIZEL-AI is a scientific infrastructure project dedicated to the systematic preservation of official
+          observational records over time.
+        </p>
+        <p>
+          The framework performs continuous, automated acquisition of verbatim institutional data from authoritative
+          scientific sources and archives these records with immutable timestamps.<br />
+          No interpretation, classification, scoring, or theoretical inference is performed or published within this framework.
+        </p>
+        <p class="muted">
+          The public website serves exclusively as a system status and provenance interface, not as a platform for scientific conclusions.
+        </p>
 
-          <div class="notice">
-            <strong>Special Edition Notice</strong>
-            <div class="small">
-              This repository does not redefine the algorithm. It provides human-readable documentation, a public gateway,
-              and stable navigation to the canonical Zenodo release.
-            </div>
+        <div class="hr" role="separator"></div>
+
+        <h2 id="status">2. Current System Status</h2>
+        <ul>
+          <li><strong>Monitoring Domain:</strong> Institutional observational records of interstellar objects (current monitored case: 3I/ATLAS)</li>
+          <li><strong>Operational Since:</strong> December 2025</li>
+          <li><strong>Acquisition Frequency:</strong> Daily automated snapshots</li>
+          <li><strong>Primary Archival Layer:</strong> Zenodo (DOI-based, immutable records)</li>
+          <li><strong>Automation and Version Control:</strong> GitHub (auditable repositories)</li>
+          <li><strong>Interpretation Policy:</strong> Explicitly deferred</li>
+          <li><strong>Project Phase:</strong> Phase-5 — Documentation and Evidence Freezing</li>
+        </ul>
+
+        <div class="hr" role="separator"></div>
+
+        <h2 id="boundaries">3. Methodological Boundary Statement</h2>
+        <p><strong>TRIZEL-AI explicitly does not publish:</strong></p>
+        <ul>
+          <li>Scientific interpretations or hypotheses</li>
+          <li>Object classifications or theoretical claims</li>
+          <li>Reprocessed or derived datasets</li>
+          <li>Analytical conclusions or rankings</li>
+        </ul>
+
+        <p style="margin-top:14px;"><strong>TRIZEL-AI does publish:</strong></p>
+        <ul>
+          <li>Proof of data existence at specific points in time</li>
+          <li>Source provenance and institutional origin</li>
+          <li>Temporal integrity of records</li>
+          <li>Verifiable references to primary archives</li>
+        </ul>
+
+        <p class="muted">
+          This boundary is intentional, enforced, and methodologically fundamental to the project.
+        </p>
+
+        <div class="hr" role="separator"></div>
+
+        <h2 id="architecture">4. Evidence and Provenance Architecture</h2>
+        <p class="muted">
+          The project is composed of interconnected repositories, each fulfilling a strictly delimited role within the overall system.
+        </p>
+
+        <div class="repo">
+          <div class="title">
+            <strong>A. Core Documentation Repository</strong>
+            <code>abdelkader-omran/trizel-AI</code>
           </div>
-
-          <div class="actions">
-            <a class="btn primary" href="https://doi.org/10.5281/zenodo.18134257" target="_blank" rel="noopener">Open Canonical DOI</a>
-            <a class="btn" href="#overview">Read Overview</a>
-            <a class="btn" href="#citation">Copy Citation Rule</a>
+          <div class="role">
+            Function: Central methodological documentation; definition of scope and constraints; phase governance references.<br />
+            Role: Defines what the system is authorized to do, not what it concludes.
           </div>
         </div>
 
-        <aside class="card hero-right" aria-label="Quick facts">
-          <div class="mini">
-            <div class="t">Canonical reference</div>
-            <div class="d">
-              Omran, A. (2026). <em>AUTO DZ ACT — Scientific Algorithm for Epistemic Validation (v3.0)</em>. Zenodo.<br />
-              DOI: <a href="https://doi.org/10.5281/zenodo.18134257" target="_blank" rel="noopener">10.5281/zenodo.18134257</a>
-            </div>
+        <div class="repo">
+          <div class="title">
+            <strong>B. Epistemic Governance Engine</strong>
+            <code>trizel-ai/trizel-epistemic-engine</code>
           </div>
+          <div class="role">
+            Function: Formal definition of epistemic rules; enforcement of phase separation; governance constraints preventing interpretation leakage.<br />
+            Structure includes: Phase-2 (epistemic foundations), Phase-3 (analytical boundary definitions), Phase-4 (governance and control logic).<br />
+            Role: Ensures methodological consistency and prevents unauthorized analytical behavior.
+          </div>
+        </div>
 
-          <div class="mini">
-            <div class="t">Author</div>
-            <div class="d">
-              Abdelkader Omran<br />
-              Affiliation: HONGKONG TRIZEL INTERNATIONAL GROUP LIMITED<br />
-              ORCID: <a href="https://orcid.org/0009-0003-9884-3697" target="_blank" rel="noopener">0009-0003-9884-3697</a>
-            </div>
+        <div class="repo">
+          <div class="title">
+            <strong>C. Monitoring and Orchestration Layer</strong>
+            <code>abdelkader-omran/trizel-monitor</code>
           </div>
+          <div class="role">
+            Function: Coordination of monitoring logic; automation scheduling; execution control.<br />
+            Role: Maintains continuous operation without subjective intervention.
+          </div>
+        </div>
 
-          <div class="mini">
-            <div class="t">License</div>
-            <div class="d">
-              Website & documentation: CC BY 4.0 (as stated in the Zenodo release).<br />
-              Please cite the canonical DOI for scientific use.
-            </div>
+        <div class="repo">
+          <div class="title">
+            <strong>D. Daily Official Evidence Archive</strong>
+            <code>abdelkader-omran/AUTO-DZ-ACT-3I-ATLAS-DAILY</code>
           </div>
-        </aside>
+          <div class="role">
+            Function: Daily capture of official institutional records; verbatim HTML and API snapshots; integrity hashing and timestamping.<br />
+            Primary sources include: Minor Planet Center (MPC), NASA/JPL, ESA, JPL Horizons, CNEOS.<br />
+            Role: Primary evidentiary record of institutional data states.
+          </div>
+        </div>
+
+        <div class="repo">
+          <div class="title">
+            <strong>E. Analytical Separation Repository</strong>
+            <code>abdelkader-omran/AUTO-DZ-ACT-ANALYSIS-3I-ATLAS</code>
+            <span class="pill warn">Reserved / Inactive</span>
+          </div>
+          <div class="role">
+            Function: Reserved for potential future analytical work; currently inactive for public interpretation.<br />
+            Role: Preserves strict separation between evidence preservation and analysis.
+          </div>
+        </div>
+
+        <div class="hr" role="separator"></div>
+
+        <h2>5. External Archival Layer</h2>
+        <p>
+          All daily evidence snapshots are archived on Zenodo with assigned DOIs.
+        </p>
+        <p><strong>Each DOI corresponds to:</strong></p>
+        <ul>
+          <li>A single UTC calendar day</li>
+          <li>A fixed and immutable record state</li>
+          <li>A citable scientific artifact</li>
+        </ul>
+        <p class="muted">
+          Zenodo is used exclusively as a preservation and citation layer, not as an interpretative medium.
+        </p>
+
+        <div class="hr" role="separator"></div>
+
+        <h2>6. Rationale for the Architecture</h2>
+        <ul>
+          <li>Prevent retrospective alteration of scientific records</li>
+          <li>Preserve temporal priority of observations</li>
+          <li>Enable future independent verification</li>
+          <li>Maintain strict neutrality during active observation phases</li>
+          <li>Treat time as an explicit scientific variable</li>
+        </ul>
+        <p class="muted">
+          The system is intentionally non-interpretative. Its scientific value becomes evident when institutional narratives evolve,
+          not at the moment of initial publication.
+        </p>
+
+        <div class="hr" role="separator"></div>
+
+        <h2 id="disclosure">7. Public Disclosure Policy</h2>
+        <ul>
+          <li>The website exposes system status and provenance only</li>
+          <li>All repositories remain publicly accessible for auditability</li>
+          <li>No scientific claims are advanced</li>
+        </ul>
+        <p class="muted">
+          Any transition to interpretative publication requires a formally declared new phase with explicit governance authorization.
+        </p>
+
+        <div class="hr" role="separator"></div>
+
+        <h2>8. Summary Statement</h2>
+        <p>
+          TRIZEL-AI is not a theory-publishing platform; it is a temporal scientific evidence preservation system.
+        </p>
+
+        <div class="hr" role="separator"></div>
+
+        <h2 id="plan">TRIZEL-AI — Website &amp; Infrastructure Integration (Execution Plan)</h2>
+
+        <h3>Objective</h3>
+        <p>
+          Expose system status, provenance, and project structure on the public website while preserving strict separation between
+          evidence, governance, and interpretation. No raw datasets or scientific conclusions will be published.
+        </p>
+
+        <h3>1. Architectural Principle</h3>
+        <p><strong>Single Source of Truth:</strong></p>
+        <ul>
+          <li>GitHub = operational logic, documentation, automation</li>
+          <li>Zenodo = immutable evidence archive</li>
+          <li>Website = read-only public interface (status + provenance)</li>
+        </ul>
+        <p class="muted">The website must reflect, not replicate, repositories.</p>
+
+        <h3>2. Repository Role Consolidation</h3>
+        <ul>
+          <li><strong>Core Governance &amp; Documentation:</strong> <span class="muted">Project Core Documentation</span></li>
+          <li><strong>Epistemic &amp; Governance Engine:</strong> <span class="muted">Methodological Framework</span></li>
+          <li><strong>Monitoring &amp; Orchestration:</strong> <span class="muted">Operational Layer</span></li>
+          <li><strong>Daily Evidence Capture:</strong> <span class="muted">Daily Evidence Archive</span></li>
+          <li><strong>Analytical Separation (Inactive):</strong> <span class="muted">Reserved / Not Publicly Active</span></li>
+        </ul>
+
+        <h3>3. Website Page Structure (Mandatory)</h3>
+        <ul>
+          <li><strong>/</strong> — Home (Landing Page): definition, phase indicator, system operational status, links (Status, Methodology, Evidence)</li>
+          <li><strong>/status</strong> — Monitoring transparency: last snapshot (UTC), latest Zenodo DOI, institutions monitored, automation state</li>
+          <li><strong>/methodology</strong> — Epistemic boundaries, phase logic, non-interpretation policy, repository roles</li>
+          <li><strong>/evidence</strong> — Zenodo community link, DOI index (not datasets), snapshot meaning, immutability statement</li>
+          <li><strong>/repositories</strong> — structured repository list, roles, explicit dependency graph (textual)</li>
+        </ul>
+
+        <h3>4. Content Governance Rules</h3>
+        <ul>
+          <li>Website content is manually curated, not auto-generated narratives</li>
+          <li>All dynamic values are factual only (dates, DOIs, status)</li>
+          <li>No interpretative text added without Phase-6 authorization</li>
+          <li>README files redirect users to the website, not the opposite</li>
+        </ul>
+
+        <h3>5. Implementation Order (Strict)</h3>
+        <ol>
+          <li>Freeze Phase-5 documentation (no logic changes)</li>
+          <li>Prepare /methodology content (from reviewed academic text)</li>
+          <li>Create /status minimal data feed (read-only)</li>
+          <li>Update homepage to reference system state</li>
+          <li>Align all READMEs to point to website pages</li>
+          <li>Validate consistency (no duplicated explanations)</li>
+        </ol>
+
+        <h3>6. Success Criteria</h3>
+        <ul>
+          <li>The website clearly explains what exists and why</li>
+          <li>No visitor can mistake the project for a theory-publishing platform</li>
+          <li>Every public claim is traceable to a repository or DOI</li>
+          <li>The system can remain silent scientifically without appearing inactive</li>
+        </ul>
+
+        <div class="hr" role="separator"></div>
+
+        <p><strong>Final One-Line Definition:</strong><br />
+          TRIZEL-AI exposes the state of scientific evidence preservation, not the interpretation of that evidence.
+        </p>
       </div>
 
-      <div class="grid" id="overview">
-        <div class="card section">
-          <h2>Overview</h2>
+      <!-- Right: Quick status / links panel -->
+      <aside class="card" aria-label="At-a-glance panel">
+        <h2>At a glance</h2>
+        <p class="muted">
+          This landing page is intentionally non-interpretative. It is a provenance and system-status interface.
+        </p>
+
+        <div class="statrow" role="list">
+          <div class="stat" role="listitem">
+            <div class="label">Project Phase</div>
+            <div class="value">Phase-5 (Documentation &amp; Evidence Freezing)</div>
+          </div>
+          <div class="stat" role="listitem">
+            <div class="label">Interpretation Policy</div>
+            <div class="value">Deferred (No hypotheses published here)</div>
+          </div>
+          <div class="stat" role="listitem">
+            <div class="label">Cadence</div>
+            <div class="value">Daily snapshots</div>
+          </div>
+          <div class="stat" role="listitem">
+            <div class="label">Archive Layer</div>
+            <div class="value">Zenodo (DOI-based records)</div>
+          </div>
+        </div>
+
+        <div class="hr" role="separator"></div>
+
+        <h2>Required pages</h2>
+        <p class="muted">Create these as separate static pages when ready:</p>
+        <ul>
+          <li><a href="/status">/status</a> <span class="pill">facts only</span></li>
+          <li><a href="/methodology">/methodology</a> <span class="pill">boundaries</span></li>
+          <li><a href="/evidence">/evidence</a> <span class="pill">DOI index</span></li>
+          <li><a href="/repositories">/repositories</a> <span class="pill">auditability</span></li>
+        </ul>
+
+        <div class="hr" role="separator"></div>
+
+        <h2>Repositories</h2>
+        <p class="muted">Listed here for transparency; link them to GitHub in production.</p>
+        <ul>
+          <li><span class="muted">Core:</span> <span style="font-family:var(--mono)">abdelkader-omran/trizel-AI</span></li>
+          <li><span class="muted">Engine:</span> <span style="font-family:var(--mono)">trizel-ai/trizel-epistemic-engine</span></li>
+          <li><span class="muted">Monitor:</span> <span style="font-family:var(--mono)">abdelkader-omran/trizel-monitor</span></li>
+          <li><span class="muted">Daily:</span> <span style="font-family:var(--mono)">abdelkader-omran/AUTO-DZ-ACT-3I-ATLAS-DAILY</span></li>
+          <li><span class="muted">Analysis:</span> <span style="font-family:var(--mono)">abdelkader-omran/AUTO-DZ-ACT-ANALYSIS-3I-ATLAS</span> <span class="pill warn">inactive</span></li>
+        </ul>
+
+        <div class="hr" role="separator"></div>
+
+        <h2>Boundary reminder</h2>
+        <p class="muted">
+          If you add any text that sounds like a conclusion, classification, ranking, or hypothesis, it must be moved out of Phase-5
+          and require explicit governance authorization.
+        </p>
+      </aside>
+    </div>
+
+    <footer aria-label="Footer">
+      <div class="cols">
+        <div>
+          <div class="smallcaps">Scientific integrity & rights</div>
           <p>
-            AUTO DZ ACT is a deterministic, verification-first algorithm for epistemic validation.
-            It evaluates whether a claim is experimentally decidable by comparing theoretical outputs (T)
-            to empirical/observational data (E) under explicitly declared thresholds.
+            This website is a read-only provenance interface. Any reuse, redistribution, or derivative work must preserve attribution,
+            identify the exact version and DOI used, document modifications, and must not misrepresent validation outcomes.
+          </p>
+          <p class="muted">
+            AUTO DZ ACT™, STOE™, and related terms designate specific framework definitions and decision logic.
           </p>
         </div>
-
-        <div class="card section" id="scope">
-          <h2>What it does (and does not do)</h2>
-          <ul>
-            <li>Separates validation from interpretation (strict T vs. E discipline).</li>
-            <li>Does not optimize models or propose physical mechanisms.</li>
-            <li>Does not assign probabilities, confidence scores, or rankings.</li>
-            <li>Focuses on auditable decision rules and reproducible checks.</li>
-          </ul>
-        </div>
-
-        <div class="card section">
-          <h2>Four epistemic states</h2>
-          <ul>
-            <li><strong>0/0 — Confirmed</strong>: agreement within declared thresholds.</li>
-            <li><strong>D0/DZ — Indeterminate</strong>: data exists but insufficient to decide.</li>
-            <li><strong>DZ — Contradicted</strong>: significant discrepancy under declared criteria.</li>
-            <li><strong>∞/∞ — Not Testable</strong>: absence of comparable, defined, or accessible data.</li>
-          </ul>
-        </div>
-      </div>
-
-      <hr class="sep" />
-
-      <section class="card section" id="citation">
-        <h2>Citation rule (strict)</h2>
-        <p>
-          When referring to the algorithm scientifically, cite the Zenodo DOI (canonical definition):
-          <a href="https://doi.org/10.5281/zenodo.18134257" target="_blank" rel="noopener">10.5281/zenodo.18134257</a>.
-        </p>
-        <p>
-          This GitHub Pages site and repository should be cited only as a documentation or access gateway,
-          not as the canonical definition of the algorithm.
-        </p>
-      </section>
-    </section>
-
-    <footer class="footer">
-      <div class="footer-inner">
         <div>
-          <div class="badges">
-            <span class="badge">auto-dz-act</span>
-            <span class="badge">epistemic-validation</span>
-            <span class="badge">scientific-audit</span>
-            <span class="badge">reproducible-science</span>
-          </div>
-          <div style="margin-top:10px;">
-            © 2025–2026 Abdelkader Omran. All rights reserved.
-          </div>
-        </div>
-
-        <div>
-          <div><a href="https://github.com/abdelkader-omran/trizel-AI" target="_blank" rel="noopener">GitHub Repository</a></div>
-          <div><a href="https://doi.org/10.5281/zenodo.18134257" target="_blank" rel="noopener">Zenodo Canonical DOI</a></div>
+          <div class="smallcaps">Methodological position</div>
+          <p class="muted">
+            TRIZEL-AI publishes verifiable references to primary archives and evidence existence over time.
+            It does not publish interpretations or conclusions.
+          </p>
+          <p class="muted">
+            © 2025–2026. All rights reserved where applicable. Licensed components may be CC BY 4.0 as specified in their releases.
+          </p>
         </div>
       </div>
     </footer>
   </main>
+
+  <a class="topbtn" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Top</a>
 </body>
 </html>
