@@ -1,88 +1,94 @@
-import { PATHS } from "../shared/paths";
 import { PageSpec } from "../shared/page";
-import { buildDefaultNav } from "../shared/nav";
+import { getFrNav } from "./nav";
+import { PATHS } from "../shared/paths";
 
 export function getFrPages(): PageSpec[] {
-  const locale = "fr" as const;
-  const nav = buildDefaultNav(locale);
+  const nav = getFrNav();
 
   return [
     {
-      locale,
-      title: "Accueil",
+      locale: "fr",
+      title: "TRIZEL — Portail épistémique opérationnel",
       outRelPath: "index.html",
-      source: { kind: "html", html: `<p>Passerelle publique pour TRIZEL.</p>` },
+      source: {
+        kind: "html",
+        html: `
+          <h1>TRIZEL — Portail épistémique opérationnel</h1>
+          <p>
+            Ce site publie les artefacts officiels (spécifications, gouvernance, audit, juridique)
+            pour le projet TRIZEL.
+          </p>
+          <p>
+            Utilisez la navigation pour accéder aux documents validés.
+          </p>
+        `,
+      },
+      description:
+        "Portail public TRIZEL : spécifications, gouvernance, audit et documents juridiques.",
+      statusTags: ["FINAL_EXECUTION", "GOVERNANCE_LOCKED"],
+      provenance: {
+        label: "TRIZEL repository",
+        sourceRepo: "Abdelkader-omran/trizel-AI",
+        sourcePath: "docs/",
+      },
       nav,
-      statusTags: ["PHASE-6", "EXECUTION"],
     },
+
+    // SPEC
     {
-      locale,
-      title: "Spécifications",
+      locale: "fr",
+      title: "Spécifications — TRIZEL",
       outRelPath: "spec/index.html",
       source: {
         kind: "markdown",
-        mdFileAbsPath: PATHS.repo.docs("spec/FINAL_EXECUTION_SPEC.md"),
+        mdFileAbsPath: PATHS.docs.spec("FINAL_EXECUTION_SPEC.md"),
       },
-      nav,
-      statusTags: ["SPEC", "GOVERNANCE-LOCKED"],
+      description: "Spécification d’exécution (Phase-5) — version gelée.",
+      statusTags: ["SPEC", "FINAL_EXECUTION", "GOVERNANCE_LOCKED"],
       provenance: {
-        label: "Rendu depuis les docs du dépôt",
+        label: "Canonical spec",
         sourceRepo: "Abdelkader-omran/trizel-AI",
         sourcePath: "docs/spec/FINAL_EXECUTION_SPEC.md",
       },
+      nav,
     },
+
+    // AUDIT
     {
-      locale,
-      title: "Feuille de route Phase-5",
-      outRelPath: "phase5/roadmap.html",
+      locale: "fr",
+      title: "Audit — TRIZEL",
+      outRelPath: "audit/index.html",
       source: {
         kind: "markdown",
-        mdFileAbsPath: PATHS.repo.docs("phase5/ROADMAP.md"),
+        mdFileAbsPath: PATHS.docs.spec("AUDIT_SCHEMA.md"),
       },
-      nav,
-      statusTags: ["PHASE-5", "FREEZE"],
+      description: "Schéma d’audit et exigences de conformité.",
+      statusTags: ["AUDIT", "FINAL_EXECUTION", "GOVERNANCE_LOCKED"],
       provenance: {
+        label: "Audit schema",
         sourceRepo: "Abdelkader-omran/trizel-AI",
-        sourcePath: "docs/phase5/ROADMAP.md",
-      },
-    },
-    {
-      locale,
-      title: "Juridique",
-      outRelPath: "legal/index.html",
-      source: {
-        kind: "html",
-        html: `<ul>
-  <li><a href="/fr/legal/ip-non-appropriation.html">Non-appropriation IP</a></li>
-  <li><a href="/fr/legal/researcher-submission.html">Soumission Chercheur</a></li>
-</ul>`,
+        sourcePath: "docs/spec/AUDIT_SCHEMA.md",
       },
       nav,
-      statusTags: ["LEGAL"],
     },
+
+    // LEGAL
     {
-      locale,
-      title: "Non-appropriation IP",
+      locale: "fr",
+      title: "Juridique — Non-appropriation IP",
       outRelPath: "legal/ip-non-appropriation.html",
-      source: { kind: "markdown", mdFileAbsPath: PATHS.repo.docs("legal/IP_NON_APPROPRIATION_POLICY.md") },
-      nav,
-      statusTags: ["LEGAL", "IP-PROTECTION"],
+      source: {
+        kind: "markdown",
+        mdFileAbsPath: PATHS.docs.legal("IP_NON_APPROPRIATION_POLICY.md"),
+      },
+      description: "Politique de non-appropriation de la propriété intellectuelle.",
+      statusTags: ["LEGAL", "FINAL_EXECUTION", "GOVERNANCE_LOCKED"],
       provenance: {
+        label: "Legal policy",
         sourceRepo: "Abdelkader-omran/trizel-AI",
         sourcePath: "docs/legal/IP_NON_APPROPRIATION_POLICY.md",
       },
-    },
-    {
-      locale,
-      title: "Soumission Chercheur",
-      outRelPath: "legal/researcher-submission.html",
-      source: { kind: "markdown", mdFileAbsPath: PATHS.repo.docs("legal/RESEARCHER_SUBMISSION_POLICY.md") },
       nav,
-      statusTags: ["LEGAL", "SUBMISSION"],
-      provenance: {
-        sourceRepo: "Abdelkader-omran/trizel-AI",
-        sourcePath: "docs/legal/RESEARCHER_SUBMISSION_POLICY.md",
-      },
     },
   ];
 }
