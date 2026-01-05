@@ -1,96 +1,100 @@
 import { PATHS } from "../shared/paths";
 import { PageSpec } from "../shared/page";
-import { buildDefaultNav } from "../shared/nav";
+import { navEn } from "./nav";
 
+/**
+ * EN pages registry.
+ * Output paths are relative to: public/en/
+ */
 export function getEnPages(): PageSpec[] {
-  const locale = "en" as const;
-  const nav = buildDefaultNav(locale);
-
   return [
-    // HOME
+    // Home
     {
-      locale,
-      title: "Home",
+      locale: "en",
+      title: "TRIZEL — Epistemic Operational Portal",
+      description:
+        "Professional scientific documentation gateway for TRIZEL (FINAL_EXECUTION).",
       outRelPath: "index.html",
-      source: { kind: "html", html: `<p>Public gateway for TRIZEL.</p>` },
-      nav,
-      statusTags: ["PHASE-6", "EXECUTION"],
+      source: {
+        kind: "html",
+        html: [
+          "<h1>TRIZEL — Epistemic Operational Portal</h1>",
+          "<p>",
+          "This site is the public documentation gateway for TRIZEL.",
+          "</p>",
+          "<p>",
+          'Start with the <a href="/en/spec/index.html">Specification</a> or review the <a href="/en/audit/index.html">Audit</a> view.',
+          "</p>",
+        ].join(""),
+      },
+      nav: navEn(),
+      statusTags: ["FINAL_EXECUTION", "DOCS_FREEZE"],
+      provenance: {
+        label: "Repository source",
+        sourceRepo: "Abdelkader-omran/trizel-AI",
+        sourcePath: "docs/",
+        license: "See repository license",
+      },
     },
 
-    // SPEC INDEX (renders docs/spec bundle landing)
+    // Spec index (markdown)
     {
-      locale,
-      title: "Specifications",
+      locale: "en",
+      title: "Specification — Index",
+      description: "TRIZEL Phase-5 (FINAL_EXECUTION) specification layer.",
       outRelPath: "spec/index.html",
       source: {
         kind: "markdown",
-        mdFileAbsPath: PATHS.repo.docs("spec/FINAL_EXECUTION_SPEC.md"),
+        mdFileAbsPath: PATHS.docs.spec("FINAL_EXECUTION_SPEC.md"),
       },
-      nav,
-      statusTags: ["SPEC", "GOVERNANCE-LOCKED"],
+      nav: navEn(),
+      statusTags: ["SPEC", "GOVERNANCE_LOCKED"],
       provenance: {
-        label: "Rendered from repository docs",
+        label: "docs/spec/FINAL_EXECUTION_SPEC.md",
         sourceRepo: "Abdelkader-omran/trizel-AI",
         sourcePath: "docs/spec/FINAL_EXECUTION_SPEC.md",
+        license: "See repository license",
       },
     },
 
-    // PHASE-5 ROADMAP (kept accessible as reference)
+    // Audit index (markdown)
     {
-      locale,
-      title: "Phase-5 Roadmap",
-      outRelPath: "phase5/roadmap.html",
+      locale: "en",
+      title: "Audit — Index",
+      description: "Audit schema and governance checks for FINAL_EXECUTION.",
+      outRelPath: "audit/index.html",
       source: {
         kind: "markdown",
-        mdFileAbsPath: PATHS.repo.docs("phase5/ROADMAP.md"),
+        mdFileAbsPath: PATHS.docs.spec("AUDIT_SCHEMA.md"),
       },
-      nav,
-      statusTags: ["PHASE-5", "FREEZE"],
+      nav: navEn(),
+      statusTags: ["AUDIT", "GOVERNANCE_LOCKED"],
       provenance: {
+        label: "docs/spec/AUDIT_SCHEMA.md",
         sourceRepo: "Abdelkader-omran/trizel-AI",
-        sourcePath: "docs/phase5/ROADMAP.md",
+        sourcePath: "docs/spec/AUDIT_SCHEMA.md",
+        license: "See repository license",
       },
     },
 
-    // LEGAL INDEX
+    // Legal: IP Non-Appropriation (markdown)
     {
-      locale,
-      title: "Legal",
-      outRelPath: "legal/index.html",
-      source: {
-        kind: "html",
-        html: `<ul>
-  <li><a href="/en/legal/ip-non-appropriation.html">IP Non-Appropriation</a></li>
-  <li><a href="/en/legal/researcher-submission.html">Researcher Submission</a></li>
-</ul>`,
-      },
-      nav,
-      statusTags: ["LEGAL"],
-    },
-
-    // If these files exist under docs/legal, point to them.
-    {
-      locale,
-      title: "IP Non-Appropriation",
+      locale: "en",
+      title: "Legal — IP Non-Appropriation Policy",
+      description:
+        "Legal policy governing IP non-appropriation and attribution constraints.",
       outRelPath: "legal/ip-non-appropriation.html",
-      source: { kind: "markdown", mdFileAbsPath: PATHS.repo.docs("legal/IP_NON_APPROPRIATION_POLICY.md") },
-      nav,
-      statusTags: ["LEGAL", "IP-PROTECTION"],
+      source: {
+        kind: "markdown",
+        mdFileAbsPath: PATHS.docs.legal("IP_NON_APPROPRIATION_POLICY.md"),
+      },
+      nav: navEn(),
+      statusTags: ["LEGAL", "GOVERNANCE_LOCKED"],
       provenance: {
+        label: "docs/legal/IP_NON_APPROPRIATION_POLICY.md",
         sourceRepo: "Abdelkader-omran/trizel-AI",
         sourcePath: "docs/legal/IP_NON_APPROPRIATION_POLICY.md",
-      },
-    },
-    {
-      locale,
-      title: "Researcher Submission",
-      outRelPath: "legal/researcher-submission.html",
-      source: { kind: "markdown", mdFileAbsPath: PATHS.repo.docs("legal/RESEARCHER_SUBMISSION_POLICY.md") },
-      nav,
-      statusTags: ["LEGAL", "SUBMISSION"],
-      provenance: {
-        sourceRepo: "Abdelkader-omran/trizel-AI",
-        sourcePath: "docs/legal/RESEARCHER_SUBMISSION_POLICY.md",
+        license: "See repository license",
       },
     },
   ];
