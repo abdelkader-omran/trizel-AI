@@ -1,0 +1,310 @@
+<!--
+====================================================================
+METADATA (COPY / AUDIT HEADER)
+Repository: abdelkader-omran/trizel-AI
+Branch: main
+File: repositories/index.html
+Route: /repositories
+Comment: Repository index for transparency & auditability. Descriptive only.
+Precise scientific reference links:
+  - ORCID: https://orcid.org/0009-0007-1842-3844
+  - Zenodo: https://zenodo.org/
+  - GitHub: https://github.com/
+====================================================================
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>TRIZEL-AI — Repositories</title>
+  <meta name="description" content="TRIZEL-AI repository index with roles and textual dependency graph for auditability. No interpretation." />
+
+  <style>
+    :root{
+      --bg:#0b0d12; --panel:#111521; --text:#e9eef7; --muted:#a9b4c6;
+      --soft:rgba(255,255,255,.08); --line:rgba(255,255,255,.14);
+      --accent:#7aa7ff; --accent2:#7dffcf; --warn:#ffdd7a; --ok:#7dffcf;
+      --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      --max:1120px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f8fc; --panel:#fff; --text:#0f172a; --muted:#475569;
+        --soft:rgba(15,23,42,.06); --line:rgba(15,23,42,.12);
+        --accent:#1d4ed8; --accent2:#0f766e; --warn:#8a6a00; --ok:#0f766e;
+        --shadow:0 12px 34px rgba(15,23,42,.10);
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:var(--sans); color:var(--text); line-height:1.55;
+      background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(122,167,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 10%, rgba(125,255,207,.12), transparent 55%),
+        radial-gradient(800px 500px at 50% 100%, rgba(122,167,255,.10), transparent 65%),
+        var(--bg);
+    }
+    a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
+    header{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:color-mix(in srgb, var(--bg), transparent 25%); border-bottom:1px solid var(--line);}
+    .nav{max-width:var(--max); margin:0 auto; padding:14px 20px; display:flex; gap:12px; justify-content:space-between; align-items:center}
+    .brand{display:flex; gap:10px; align-items:baseline; flex-wrap:wrap}
+    .brand b{font-size:14px; letter-spacing:.10em; text-transform:uppercase}
+    .brand span{color:var(--muted); font-size:13px}
+    .navlinks{display:flex; flex-wrap:wrap; gap:10px 14px; justify-content:flex-end; align-items:center}
+    .navlinks a{font-size:13px; color:var(--text); opacity:.85; padding:6px 10px; border-radius:999px; border:1px solid transparent}
+    .navlinks a:hover{opacity:1; border-color:var(--line); background:var(--soft); text-decoration:none}
+
+    .lang{
+      display:flex; gap:8px; align-items:center;
+      padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:var(--soft);
+      font-size:12px; color:var(--muted);
+    }
+    .lang button{
+      border:1px solid transparent; background:transparent; color:var(--text);
+      padding:4px 8px; border-radius:999px; cursor:pointer; font-size:12px; opacity:.85;
+    }
+    .lang button:hover{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
+    .lang button[aria-pressed="true"]{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 20px 54px}
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .kicker{display:inline-flex; align-items:center; gap:10px; padding:7px 10px; border:1px solid var(--line); border-radius:999px; background:color-mix(in srgb, var(--panel), transparent 10%); box-shadow:var(--shadow); font-size:12px; color:var(--muted)}
+    .dot{width:8px; height:8px; border-radius:999px; background:var(--ok); box-shadow:0 0 0 6px color-mix(in srgb, var(--ok), transparent 85%)}
+    h1{margin:10px 0 8px; font-size:28px; letter-spacing:-.01em}
+    h2{margin:18px 0 10px; font-size:15px; letter-spacing:.02em; text-transform:uppercase; color:color-mix(in srgb, var(--text), var(--muted) 30%)}
+    .muted{color:var(--muted)}
+    .hr{height:1px; background:var(--line); margin:18px 0}
+
+    .repo{border:1px solid var(--line); border-radius:12px; padding:12px; margin-top:10px; background:color-mix(in srgb, var(--panel), transparent 12%)}
+    .repo .title{display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; margin-bottom:6px}
+    .repo code{font-family:var(--mono); font-size:13px; background:color-mix(in srgb, var(--bg), transparent 40%); border:1px solid var(--line); padding:2px 8px; border-radius:999px}
+    .pill{display:inline-block; padding:2px 10px; border-radius:999px; border:1px solid var(--line); background:var(--soft); color:var(--text); font-size:12px; margin-left:8px}
+    .pill.warn{color:var(--warn); border-color:color-mix(in srgb, var(--warn), transparent 60%); background:color-mix(in srgb, var(--warn), transparent 90%)}
+    pre{font-family:var(--mono); font-size:12.5px; white-space:pre; overflow:auto; border:1px solid var(--line); border-radius:12px; padding:12px; background:color-mix(in srgb, var(--panel), transparent 12%)}
+    footer{margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:12px}
+    .smallcaps{letter-spacing:.08em; text-transform:uppercase; font-size:11px; color:color-mix(in srgb, var(--muted), var(--text) 10%)}
+
+    [data-lang]{display:none}
+    [data-lang].active{display:block}
+    .rtl{direction:rtl}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <b>TRIZEL-AI</b>
+      <span>Repositories</span>
+    </div>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/status/">Status</a>
+      <a href="/methodology/">Methodology</a>
+      <a href="/evidence/">Evidence</a>
+      <a href="/repositories/">Repositories</a>
+
+      <div class="lang" aria-label="Language selector">
+        <span class="muted">Lang</span>
+        <button type="button" data-setlang="en" aria-pressed="true">EN</button>
+        <button type="button" data-setlang="fr" aria-pressed="false">FR</button>
+        <button type="button" data-setlang="ar" aria-pressed="false">AR</button>
+        <button type="button" data-setlang="zh" aria-pressed="false">中文</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="card">
+    <div class="kicker" role="note">
+      <span class="dot" aria-hidden="true"></span>
+      <span data-lang="en" class="active">Auditability-first repository map</span>
+      <span data-lang="fr">Cartographie des dépôts — priorité à l’audit</span>
+      <span data-lang="ar" class="rtl">خريطة المستودعات — أولوية للتدقيق</span>
+      <span data-lang="zh">以审计为先的仓库映射</span>
+    </div>
+
+    <h1>
+      <span data-lang="en" class="active">Repositories</span>
+      <span data-lang="fr">Dépôts</span>
+      <span data-lang="ar" class="rtl">المستودعات</span>
+      <span data-lang="zh">仓库</span>
+    </h1>
+
+    <p class="muted">
+      <span data-lang="en" class="active">Repository roles are listed for transparency. This is not an interpretative publication.</span>
+      <span data-lang="fr">Les rôles des dépôts sont listés pour la transparence. Ceci n’est pas une publication interprétative.</span>
+      <span data-lang="ar" class="rtl">يتم سرد أدوار المستودعات للشفافية. هذا ليس نشرًا تفسيريًا.</span>
+      <span data-lang="zh">列出仓库角色用于透明度；这不是解释性发布。</span>
+    </p>
+
+    <div class="hr" role="separator"></div>
+
+    <h2>
+      <span data-lang="en" class="active">Repository roles</span>
+      <span data-lang="fr">Rôles des dépôts</span>
+      <span data-lang="ar" class="rtl">أدوار المستودعات</span>
+      <span data-lang="zh">仓库角色</span>
+    </h2>
+
+    <div class="repo">
+      <div class="title">
+        <strong>A. Core Documentation Repository</strong>
+        <code>abdelkader-omran/trizel-AI</code>
+      </div>
+      <div class="muted">
+        <span data-lang="en" class="active">Scope, constraints, phase governance documentation.</span>
+        <span data-lang="fr">Documentation du périmètre, contraintes, gouvernance de phase.</span>
+        <span data-lang="ar" class="rtl">توثيق النطاق والقيود وحوكمة المراحل.</span>
+        <span data-lang="zh">范围、约束与阶段治理文档。</span>
+      </div>
+    </div>
+
+    <div class="repo">
+      <div class="title">
+        <strong>B. Epistemic Governance Engine</strong>
+        <code>trizel-ai/trizel-epistemic-engine</code>
+      </div>
+      <div class="muted">
+        <span data-lang="en" class="active">Formal epistemic rules and phase separation enforcement.</span>
+        <span data-lang="fr">Règles épistémiques formelles et séparation des phases.</span>
+        <span data-lang="ar" class="rtl">قواعد إبستيمية رسمية وإنفاذ فصل المراحل.</span>
+        <span data-lang="zh">形式化认识论规则与阶段隔离约束。</span>
+      </div>
+    </div>
+
+    <div class="repo">
+      <div class="title">
+        <strong>C. Monitoring & Orchestration</strong>
+        <code>abdelkader-omran/trizel-monitor</code>
+      </div>
+      <div class="muted">
+        <span data-lang="en" class="active">Automation scheduling and operational coordination (no interpretation).</span>
+        <span data-lang="fr">Planification de l’automatisation et coordination opérationnelle (sans interprétation).</span>
+        <span data-lang="ar" class="rtl">جدولة الأتمتة والتنسيق التشغيلي (بدون تفسير).</span>
+        <span data-lang="zh">自动化调度与运行协调（无解释）。</span>
+      </div>
+    </div>
+
+    <div class="repo">
+      <div class="title">
+        <strong>D. Daily Official Evidence Archive</strong>
+        <code>abdelkader-omran/AUTO-DZ-ACT-3I-ATLAS-DAILY</code>
+      </div>
+      <div class="muted">
+        <span data-lang="en" class="active">Daily verbatim captures, integrity hashing, and timestamping.</span>
+        <span data-lang="fr">Captures quotidiennes verbatim, hachage d’intégrité et horodatage.</span>
+        <span data-lang="ar" class="rtl">التقاطات يومية حرفية، تجزئة سلامة، وطابع زمني.</span>
+        <span data-lang="zh">每日逐字快照、完整性哈希与时间戳。</span>
+      </div>
+    </div>
+
+    <div class="repo">
+      <div class="title">
+        <strong>E. Analytical Separation Repository</strong>
+        <code>abdelkader-omran/AUTO-DZ-ACT-ANALYSIS-3I-ATLAS</code>
+        <span class="pill warn">Reserved / Inactive</span>
+      </div>
+      <div class="muted">
+        <span data-lang="en" class="active">Reserved for future analysis; not publicly active in Phase-5.</span>
+        <span data-lang="fr">Réservé à une analyse future ; non actif publiquement en Phase-5.</span>
+        <span data-lang="ar" class="rtl">محجوز لتحليل مستقبلي؛ غير نشط علنًا في Phase-5.</span>
+        <span data-lang="zh">预留用于未来分析；在 Phase-5 不公开启用。</span>
+      </div>
+    </div>
+
+    <div class="hr" role="separator"></div>
+
+    <h2>
+      <span data-lang="en" class="active">Textual dependency graph (descriptive)</span>
+      <span data-lang="fr">Graphe de dépendance textuel (descriptif)</span>
+      <span data-lang="ar" class="rtl">مخطط اعتماد نصي (وصفي)</span>
+      <span data-lang="zh">文本依赖图（描述性）</span>
+    </h2>
+
+    <pre>
+[Institutions]
+  ├─ MPC
+  ├─ NASA/JPL
+  ├─ ESA
+  ├─ JPL Horizons
+  └─ CNEOS
+
+[Capture & Preservation]
+  Institutions → AUTO-DZ-ACT-3I-ATLAS-DAILY → Zenodo (DOI per UTC day)
+
+[Orchestration]
+  trizel-monitor → coordinates capture workflows (no interpretation)
+
+[Governance]
+  trizel-epistemic-engine → enforces phase separation & non-interpretation constraints
+
+[Documentation]
+  trizel-AI → defines scope, boundaries, governance references
+
+[Website]
+  trizel-ai.com → read-only interface: status + provenance + repository map
+    </pre>
+
+    <div class="hr" role="separator"></div>
+
+    <div class="muted" style="display:flex; gap:18px; flex-wrap:wrap;">
+      <span><strong>ORCID:</strong> <a href="https://orcid.org/0009-0007-1842-3844" rel="noopener">0009-0007-1842-3844</a></span>
+      <span><strong>Zenodo:</strong> <a href="https://zenodo.org/" rel="noopener">zenodo.org</a></span>
+      <span><strong>GitHub:</strong> <a href="https://github.com/" rel="noopener">github.com</a></span>
+    </div>
+  </div>
+
+  <footer>
+    <div class="smallcaps">
+      <span data-lang="en" class="active">Boundary</span>
+      <span data-lang="fr">Limite</span>
+      <span data-lang="ar" class="rtl">الحد</span>
+      <span data-lang="zh">边界</span>
+    </div>
+    <div class="muted">
+      <span data-lang="en" class="active">Listing repositories is provided for auditability and does not constitute scientific interpretation.</span>
+      <span data-lang="fr">La liste des dépôts sert à l’auditabilité et ne constitue pas une interprétation scientifique.</span>
+      <span data-lang="ar" class="rtl">عرض المستودعات لأغراض التدقيق ولا يُعد تفسيرًا علميًا.</span>
+      <span data-lang="zh">列出仓库用于审计性透明度，并不构成科学解释。</span>
+    </div>
+  </footer>
+</main>
+
+<script>
+(function(){
+  const supported = ['en','fr','ar','zh'];
+  const qsLang = new URLSearchParams(location.search).get('lang');
+  const stored = localStorage.getItem('trizel_lang');
+  const lang = supported.includes(qsLang) ? qsLang : (supported.includes(stored) ? stored : 'en');
+
+  function setLang(next){
+    localStorage.setItem('trizel_lang', next);
+    document.documentElement.lang = next === 'zh' ? 'zh' : next;
+    document.querySelectorAll('[data-lang]').forEach(el=>{
+      el.classList.toggle('active', el.getAttribute('data-lang') === next);
+    });
+    const isRTL = next === 'ar';
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    document.querySelectorAll('.rtl').forEach(el=>{
+      el.style.direction = isRTL ? 'rtl' : 'ltr';
+    });
+    document.querySelectorAll('button[data-setlang]').forEach(b=>{
+      b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
+    });
+  }
+  document.querySelectorAll('button[data-setlang]').forEach(btn=>{
+    btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-setlang')));
+  });
+  setLang(lang);
+})();
+</script>
+</body>
+</html>
