@@ -1,3 +1,21 @@
+المشكل فعلاً من هذا الجزء في الـ JS لأنه يحقن style="direction: ltr" داخل كل العناصر التي تحمل .rtl عندما تكون اللغة الابتدائية EN/FR/… ثم تظهر في “HTML” داخل Google URL Inspection. الحل: لا تلمس direction عبر JS إطلاقاً واتركه للـ CSS + html dir.
+
+أيضاً لتحسين الـ SEO: لا تفرض ?lang=en على الرابط (خليه يُزال تلقائياً عندما تكون اللغة EN).
+
+كيف تعدّل المستودع والملف (index.html في الجذر)
+	1.	ادخل GitHub → repo: abdelkader-omran/trizel-AI
+	2.	افتح index.html (في /)
+	3.	اضغط ✏️ Edit
+	4.	الصق النسخة المعدلة بالكامل
+	5.	Commit إلى main
+	6.	انتظر تحديث Pages (عادةً دقائق) ثم أعد اختبار URL في Search Console.
+
+⸻
+
+النسخة المعدلة (قابلة للنسخ بالكامل)
+
+التعديل الوحيد: CSS بسيط للـ RTL + JS بدون حقن direction + حذف lang من URL عندما EN
+
 <!--
 ====================================================================
 METADATA (COPY / AUDIT HEADER)
@@ -87,7 +105,6 @@ Canonical + Entity Lock (SEO / Identity):
   <link rel="me" href="https://orcid.org/0009-0003-9884-3697" />
   <meta name="citation_author" content="Abdelkader Omran" />
   <meta name="citation_author_orcid" content="https://orcid.org/0009-0003-9884-3697" />
-  <!-- Use the newest DOI from the list as citation anchor -->
   <meta name="citation_doi" content="10.5281/zenodo.18134257" />
 
   <!-- Structured Data (Entity Lock) -->
@@ -261,7 +278,6 @@ Canonical + Entity Lock (SEO / Identity):
       max-width:860px;
     }
 
-    /* Anti-overlap: keep text readable */
     .hero .textpanel{
       border:1px solid rgba(148,178,255,.18);
       background: rgba(0,0,0,.38);
@@ -305,7 +321,6 @@ Canonical + Entity Lock (SEO / Identity):
       border-color: rgba(45,212,191,.42);
     }
 
-    /* Sections grid */
     .grid{
       display:grid;
       grid-template-columns:1fr;
@@ -338,17 +353,12 @@ Canonical + Entity Lock (SEO / Identity):
       background: rgba(255,255,255,.04);
     }
 
-    /* Zenodo list card */
     .zenodo ul{margin:10px 0 0; padding-left:18px}
     .zenodo li{margin:7px 0}
     .zenodo a{border-bottom:1px dotted rgba(234,240,255,.35)}
     .zenodo a:hover{border-bottom-color:rgba(234,240,255,.85)}
-    .zenodo .doi{
-      font-family:var(--mono);
-      font-size:12.5px;
-    }
+    .zenodo .doi{font-family:var(--mono);font-size:12.5px}
 
-    /* Legal panel */
     .legal{
       margin-top:14px;
       border:1px solid rgba(148,178,255,.18);
@@ -377,7 +387,6 @@ Canonical + Entity Lock (SEO / Identity):
       box-shadow:0 0 0 6px rgba(45,212,191,.14);
     }
 
-    /* Footers */
     footer.primary{
       margin-top:16px;
       border:1px solid var(--line);
@@ -410,14 +419,20 @@ Canonical + Entity Lock (SEO / Identity):
     footer.secondary a{color:var(--text); border-bottom:1px dotted rgba(234,240,255,.28)}
     footer.secondary a:hover{border-bottom-color:rgba(234,240,255,.8)}
 
-    /* i18n (robust for inline + block) */
+    /* i18n */
     [data-lang]{display:none}
     [data-lang].active{display:inline}
     [data-lang][data-i18n="block"].active{display:block}
     [data-lang][data-i18n="inline"].active{display:inline}
-    .rtl{direction:rtl}
 
-    /* Mobile tightening */
+    /* RTL: اجعلها دائماً RTL بدون أي حقن JS */
+    .rtl{
+      direction: rtl;
+      unicode-bidi: plaintext;
+    }
+    html[dir="rtl"] .legal ul{padding-right:18px;padding-left:0}
+    html[dir="rtl"] .idblock{justify-content:flex-start}
+
     @media (max-width:760px){
       header{gap:8px}
       .brand{min-width:auto}
@@ -524,268 +539,4 @@ Canonical + Entity Lock (SEO / Identity):
 
           <div class="cta" aria-label="Primary actions">
             <a class="btn primary" href="/methodology/">
-              <span data-lang="en" data-i18n="inline" class="active">Read Methodology</span>
-              <span data-lang="fr" data-i18n="inline">Lire la méthodologie</span>
-              <span data-lang="ar" data-i18n="inline" class="rtl">قراءة المنهجية</span>
-              <span data-lang="zh" data-i18n="inline">查看方法论</span>
-            </a>
-            <a class="btn good" href="/evidence/">
-              <span data-lang="en" data-i18n="inline" class="active">View Evidence</span>
-              <span data-lang="fr" data-i18n="inline">Voir les preuves</span>
-              <span data-lang="ar" data-i18n="inline" class="rtl">عرض الأدلة</span>
-              <span data-lang="zh" data-i18n="inline">查看证据</span>
-            </a>
-            <a class="btn" href="/status/">
-              <span data-lang="en" data-i18n="inline" class="active">System Status</span>
-              <span data-lang="fr" data-i18n="inline">Statut du système</span>
-              <span data-lang="ar" data-i18n="inline" class="rtl">حالة النظام</span>
-              <span data-lang="zh" data-i18n="inline">系统状态</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTENT GRID -->
-    <section class="grid" aria-label="Core panels">
-
-      <article class="card zenodo" aria-label="Zenodo list">
-        <div class="media">
-          <img src="assets/img/composite-banner.PNG" alt="Composite banner" />
-        </div>
-        <div class="inner">
-          <h2>
-            <span data-lang="en" data-i18n="inline" class="active">Latest Zenodo Records (Immutable)</span>
-            <span data-lang="fr" data-i18n="inline">Derniers enregistrements Zenodo (immuables)</span>
-            <span data-lang="ar" data-i18n="inline" class="rtl">أحدث سجلات Zenodo (غير قابلة للتغيير)</span>
-            <span data-lang="zh" data-i18n="inline">最新 Zenodo 记录（不可变）</span>
-          </h2>
-          <p>
-            <span data-lang="en" data-i18n="inline" class="active">Citable, time-frozen DOIs. Evidence-only listing for provenance.</span>
-            <span data-lang="fr" data-i18n="inline">DOI citables et figés dans le temps. Liste de preuves uniquement pour la provenance.</span>
-            <span data-lang="ar" data-i18n="inline" class="rtl">معرّفات DOI قابلة للاستشهاد ومجمّدة زمنياً. قائمة أدلة فقط للمصدر.</span>
-            <span data-lang="zh" data-i18n="inline">可引用、时间冻结的 DOI，仅用于溯源证据展示。</span>
-          </p>
-
-          <ul>
-            <li class="doi"><a href="https://doi.org/10.5281/zenodo.18134257" target="_blank" rel="noopener noreferrer">10.5281/zenodo.18134257</a></li>
-            <li class="doi"><a href="https://doi.org/10.5281/zenodo.18117231" target="_blank" rel="noopener noreferrer">10.5281/zenodo.18117231</a></li>
-            <li class="doi"><a href="https://doi.org/10.5281/zenodo.18012859" target="_blank" rel="noopener noreferrer">10.5281/zenodo.18012859</a></li>
-            <li class="doi"><a href="https://doi.org/10.5281/zenodo.17968772" target="_blank" rel="noopener noreferrer">10.5281/zenodo.17968772</a></li>
-            <li class="doi"><a href="https://doi.org/10.5281/zenodo.17935646" target="_blank" rel="noopener noreferrer">10.5281/zenodo.17935646</a></li>
-          </ul>
-
-          <div class="pillrow">
-            <span class="pill">Zenodo</span>
-            <span class="pill">DOI</span>
-            <span class="pill">Immutable</span>
-            <span class="pill">Provenance</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card" aria-label="Governance panel">
-        <div class="media">
-          <img src="assets/img/panel-evidence-governance.PNG" alt="Evidence and governance panel" />
-        </div>
-        <div class="inner">
-          <h2>
-            <span data-lang="en" data-i18n="inline" class="active">Epistemic Governance & Provenance Focused</span>
-            <span data-lang="fr" data-i18n="inline">Gouvernance épistémique & centrée sur la provenance</span>
-            <span data-lang="ar" data-i18n="inline" class="rtl">حوكمة إبستيمية وتركيز على المصدر</span>
-            <span data-lang="zh" data-i18n="inline">认识论治理与溯源优先</span>
-          </h2>
-
-          <p>
-            <span data-lang="en" data-i18n="inline" class="active">Formal governance rules, strict phase separation, and evidence-first publishing. No interpretation on the homepage.</span>
-            <span data-lang="fr" data-i18n="inline">Règles de gouvernance formelles, séparation stricte des phases et publication orientée preuves. Aucune interprétation sur la page d’accueil.</span>
-            <span data-lang="ar" data-i18n="inline" class="rtl">قواعد حوكمة رسمية، فصل صارم للمراحل، ونشر قائم على الدليل. لا تفسير في الصفحة الرئيسية.</span>
-            <span data-lang="zh" data-i18n="inline">形式化治理规则、严格阶段隔离与证据优先发布。主页不提供解释。</span>
-          </p>
-
-          <div class="pillrow">
-            <span class="pill">Governance</span>
-            <span class="pill">Phase Separation</span>
-            <span class="pill">Evidence-only</span>
-          </div>
-        </div>
-      </article>
-
-    </section>
-
-    <!-- LEGAL + PRIVACY (MULTILINGUAL) -->
-    <section class="legal" aria-label="Legal & Data Handling">
-      <div class="badge"><span class="dot" aria-hidden="true"></span>
-        <span data-lang="en" data-i18n="inline" class="active">Legal & Governance Boundary</span>
-        <span data-lang="fr" data-i18n="inline">Limite légale & de gouvernance</span>
-        <span data-lang="ar" data-i18n="inline" class="rtl">الحدود القانونية وحدود الحوكمة</span>
-        <span data-lang="zh" data-i18n="inline">法律与治理边界</span>
-      </div>
-
-      <h2>
-        <span data-lang="en" data-i18n="inline" class="active">Legal & Governance Footer</span>
-        <span data-lang="fr" data-i18n="inline">Pied de page légal & gouvernance</span>
-        <span data-lang="ar" data-i18n="inline" class="rtl">تذييل قانوني وحوكمة</span>
-        <span data-lang="zh" data-i18n="inline">法律与治理页脚</span>
-      </h2>
-
-      <p>
-        <span data-lang="en" data-i18n="inline" class="active">
-          Governance Model: Evidence-Only Preservation. This site is a passive gateway for retrieval of documented scholarly evidence. It does not provide legal, scientific, or professional advice. The presence of a record here does not constitute endorsement of the original content; it confirms provenance and archival state at the time of indexing.
-        </span>
-        <span data-lang="fr" data-i18n="inline">
-          Modèle de gouvernance : préservation « preuves uniquement ». Ce site est une passerelle passive pour la consultation de preuves savantes documentées. Il ne fournit aucun conseil juridique, scientifique ou professionnel. La présence d’un enregistrement n’implique aucune approbation ; elle confirme la provenance et l’état d’archivage au moment de l’indexation.
-        </span>
-        <span data-lang="ar" data-i18n="inline" class="rtl">
-          نموذج الحوكمة: حفظ الأدلة فقط. هذا الموقع بوابة سلبية لاسترجاع أدلة علمية موثقة. لا يقدم استشارات قانونية أو علمية أو مهنية. وجود سجل هنا لا يعني المصادقة على محتواه الأصلي؛ بل يؤكد مصدره وحالته الأرشيفية وقت الفهرسة.
-        </span>
-        <span data-lang="zh" data-i18n="inline">
-          治理模型：仅证据保存。本站为检索已记录学术证据的被动入口，不提供法律、科学或专业建议。记录在此出现不代表对原内容背书，而是确认其在索引时的溯源与归档状态。
-        </span>
-      </p>
-
-      <h3>
-        <span data-lang="en" data-i18n="inline" class="active">Data Handling & Privacy Disclaimer</span>
-        <span data-lang="fr" data-i18n="inline">Avertissement : données & confidentialité</span>
-        <span data-lang="ar" data-i18n="inline" class="rtl">إخلاء مسؤولية البيانات والخصوصية</span>
-        <span data-lang="zh" data-i18n="inline">数据处理与隐私声明</span>
-      </h3>
-
-      <ul>
-        <li>
-          <span data-lang="en" data-i18n="inline" class="active">
-            Non-Analytical Scope: TRIZEL-AI does not perform algorithmic processing, data mining, or automated inference on referenced records.
-          </span>
-          <span data-lang="fr" data-i18n="inline">
-            Portée non analytique : TRIZEL-AI n’effectue ni traitement algorithmique, ni exploration de données, ni inférence automatisée sur les enregistrements référencés.
-          </span>
-          <span data-lang="ar" data-i18n="inline" class="rtl">
-            نطاق غير تحليلي: لا يقوم TRIZEL-AI بمعالجة خوارزمية أو تنقيب بيانات أو استدلال آلي على السجلات المشار إليها.
-          </span>
-          <span data-lang="zh" data-i18n="inline">
-            非分析范围：TRIZEL-AI 不对引用记录进行算法处理、数据挖掘或自动推断。
-          </span>
-        </li>
-
-        <li>
-          <span data-lang="en" data-i18n="inline" class="active">
-            Immutability & Persistence: displayed records are time-frozen. Modification or removal requests must be addressed to the original issuing repository/publisher to preserve the citation chain.
-          </span>
-          <span data-lang="fr" data-i18n="inline">
-            Immutabilité & persistance : les enregistrements affichés sont figés dans le temps. Toute demande de modification/suppression doit être adressée à l’émetteur d’origine (dépôt/éditeur) afin de préserver la chaîne de citation.
-          </span>
-          <span data-lang="ar" data-i18n="inline" class="rtl">
-            عدم القابلية للتغيير والاستمرارية: السجلات المعروضة مجمّدة زمنياً. أي طلب تعديل/حذف يجب توجيهه إلى الجهة الأصلية المُصدِرة (المستودع/الناشر) للحفاظ على سلسلة الاستشهاد.
-          </span>
-          <span data-lang="zh" data-i18n="inline">
-            不可变与持久：所显示记录为时间冻结。修改或移除请求应提交给原始发布仓储/出版方，以维护引用链条完整性。
-          </span>
-        </li>
-
-        <li>
-          <span data-lang="en" data-i18n="inline" class="active">
-            User Privacy (Zero-Tracking): the gateway is designed for neutrality. No behavioral profiling is performed. Access logs may exist solely for security auditing and server integrity.
-          </span>
-          <span data-lang="fr" data-i18n="inline">
-            Confidentialité (zéro traçage) : la passerelle vise la neutralité. Aucun profilage comportemental n’est effectué. Des journaux d’accès peuvent exister uniquement pour l’audit de sécurité et l’intégrité du serveur.
-          </span>
-          <span data-lang="ar" data-i18n="inline" class="rtl">
-            خصوصية المستخدم (صفر تتبّع): صُممت البوابة للحياد. لا يتم إجراء أي تنميط سلوكي. قد توجد سجلات دخول فقط لأغراض تدقيق الأمان وسلامة الخادم.
-          </span>
-          <span data-lang="zh" data-i18n="inline">
-            用户隐私（零追踪）：本站以中立为原则，不进行行为画像。访问日志仅可能用于安全审计与服务器完整性维护。
-          </span>
-        </li>
-      </ul>
-    </section>
-
-    <!-- FOOTERS -->
-    <footer class="primary" aria-label="Primary footer identity">
-      <div class="idblock">
-        <div>
-          <strong>ORCID:</strong>
-          <a href="https://orcid.org/0009-0003-9884-3697" target="_blank" rel="noopener noreferrer">0009-0003-9884-3697</a>
-        </div>
-        <div>
-          <strong>Academia:</strong>
-          <a href="https://academia.edu/resource/work/145457185" target="_blank" rel="noopener noreferrer">Academia.edu Profile</a>
-        </div>
-        <div>
-          <strong>LinkedIn:</strong>
-          <a href="https://www.linkedin.com/in/abdelkader-omran-cosmology" target="_blank" rel="noopener noreferrer">abdelkader-omran-cosmology</a>
-        </div>
-      </div>
-
-      <div>
-        <span data-lang="en" data-i18n="inline" class="active">TRIZEL-AI — provenance-first scientific record infrastructure</span>
-        <span data-lang="fr" data-i18n="inline">TRIZEL-AI — infrastructure de registre scientifique orientée provenance</span>
-        <span data-lang="ar" data-i18n="inline" class="rtl">TRIZEL-AI — بنية تحتية للسجل العلمي قائمة على المصدر</span>
-        <span data-lang="zh" data-i18n="inline">TRIZEL-AI — 溯源优先的科学记录基础设施</span>
-      </div>
-    </footer>
-
-    <footer class="secondary" aria-label="Secondary footer">
-      Facebook:
-      <a href="https://facebook.com/Abdelkader.omran.trizel" target="_blank" rel="noopener noreferrer">
-        Abdelkader Omran – TRIZEL
-      </a>
-    </footer>
-
-  </div>
-
-  <script>
-    (function(){
-      const supported = ['en','fr','ar','zh'];
-      const qs = new URLSearchParams(location.search);
-      const qsLangRaw = (qs.get('lang') || '').toLowerCase();
-      const qsLang = supported.includes(qsLangRaw) ? qsLangRaw : null;
-
-      const stored = (localStorage.getItem('trizel_lang') || '').toLowerCase();
-      const storedLang = supported.includes(stored) ? stored : null;
-
-      const initial = qsLang || storedLang || 'en';
-
-      function setLang(next, persistUrl){
-        if(!supported.includes(next)) next = 'en';
-        localStorage.setItem('trizel_lang', next);
-
-        // html lang/dir
-        document.documentElement.lang = (next === 'zh') ? 'zh' : next;
-        const isRTL = (next === 'ar');
-        document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-
-        // Toggle text blocks
-        document.querySelectorAll('[data-lang]').forEach(el=>{
-          el.classList.toggle('active', el.getAttribute('data-lang') === next);
-        });
-
-        // Buttons state
-        document.querySelectorAll('button[data-setlang]').forEach(b=>{
-          b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
-        });
-
-        // Keep RTL blocks direction consistent
-        document.querySelectorAll('.rtl').forEach(el=>{
-          el.style.direction = isRTL ? 'rtl' : 'ltr';
-        });
-
-        // Optionally keep ?lang= in URL without reload (improves shareability)
-        if(persistUrl){
-          const u = new URL(location.href);
-          u.searchParams.set('lang', next);
-          history.replaceState({}, '', u.toString());
-        }
-      }
-
-      document.querySelectorAll('button[data-setlang]').forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          setLang(btn.getAttribute('data-setlang'), true);
-        });
-      });
-
-      // Apply initial language and normalize URL
-      setLang(initial, true);
-    })();
-  </script>
-</body>
-</html>
+              <span
