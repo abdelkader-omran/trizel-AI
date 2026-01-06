@@ -36,6 +36,11 @@ Image Integrity:
     - assets/img/hero-trizel-ai.PNG
     - assets/img/composite-banner.PNG
     - assets/img/panel-evidence-governance.PNG
+
+Canonical + Entity Lock (SEO / Identity):
+  Canonical domain MUST be updated if your production domain differs.
+  Current canonical set to:
+    - https://www.trizel-ai.com/
 ====================================================================
 -->
 
@@ -49,12 +54,60 @@ Image Integrity:
   <title>TRIZEL-AI — Immutable Scientific Gateway</title>
   <meta name="description" content="Immutable scientific gateway. Evidence-only archive with DOI provenance, strict phase separation, and governance-first methodology. No conclusions published." />
 
+  <!-- ============================================================
+       CANONICAL + ENTITY LOCK (NON-NEGOTIABLE)
+       IMPORTANT: Update the canonical domain if production differs.
+  ============================================================ -->
+  <link rel="canonical" href="https://www.trizel-ai.com/" />
+  <meta name="author" content="Abdelkader Omran" />
+  <meta name="publisher" content="TRIZEL-AI" />
+  <meta name="application-name" content="TRIZEL-AI" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="TRIZEL-AI" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.trizel-ai.com/" />
+  <meta property="og:title" content="TRIZEL-AI — Immutable Scientific Gateway" />
+  <meta property="og:description" content="Evidentiary archive only. Provenance-first governance, DOI snapshots, and strict phase separation. No conclusions published." />
+  <meta property="og:image" content="https://www.trizel-ai.com/assets/img/TRIZEL.PNG" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TRIZEL-AI — Immutable Scientific Gateway" />
+  <meta name="twitter:description" content="Evidentiary archive only. Provenance-first governance, DOI snapshots, and strict phase separation. No conclusions published." />
+  <meta name="twitter:image" content="https://www.trizel-ai.com/assets/img/TRIZEL.PNG" />
+
   <!-- Canonical identity (NON-NEGOTIABLE) -->
   <link rel="me" href="https://orcid.org/0009-0003-9884-3697" />
   <meta name="citation_author" content="Abdelkader Omran" />
   <meta name="citation_author_orcid" content="https://orcid.org/0009-0003-9884-3697" />
   <!-- Use the newest DOI from the list as citation anchor -->
   <meta name="citation_doi" content="10.5281/zenodo.18134257" />
+
+  <!-- Structured Data (Entity Lock) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"TRIZEL-AI",
+    "url":"https://www.trizel-ai.com/",
+    "publisher":{
+      "@type":"Organization",
+      "name":"TRIZEL-AI",
+      "url":"https://www.trizel-ai.com/"
+    },
+    "creator":{
+      "@type":"Person",
+      "name":"Abdelkader Omran",
+      "sameAs":[
+        "https://orcid.org/0009-0003-9884-3697",
+        "https://www.linkedin.com/in/abdelkader-omran-cosmology",
+        "https://facebook.com/Abdelkader.omran.trizel",
+        "https://academia.edu/resource/work/145457185"
+      ]
+    }
+  }
+  </script>
 
   <style>
     :root{
@@ -200,7 +253,7 @@ Image Integrity:
       max-width:820px;
     }
 
-    /* The key anti-overlap fix: keep text in its own readable panel */
+    /* Anti-overlap: keep text readable */
     .hero .textpanel{
       border:1px solid rgba(148,178,255,.18);
       background: rgba(0,0,0,.35);
@@ -456,17 +509,17 @@ Image Integrity:
           </h2>
           <p>
             <span data-lang="en" class="active">Citable, time-frozen DOIs. Evidence-only listing for provenance.</span>
-            <span data-lang="fr">DOI citables et figés dans le temps. قائمة أدلة فقط للمصدر.</span>
+            <span data-lang="fr">DOI citables et figés dans le temps. Liste de preuves uniquement pour la provenance.</span>
             <span data-lang="ar" class="rtl">معرّفات DOI قابلة للاستشهاد ومجمّدة زمنياً. قائمة أدلة فقط للمصدر.</span>
             <span data-lang="zh">可引用、时间冻结的 DOI，仅用于溯源证据展示。</span>
           </p>
 
           <ul>
-            <li><a href="https://doi.org/10.5281/zenodo.18134257" rel="noopener">10.5281/zenodo.18134257</a></li>
-            <li><a href="https://doi.org/10.5281/zenodo.18117231" rel="noopener">10.5281/zenodo.18117231</a></li>
-            <li><a href="https://doi.org/10.5281/zenodo.18012859" rel="noopener">10.5281/zenodo.18012859</a></li>
-            <li><a href="https://doi.org/10.5281/zenodo.17968772" rel="noopener">10.5281/zenodo.17968772</a></li>
-            <li><a href="https://doi.org/10.5281/zenodo.17935646" rel="noopener">10.5281/zenodo.17935646</a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.18134257" target="_blank" rel="noopener noreferrer">10.5281/zenodo.18134257</a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.18117231" target="_blank" rel="noopener noreferrer">10.5281/zenodo.18117231</a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.18012859" target="_blank" rel="noopener noreferrer">10.5281/zenodo.18012859</a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.17968772" target="_blank" rel="noopener noreferrer">10.5281/zenodo.17968772</a></li>
+            <li><a href="https://doi.org/10.5281/zenodo.17935646" target="_blank" rel="noopener noreferrer">10.5281/zenodo.17935646</a></li>
           </ul>
 
           <div class="pillrow">
@@ -492,7 +545,7 @@ Image Integrity:
 
           <p>
             <span data-lang="en" class="active">Formal governance rules, strict phase separation, and evidence-first publishing. No interpretation on the homepage.</span>
-            <span data-lang="fr">Règles de gouvernance formelles, séparation stricte des phases, et نشر قائم على الدليل. لا تفسير في الصفحة الرئيسية.</span>
+            <span data-lang="fr">Règles de gouvernance formelles, séparation stricte des phases et publication orientée preuves. Aucune interprétation sur la page d’accueil.</span>
             <span data-lang="ar" class="rtl">قواعد حوكمة رسمية، فصل صارم للمراحل، ونشر قائم على الدليل. لا تفسير في الصفحة الرئيسية.</span>
             <span data-lang="zh">形式化治理规则、严格阶段隔离与证据优先发布。主页不提供解释。</span>
           </p>
@@ -512,15 +565,15 @@ Image Integrity:
       <div class="idblock">
         <div>
           <strong>ORCID:</strong>
-          <a href="https://orcid.org/0009-0003-9884-3697" rel="noopener">0009-0003-9884-3697</a>
+          <a href="https://orcid.org/0009-0003-9884-3697" target="_blank" rel="noopener noreferrer">0009-0003-9884-3697</a>
         </div>
         <div>
           <strong>Academia:</strong>
-          <a href="https://academia.edu/resource/work/145457185" rel="noopener">Academia.edu Profile</a>
+          <a href="https://academia.edu/resource/work/145457185" target="_blank" rel="noopener noreferrer">Academia.edu Profile</a>
         </div>
         <div>
           <strong>LinkedIn:</strong>
-          <a href="https://www.linkedin.com/in/abdelkader-omran-cosmology" rel="noopener">abdelkader-omran-cosmology</a>
+          <a href="https://www.linkedin.com/in/abdelkader-omran-cosmology" target="_blank" rel="noopener noreferrer">abdelkader-omran-cosmology</a>
         </div>
       </div>
 
@@ -566,7 +619,7 @@ Image Integrity:
           b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
         });
 
-        // Optional: keep RTL blocks direction consistent
+        // Keep RTL blocks direction consistent
         document.querySelectorAll('.rtl').forEach(el=>{
           el.style.direction = isRTL ? 'rtl' : 'ltr';
         });
