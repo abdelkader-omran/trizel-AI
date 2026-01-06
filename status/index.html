@@ -23,7 +23,7 @@ Precise scientific reference links:
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>TRIZEL-AI — Status</title>
-  <meta name="description" content="TRIZEL-AI facts-only status: UTC timestamp, latest DOI, and active/inactive booleans." />
+  <meta name="description" content="TRIZEL-AI facts-only status: UTC timestamp, verified identifiers, and boolean operational flags. No interpretation." />
 
   <!-- CANONICAL & INDEXING LOCK -->
   <link rel="canonical" href="https://trizel-ai.com/status/" />
@@ -38,6 +38,60 @@ Precise scientific reference links:
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="TRIZEL-AI — Status" />
+
+  <!-- SCHEMA: scientific visibility (locked; non-interpretive) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://trizel-ai.com/#organization",
+        "name": "TRIZEL-AI",
+        "url": "https://trizel-ai.com/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-9884-3697",
+          "https://zenodo.org/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://trizel-ai.com/#website",
+        "url": "https://trizel-ai.com/",
+        "name": "TRIZEL-AI",
+        "publisher": {
+          "@id": "https://trizel-ai.com/#organization"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://orcid.org/0009-0003-9884-3697",
+        "name": "Abdelkader Omran",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0003-9884-3697"
+        },
+        "sameAs": [
+          "https://orcid.org/0009-0003-9884-3697"
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://doi.org/10.5281/zenodo.18149691",
+        "name": "TRIZEL-AI Evidence Record",
+        "identifier": "https://doi.org/10.5281/zenodo.18149691",
+        "url": "https://doi.org/10.5281/zenodo.18149691",
+        "publisher": {
+          "@id": "https://trizel-ai.com/#organization"
+        },
+        "creator": {
+          "@id": "https://orcid.org/0009-0003-9884-3697"
+        }
+      }
+    ]
+  }
+  </script>
 
   <style>
     :root{
@@ -59,7 +113,7 @@ Precise scientific reference links:
     }
     *{box-sizing:border-box} html,body{height:100%}
     body{
-      margin:0; font-family:var(--sans); color:var(--text); line-height:1.55;
+      margin:0; font-family:var(--sans); color:var(--text); line-height:1.6;
       background:
         radial-gradient(1200px 600px at 15% 0%, rgba(122,167,255,.18), transparent 60%),
         radial-gradient(900px 500px at 85% 10%, rgba(125,255,207,.12), transparent 55%),
@@ -68,8 +122,7 @@ Precise scientific reference links:
     }
     a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
     header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
       background: color-mix(in srgb, var(--bg), transparent 25%);
       border-bottom:1px solid var(--line);
     }
@@ -94,27 +147,23 @@ Precise scientific reference links:
     }
     .lang button:hover{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
     .lang button[aria-pressed="true"]{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
+
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 20px 54px}
     .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px; padding:7px 10px;
-      border:1px solid var(--line); border-radius:999px; background:color-mix(in srgb, var(--panel), transparent 10%);
-      box-shadow:var(--shadow); font-size:12px; color:var(--muted);
-    }
-    .dot{width:8px; height:8px; border-radius:999px; background:var(--ok);
-      box-shadow:0 0 0 6px color-mix(in srgb, var(--ok), transparent 85%);
-    }
+    .kicker{display:inline-flex; align-items:center; gap:10px; padding:7px 10px; border:1px solid var(--line); border-radius:999px; background:color-mix(in srgb, var(--panel), transparent 10%); box-shadow:var(--shadow); font-size:12px; color:var(--muted)}
+    .dot{width:8px; height:8px; border-radius:999px; background:var(--ok); box-shadow:0 0 0 6px color-mix(in srgb, var(--ok), transparent 85%)}
     h1{margin:10px 0 8px; font-size:28px; letter-spacing:-.01em}
+    h2{margin:18px 0 10px; font-size:15px; letter-spacing:.02em; text-transform:uppercase; color:color-mix(in srgb, var(--text), var(--muted) 30%)}
     .muted{color:var(--muted)}
     .hr{height:1px; background:var(--line); margin:18px 0}
     .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
     @media (max-width:900px){.grid{grid-template-columns:1fr}}
-    .stat{
-      border:1px solid var(--line); background:color-mix(in srgb, var(--panel), transparent 12%);
-      border-radius:12px; padding:12px;
-    }
+    .stat{border:1px solid var(--line); background:color-mix(in srgb, var(--panel), transparent 12%); border-radius:12px; padding:12px}
     .label{font-size:12px; color:var(--muted); margin-bottom:6px}
     .value{font-family:var(--mono); font-size:13px; color:var(--text); word-break:break-word}
+    .flag{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:var(--soft); font-size:12px}
+    .ok{color:var(--ok)}
+    .warn{color:var(--warn)}
     footer{margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:12px}
     .smallcaps{letter-spacing:.08em; text-transform:uppercase; font-size:11px; color:color-mix(in srgb, var(--muted), var(--text) 10%)}
     [data-lang]{display:none}
@@ -124,6 +173,168 @@ Precise scientific reference links:
 </head>
 
 <body>
-<!-- BODY CONTENT UNCHANGED -->
+<header>
+  <div class="nav">
+    <div class="brand">
+      <b>TRIZEL-AI</b>
+      <span id="navTitle">Status</span>
+    </div>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/status/">Status</a>
+      <a href="/methodology/">Methodology</a>
+      <a href="/evidence/">Evidence</a>
+      <a href="/repositories/">Repositories</a>
+
+      <div class="lang" aria-label="Language selector">
+        <span class="muted">Lang</span>
+        <button type="button" data-setlang="en" aria-pressed="true">EN</button>
+        <button type="button" data-setlang="fr" aria-pressed="false">FR</button>
+        <button type="button" data-setlang="ar" aria-pressed="false">AR</button>
+        <button type="button" data-setlang="zh" aria-pressed="false">中文</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="card">
+    <div class="kicker" role="note">
+      <span class="dot" aria-hidden="true"></span>
+      <span data-lang="en" class="active">Facts-only operational status (verifiable state)</span>
+      <span data-lang="fr">État opérationnel factuel (état vérifiable)</span>
+      <span data-lang="ar" class="rtl">حالة تشغيلية قائمة على الحقائق (حالة قابلة للتحقق)</span>
+      <span data-lang="zh">仅事实的运行状态（可验证状态）</span>
+    </div>
+
+    <h1>
+      <span data-lang="en" class="active">Status</span>
+      <span data-lang="fr">Status</span>
+      <span data-lang="ar" class="rtl">الحالة</span>
+      <span data-lang="zh">状态</span>
+    </h1>
+
+    <p class="muted">
+      <span data-lang="en" class="active">This page publishes only verifiable fields: UTC time, identifiers, and boolean flags. No narrative inference.</span>
+      <span data-lang="fr">Cette page publie uniquement des champs vérifiables : heure UTC, identifiants, et indicateurs booléens. Aucune inférence.</span>
+      <span data-lang="ar" class="rtl">تنشر هذه الصفحة حقولًا قابلة للتحقق فقط: توقيت UTC، مُعرّفات، ومؤشرات منطقية. دون استدلال.</span>
+      <span data-lang="zh">本页仅发布可验证字段：UTC 时间、标识符与布尔标记，不提供推断叙事。</span>
+    </p>
+
+    <div class="hr" role="separator"></div>
+
+    <h2>
+      <span data-lang="en" class="active">System state</span>
+      <span data-lang="fr">État du système</span>
+      <span data-lang="ar" class="rtl">حالة النظام</span>
+      <span data-lang="zh">系统状态</span>
+    </h2>
+
+    <div class="grid">
+      <div class="stat">
+        <div class="label">UTC timestamp</div>
+        <div class="value" id="utcNow">—</div>
+      </div>
+
+      <div class="stat">
+        <div class="label">Portal operational flag</div>
+        <div class="value"><span class="flag ok">ACTIVE</span></div>
+      </div>
+
+      <div class="stat">
+        <div class="label">ORCID (verified)</div>
+        <div class="value"><a href="https://orcid.org/0009-0003-9884-3697" rel="noopener">0009-0003-9884-3697</a></div>
+      </div>
+
+      <div class="stat">
+        <div class="label">Latest DOI (immutable pointer)</div>
+        <div class="value"><a href="https://doi.org/10.5281/zenodo.18149691" rel="noopener">10.5281/zenodo.18149691</a></div>
+      </div>
+    </div>
+
+    <div class="hr" role="separator"></div>
+
+    <h2>
+      <span data-lang="en" class="active">Boolean constraints (governance)</span>
+      <span data-lang="fr">Contraintes booléennes (gouvernance)</span>
+      <span data-lang="ar" class="rtl">قيود منطقية (حوكمة)</span>
+      <span data-lang="zh">布尔约束（治理）</span>
+    </h2>
+
+    <div class="grid">
+      <div class="stat">
+        <div class="label">Interpretation publishing</div>
+        <div class="value"><span class="flag warn">DISABLED</span></div>
+      </div>
+      <div class="stat">
+        <div class="label">Evidence pointers (DOI)</div>
+        <div class="value"><span class="flag ok">ENABLED</span></div>
+      </div>
+      <div class="stat">
+        <div class="label">Canonical authority</div>
+        <div class="value"><span class="flag ok">LOCKED</span></div>
+      </div>
+      <div class="stat">
+        <div class="label">Sitemap discovery</div>
+        <div class="value"><span class="flag ok">ENABLED</span> <span class="muted">(see <a href="/sitemap.xml">/sitemap.xml</a>)</span></div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="smallcaps">Non-interpretation policy</div>
+      <div class="muted">Interpretative publication requires explicit authorization beyond the governance boundary.</div>
+    </footer>
+  </div>
+</main>
+
+<script>
+(function(){
+  const supported = ['en','fr','ar','zh'];
+  const qsLang = new URLSearchParams(location.search).get('lang');
+  const stored = localStorage.getItem('trizel_lang');
+  const lang = supported.includes(qsLang) ? qsLang : (supported.includes(stored) ? stored : 'en');
+
+  function setLang(next){
+    localStorage.setItem('trizel_lang', next);
+    document.documentElement.lang = next === 'zh' ? 'zh' : next;
+
+    document.querySelectorAll('[data-lang]').forEach(el=>{
+      el.classList.toggle('active', el.getAttribute('data-lang') === next);
+    });
+
+    const isRTL = next === 'ar';
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    document.querySelectorAll('.rtl').forEach(el=>{
+      el.style.direction = isRTL ? 'rtl' : 'ltr';
+    });
+
+    const navTitle = document.getElementById('navTitle');
+    if(navTitle){
+      const map = {en:'Status', fr:'Status', ar:'الحالة', zh:'状态'};
+      navTitle.textContent = map[next] || 'Status';
+    }
+
+    document.querySelectorAll('button[data-setlang]').forEach(b=>{
+      b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
+    });
+  }
+
+  function setUTC(){
+    const el = document.getElementById('utcNow');
+    if(!el) return;
+    const now = new Date();
+    el.textContent = now.toISOString().replace('T',' ').replace('Z',' UTC');
+  }
+
+  document.querySelectorAll('button[data-setlang]').forEach(btn=>{
+    btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-setlang')));
+  });
+
+  setLang(lang);
+  setUTC();
+  setInterval(setUTC, 1000);
+})();
+</script>
 </body>
 </html>
