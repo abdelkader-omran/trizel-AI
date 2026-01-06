@@ -5,375 +5,177 @@ Repository: abdelkader-omran/trizel-AI
 Branch: main
 File: index.html
 Route: /
-Comment: Root homepage. Read-only, governance-first. No interpretation.
-         Must expose only verified identifiers + navigational entry points.
-Verified identity links (NON-NEGOTIABLE):
-  - ORCID (official): https://orcid.org/0009-0003-9884-3697
-  - Latest DOI (official): https://doi.org/10.5281/zenodo.18149691
-Image integrity note:
-  - GitHub Pages is case-sensitive. All image references MUST match committed filenames exactly (.PNG).
+Status: FINAL — GOVERNANCE LOCKED
+Comment:
+  Root homepage. Scientific gateway only.
+  No interpretation. No claims. Evidence & provenance only.
+
+Verified Identity (NON-NEGOTIABLE):
+  ORCID: https://orcid.org/0009-0003-9884-3697
+  Author: Abdelkader Omran
+
+External Academic Links:
+  Academia.edu:
+  https://academia.edu/resource/work/145457185
+
+Image Integrity:
+  GitHub Pages is case-sensitive.
+  Filenames verified and locked:
+    - assets/img/TRIZEL.PNG
+    - assets/img/Abdelkader-Omran.PNG
+    - assets/img/hero-trizel-ai.PNG
+    - assets/img/composite-banner.PNG
+    - assets/img/panel-evidence-governance.PNG
 ====================================================================
 -->
 
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
-  <title>TRIZEL-AI — Immutable Scientific Gateway</title>
-  <meta name="description" content="Evidentiary archive with strict provenance, DOI-referenced snapshots, and phase-separated methodology. No interpretation published." />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>TRIZEL-AI — Immutable Scientific Gateway</title>
 
-  <!-- Canonical identity (NON-NEGOTIABLE) -->
-  <link rel="me" href="https://orcid.org/0009-0003-9884-3697" />
-  <meta name="citation_author" content="Abdelkader Omran" />
-  <meta name="citation_author_orcid" content="https://orcid.org/0009-0003-9884-3697" />
-  <meta name="citation_doi" content="10.5281/zenodo.18149691" />
+<meta name="description"
+content="Immutable scientific gateway. Evidence-only archive with DOI provenance, strict phase separation, and governance-first methodology. No conclusions published.">
 
-  <style>
-    :root{
-      --bg0:#070b14;
-      --bg1:#0b1426;
-      --panel:rgba(10,18,38,.72);
-      --line:rgba(148,178,255,.20);
-      --text:#eaf0ff;
-      --muted:rgba(234,240,255,.72);
-      --accent:#6aa6ff;
-      --accent2:#32d1ff;
-      --ok:#2dd4bf;
-      --radius:16px;
-      --max:1100px;
-      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Apple Color Emoji","Segoe UI Emoji";
-    }
+<!-- Canonical Identity -->
+<link rel="me" href="https://orcid.org/0009-0003-9884-3697">
+<meta name="citation_author" content="Abdelkader Omran">
+<meta name="citation_author_orcid" content="https://orcid.org/0009-0003-9884-3697">
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: var(--sans);
-      color:var(--text);
-      background:
-        radial-gradient(1200px 700px at 75% 10%, rgba(106,166,255,.18), transparent 55%),
-        radial-gradient(900px 500px at 15% 30%, rgba(50,209,255,.14), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-    }
+<style>
+:root{
+  --bg0:#070b14;
+  --bg1:#0b1426;
+  --panel:rgba(10,18,38,.72);
+  --line:rgba(148,178,255,.20);
+  --text:#eaf0ff;
+  --muted:rgba(234,240,255,.72);
+  --accent:#6aa6ff;
+  --radius:16px;
+  --max:1100px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 700px at 75% 10%, rgba(106,166,255,.18), transparent 55%),
+    linear-gradient(180deg,var(--bg0),var(--bg1));
+}
+.wrap{max-width:var(--max);margin:auto;padding:18px 16px 40px}
+a{color:inherit;text-decoration:none}
+header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:12px 16px;border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:rgba(5,8,16,.6);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:42px}
+.brand strong{letter-spacing:.14em}
 
-    a{color:inherit}
-    a:hover{opacity:.95}
+.hero{
+  margin-top:18px;
+  border-radius:22px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  position:relative;
+}
+.hero img{width:100%;display:block}
+.hero .content{
+  position:absolute;inset:0;
+  padding:36px;
+  background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.65));
+}
+.hero h1{font-size:44px;margin:0 0 12px}
+.hero p{max-width:760px;font-size:18px;color:var(--muted)}
 
-    .wrap{max-width:var(--max);margin:0 auto;padding:18px 16px 40px}
+.section{
+  margin-top:22px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--panel);
+  padding:18px;
+}
+.section h2{margin-top:0}
 
-    header{
-      position:sticky; top:0; z-index:30;
-      backdrop-filter: blur(10px);
-      background: rgba(5,8,16,.55);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:12px 14px;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      margin:10px 0 18px;
-    }
+.zenodo-list li{margin:6px 0}
 
-    .brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-    .brand .name{font-weight:800;letter-spacing:.12em}
-    .brand .tag{font-size:12px;color:var(--muted)}
-
-    .nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center}
-    .nav a{font-size:14px;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:999px;border:1px solid transparent}
-    .nav a:hover{color:var(--text);border-color:var(--line);background:rgba(255,255,255,.06)}
-
-    .lang{
-      display:flex; gap:6px; align-items:center; flex-wrap:wrap;
-      background: rgba(255,255,255,.06);
-      border:1px solid var(--line);
-      border-radius:999px;
-      padding:6px;
-    }
-    .lang span{font-size:12px;color:var(--muted);padding:0 8px}
-    .lang button{
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-      background:transparent;
-      color:var(--muted);
-      cursor:pointer;
-    }
-    .lang button:hover{border-color:var(--line); color:var(--text)}
-    .lang button[aria-pressed="true"]{
-      background: rgba(106,166,255,.20);
-      border-color: rgba(106,166,255,.55);
-      color: var(--text);
-    }
-
-    .hero{
-      position:relative;
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
-      min-height:420px;
-    }
-    .hero img{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      transform: scale(1.02);
-      filter: saturate(1.08) contrast(1.05);
-      opacity:.95;
-    }
-    .hero .shade{
-      position:absolute; inset:0;
-      background:
-        radial-gradient(900px 520px at 10% 35%, rgba(50,209,255,.14), transparent 60%),
-        radial-gradient(900px 520px at 85% 25%, rgba(106,166,255,.16), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.60));
-    }
-    .hero .content{
-      position:relative;
-      padding:42px 26px 26px;
-      max-width:760px;
-    }
-
-    h1{margin:0 0 10px;font-size:44px;line-height:1.08}
-    .subtitle{margin:0 0 18px;color:var(--muted);font-size:18px}
-
-    .cta{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; gap:10px;
-      text-decoration:none;
-      padding:12px 16px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      font-weight:650;
-      font-size:14px;
-    }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(106,166,255,.40), rgba(50,209,255,.26));
-      border-color: rgba(106,166,255,.45);
-    }
-    .btn.good{
-      background: linear-gradient(135deg, rgba(45,212,191,.28), rgba(106,166,255,.22));
-      border-color: rgba(45,212,191,.42);
-    }
-
-    .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
-    @media (min-width:900px){ .grid{grid-template-columns:1fr 1fr} }
-
-    .card{
-      border:1px solid var(--line);
-      border-radius:18px;
-      background: var(--panel);
-      overflow:hidden;
-    }
-    .card .media{height:190px; position:relative}
-    .card .media img{width:100%;height:100%;object-fit:cover;opacity:.92}
-    .card .inner{padding:18px}
-    .card h2{margin:0 0 8px;font-size:22px}
-    .card p{margin:0 0 12px;color:var(--muted);line-height:1.5}
-    .pillrow{display:flex;gap:8px;flex-wrap:wrap}
-    .pill{
-      font-size:12px;
-      border:1px solid var(--line);
-      color:var(--muted);
-      border-radius:999px;
-      padding:6px 10px;
-      background: rgba(255,255,255,.04);
-    }
-
-    footer{
-      margin-top:18px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background: rgba(0,0,0,.25);
-      padding:14px 16px;
-      color:var(--muted);
-      display:flex; flex-wrap:wrap; gap:10px;
-      justify-content:space-between; align-items:center;
-    }
-    footer a{color:var(--text); text-decoration:none; border-bottom:1px dotted rgba(234,240,255,.35)}
-    footer a:hover{border-bottom-color:rgba(234,240,255,.8)}
-    .idblock{display:flex;gap:14px;flex-wrap:wrap}
-    .idblock strong{color:var(--text)}
-
-    /* i18n blocks */
-    [data-lang]{display:none}
-    [data-lang].active{display:inline}
-    .rtl{direction:rtl}
-  </style>
+footer{
+  margin-top:28px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  background:rgba(0,0,0,.35);
+  font-size:14px;
+}
+footer.secondary{
+  margin-top:10px;
+  font-size:13px;
+  opacity:.8;
+}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header role="navigation" aria-label="Primary">
-      <div class="brand">
-        <div class="name">TRIZEL-AI</div>
-        <div class="tag">
-          <span data-lang="en" class="active">Epistemic surveillance & evidence preservation</span>
-          <span data-lang="fr">Surveillance épistémique & préservation des preuves</span>
-          <span data-lang="ar" class="rtl">المراقبة الإبستيمية وحفظ الأدلة</span>
-          <span data-lang="zh">认识论监测与证据保存</span>
-        </div>
-      </div>
+<div class="wrap">
 
-      <nav class="nav" aria-label="Sections">
-        <a href="/status/">Status</a>
-        <a href="/methodology/">Methodology</a>
-        <a href="/evidence/">Evidence</a>
-        <a href="/repositories/">Repositories</a>
-      </nav>
-
-      <div class="lang" aria-label="Language selector">
-        <span class="muted">LANG</span>
-        <button type="button" data-setlang="en" aria-pressed="true">EN</button>
-        <button type="button" data-setlang="fr" aria-pressed="false">FR</button>
-        <button type="button" data-setlang="ar" aria-pressed="false">AR</button>
-        <button type="button" data-setlang="zh" aria-pressed="false">中文</button>
-      </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero" aria-label="Hero">
-      <!-- IMPORTANT: filenames must match exactly (.PNG uppercase) -->
-      <img src="assets/img/hero-trizel-ai.PNG" alt="TRIZEL-AI hero image" />
-      <div class="shade"></div>
-
-      <div class="content">
-        <h1>
-          <span data-lang="en" class="active">Immutable Scientific Gateway</span>
-          <span data-lang="fr">Portail scientifique immuable</span>
-          <span data-lang="ar" class="rtl">بوابة علمية غير قابلة للتغيير</span>
-          <span data-lang="zh">不可变科学入口</span>
-        </h1>
-
-        <p class="subtitle">
-          <span data-lang="en" class="active">Evidentiary archive — no conclusions published. Provenance-first governance, DOI snapshots, and strict phase separation.</span>
-          <span data-lang="fr">Archive probatoire — aucune conclusion publiée. Gouvernance orientée provenance, instantanés DOI et séparation stricte des phases.</span>
-          <span data-lang="ar" class="rtl">أرشيف أدلة — دون نشر استنتاجات. حوكمة قائمة على المصدر، لقطات DOI، وفصل صارم للمراحل.</span>
-          <span data-lang="zh">证据归档——不发布结论。以溯源为先的治理、DOI 快照与严格阶段隔离。</span>
-        </p>
-
-        <div class="cta">
-          <a class="btn primary" href="/methodology/">
-            <span data-lang="en" class="active">Read Methodology</span>
-            <span data-lang="fr">Lire la méthodologie</span>
-            <span data-lang="ar" class="rtl">قراءة المنهجية</span>
-            <span data-lang="zh">查看方法论</span>
-          </a>
-          <a class="btn good" href="/evidence/">
-            <span data-lang="en" class="active">View Evidence</span>
-            <span data-lang="fr">Voir les preuves</span>
-            <span data-lang="ar" class="rtl">عرض الأدلة</span>
-            <span data-lang="zh">查看证据</span>
-          </a>
-          <a class="btn" href="/status/">
-            <span data-lang="en" class="active">System Status</span>
-            <span data-lang="fr">Statut du système</span>
-            <span data-lang="ar" class="rtl">حالة النظام</span>
-            <span data-lang="zh">系统状态</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PANELS -->
-    <section class="grid" aria-label="Core panels">
-      <article class="card">
-        <div class="media">
-          <img src="assets/img/panel-evidence-governance.PNG" alt="Evidence and governance panel image" />
-        </div>
-        <div class="inner">
-          <h2>
-            <span data-lang="en" class="active">Epistemic Governance & Provenance Focused</span>
-            <span data-lang="fr">Gouvernance épistémique & centrée sur la provenance</span>
-            <span data-lang="ar" class="rtl">حوكمة إبستيمية وتركيز على المصدر</span>
-            <span data-lang="zh">认识论治理与溯源优先</span>
-          </h2>
-          <p>
-            <span data-lang="en" class="active">Formal governance rules, DOI-referenced snapshots, and strict separation between documentation phases and any future implementation claims.</span>
-            <span data-lang="fr">Règles de gouvernance formelles, instantanés référencés par DOI, et séparation stricte entre phases de documentation et toute revendication d’implémentation future.</span>
-            <span data-lang="ar" class="rtl">قواعد حوكمة رسمية، لقطات موثقة بـ DOI، وفصل صارم بين مراحل التوثيق وأي ادعاءات تنفيذ مستقبلية.</span>
-            <span data-lang="zh">形式化治理规则、DOI 引用快照，以及文档阶段与任何未来实现主张之间的严格隔离。</span>
-          </p>
-          <div class="pillrow">
-            <span class="pill">Governance</span>
-            <span class="pill">DOI</span>
-            <span class="pill">Phase Separation</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="media">
-          <img src="assets/img/composite-banner.PNG" alt="Composite banner image" />
-        </div>
-        <div class="inner">
-          <h2>
-            <span data-lang="en" class="active">Snapshot Index of Immutable Evidence</span>
-            <span data-lang="fr">Index d’instantanés de preuves immuables</span>
-            <span data-lang="ar" class="rtl">فهرس لقطات أدلة غير قابلة للتغيير</span>
-            <span data-lang="zh">不可变证据快照索引</span>
-          </h2>
-          <p>
-            <span data-lang="en" class="active">Citable, time-frozen records archived with DOIs, maintaining institutional provenance and immutable traces.</span>
-            <span data-lang="fr">Enregistrements citables et figés dans le temps, archivés par DOI, avec provenance institutionnelle et traces immuables.</span>
-            <span data-lang="ar" class="rtl">سجلات قابلة للاستشهاد ومجمّدة زمنياً ومؤرشفة بـ DOI، مع الحفاظ على المصدر المؤسسي وآثار غير قابلة للتغيير.</span>
-            <span data-lang="zh">可引用、时间冻结的记录，以 DOI 归档，保留机构溯源与不可变痕迹。</span>
-          </p>
-          <div class="pillrow">
-            <span class="pill">Zenodo</span>
-            <span class="pill">Immutable</span>
-            <span class="pill">Auditability</span>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <!-- FOOTER: canonical identity (correct ORCID + latest DOI) -->
-    <footer aria-label="Footer identity">
-      <div class="idblock">
-        <div><strong>ORCID:</strong> <a href="https://orcid.org/0009-0003-9884-3697" rel="noopener">0009-0003-9884-3697</a></div>
-        <div><strong>Latest DOI:</strong> <a href="https://doi.org/10.5281/zenodo.18149691" rel="noopener">10.5281/zenodo.18149691</a></div>
-      </div>
-      <div>TRIZEL-AI — provenance-first scientific record infrastructure</div>
-    </footer>
+<header>
+  <div class="brand">
+    <img src="assets/img/TRIZEL.PNG" alt="TRIZEL Logo">
+    <strong>TRIZEL-AI</strong>
   </div>
+  <img src="assets/img/Abdelkader-Omran.PNG"
+       alt="Abdelkader Omran"
+       style="height:42px;border-radius:50%">
+</header>
 
-  <script>
-    (function(){
-      const supported = ['en','fr','ar','zh'];
-      const qsLang = new URLSearchParams(location.search).get('lang');
-      const stored = localStorage.getItem('trizel_lang');
-      const lang = supported.includes(qsLang) ? qsLang : (supported.includes(stored) ? stored : 'en');
+<section class="hero">
+  <img src="assets/img/hero-trizel-ai.PNG" alt="TRIZEL Scientific Banner">
+  <div class="content">
+    <h1>Immutable Scientific Gateway</h1>
+    <p>
+      Evidentiary archive only.  
+      No conclusions published.  
+      Governance-first methodology, DOI snapshots, and strict phase separation.
+    </p>
+  </div>
+</section>
 
-      function setLang(next){
-        localStorage.setItem('trizel_lang', next);
-        document.documentElement.lang = next === 'zh' ? 'zh' : next;
+<section class="section">
+<h2>Latest Zenodo Records (Immutable)</h2>
+<ul class="zenodo-list">
+  <li><a href="https://doi.org/10.5281/zenodo.18134257">10.5281/zenodo.18134257</a></li>
+  <li><a href="https://doi.org/10.5281/zenodo.18117231">10.5281/zenodo.18117231</a></li>
+  <li><a href="https://doi.org/10.5281/zenodo.18012859">10.5281/zenodo.18012859</a></li>
+  <li><a href="https://doi.org/10.5281/zenodo.17968772">10.5281/zenodo.17968772</a></li>
+  <li><a href="https://doi.org/10.5281/zenodo.17935646">10.5281/zenodo.17935646</a></li>
+</ul>
+</section>
 
-        document.querySelectorAll('[data-lang]').forEach(el=>{
-          el.classList.toggle('active', el.getAttribute('data-lang') === next);
-        });
+<footer>
+<strong>ORCID:</strong>
+<a href="https://orcid.org/0009-0003-9884-3697">0009-0003-9884-3697</a><br>
+<strong>Academia:</strong>
+<a href="https://academia.edu/resource/work/145457185">Academia.edu Profile</a>
+</footer>
 
-        const isRTL = next === 'ar';
-        document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
-        document.querySelectorAll('.rtl').forEach(el=>{
-          el.style.direction = isRTL ? 'rtl' : 'ltr';
-        });
+<footer class="secondary">
+Facebook:
+<a href="https://facebook.com/Abdelkader.omran.trizel" target="_blank">
+Abdelkader Omran – TRIZEL
+</a>
+&nbsp;|&nbsp;
+LinkedIn:
+<a href="https://www.linkedin.com/in/abdelkader-omran-cosmology" target="_blank">
+abdelkader-omran-cosmology
+</a>
+</footer>
 
-        document.querySelectorAll('button[data-setlang]').forEach(b=>{
-          b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
-        });
-      }
-
-      document.querySelectorAll('button[data-setlang]').forEach(btn=>{
-        btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-setlang')));
-      });
-
-      setLang(lang);
-    })();
-  </script>
+</div>
 </body>
 </html>
