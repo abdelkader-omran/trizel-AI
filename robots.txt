@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://raw.githubusercontent.com/abdelkader-omran/trizel-AI/main/sitemap.xml
+Sitemap: https://trizel-ai.com/sitemap.xml
