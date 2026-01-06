@@ -5,12 +5,12 @@ Repository: abdelkader-omran/trizel-AI
 Branch: main
 File: evidence/index.html
 Route: /evidence
-Comment: Evidence page. Provides DOI pointers and provenance framing only.
+Comment: Evidence index. DOI pointers + provenance framing only.
          No embedded datasets. No reprocessing. No interpretation.
 Precise scientific reference links:
   - ORCID: https://orcid.org/0009-0003-9884-3697
   - Zenodo: https://zenodo.org/
-  - DOI resolver (doi.org): https://doi.org/
+  - DOI resolver: https://doi.org/
   - Latest DOI (Zenodo): https://doi.org/10.5281/zenodo.18149691
 ====================================================================
 -->
@@ -22,7 +22,7 @@ Precise scientific reference links:
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <title>TRIZEL-AI — Evidence</title>
-  <meta name="description" content="TRIZEL-AI evidence index: DOI pointers to immutable Zenodo snapshots. No embedded datasets. No analysis." />
+  <meta name="description" content="TRIZEL-AI evidence index: immutable DOI pointers and provenance framing. No embedded datasets. No interpretation." />
 
   <!-- CANONICAL & INDEXING LOCK -->
   <link rel="canonical" href="https://trizel-ai.com/evidence/" />
@@ -37,6 +37,60 @@ Precise scientific reference links:
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="TRIZEL-AI — Evidence" />
+
+  <!-- SCHEMA: scientific visibility (locked; non-interpretive) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://trizel-ai.com/#organization",
+        "name": "TRIZEL-AI",
+        "url": "https://trizel-ai.com/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-9884-3697",
+          "https://zenodo.org/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://trizel-ai.com/#website",
+        "url": "https://trizel-ai.com/",
+        "name": "TRIZEL-AI",
+        "publisher": {
+          "@id": "https://trizel-ai.com/#organization"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://orcid.org/0009-0003-9884-3697",
+        "name": "Abdelkader Omran",
+        "identifier": {
+          "@type": "PropertyValue",
+          "propertyID": "ORCID",
+          "value": "0009-0003-9884-3697"
+        },
+        "sameAs": [
+          "https://orcid.org/0009-0003-9884-3697"
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://doi.org/10.5281/zenodo.18149691",
+        "name": "TRIZEL-AI Evidence Record",
+        "identifier": "https://doi.org/10.5281/zenodo.18149691",
+        "url": "https://doi.org/10.5281/zenodo.18149691",
+        "publisher": {
+          "@id": "https://trizel-ai.com/#organization"
+        },
+        "creator": {
+          "@id": "https://orcid.org/0009-0003-9884-3697"
+        }
+      }
+    ]
+  }
+  </script>
 
   <style>
     :root{
@@ -58,7 +112,7 @@ Precise scientific reference links:
     }
     *{box-sizing:border-box}
     body{
-      margin:0; font-family:var(--sans); color:var(--text); line-height:1.55;
+      margin:0; font-family:var(--sans); color:var(--text); line-height:1.6;
       background:
         radial-gradient(1200px 600px at 15% 0%, rgba(122,167,255,.18), transparent 60%),
         radial-gradient(900px 500px at 85% 10%, rgba(125,255,207,.12), transparent 55%),
@@ -74,16 +128,8 @@ Precise scientific reference links:
     .navlinks{display:flex; flex-wrap:wrap; gap:10px 14px; justify-content:flex-end; align-items:center}
     .navlinks a{font-size:13px; color:var(--text); opacity:.85; padding:6px 10px; border-radius:999px; border:1px solid transparent}
     .navlinks a:hover{opacity:1; border-color:var(--line); background:var(--soft); text-decoration:none}
-
-    .lang{
-      display:flex; gap:8px; align-items:center;
-      padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:var(--soft);
-      font-size:12px; color:var(--muted);
-    }
-    .lang button{
-      border:1px solid transparent; background:transparent; color:var(--text);
-      padding:4px 8px; border-radius:999px; cursor:pointer; font-size:12px; opacity:.85;
-    }
+    .lang{display:flex; gap:8px; align-items:center; padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:var(--soft); font-size:12px; color:var(--muted)}
+    .lang button{border:1px solid transparent; background:transparent; color:var(--text); padding:4px 8px; border-radius:999px; cursor:pointer; font-size:12px; opacity:.85}
     .lang button:hover{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
     .lang button[aria-pressed="true"]{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
 
@@ -96,9 +142,10 @@ Precise scientific reference links:
     .muted{color:var(--muted)}
     .hr{height:1px; background:var(--line); margin:18px 0}
     .box{border:1px solid var(--line); background:color-mix(in srgb, var(--panel), transparent 12%); border-radius:12px; padding:12px}
+    .mono{font-family:var(--mono)}
     .doi-list{margin:10px 0 0; padding:0; list-style:none}
-    .doi-list li{margin:8px 0; padding:10px; border:1px solid var(--line); border-radius:12px; background:color-mix(in srgb, var(--panel), transparent 12%)}
-    .doi-date{font-size:12px; color:var(--muted); margin-bottom:4px}
+    .doi-list li{margin:10px 0; padding:12px; border:1px solid var(--line); border-radius:12px; background:color-mix(in srgb, var(--panel), transparent 12%)}
+    .doi-date{font-size:12px; color:var(--muted); margin-bottom:6px}
     .doi-code{font-family:var(--mono); font-size:13px; word-break:break-word}
     footer{margin-top:22px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:12px}
     .smallcaps{letter-spacing:.08em; text-transform:uppercase; font-size:11px; color:color-mix(in srgb, var(--muted), var(--text) 10%)}
@@ -110,6 +157,155 @@ Precise scientific reference links:
 </head>
 
 <body>
-<!-- BODY CONTENT UNCHANGED -->
+<header>
+  <div class="nav">
+    <div class="brand">
+      <b>TRIZEL-AI</b>
+      <span id="navTitle">Evidence</span>
+    </div>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/status/">Status</a>
+      <a href="/methodology/">Methodology</a>
+      <a href="/evidence/">Evidence</a>
+      <a href="/repositories/">Repositories</a>
+
+      <div class="lang" aria-label="Language selector">
+        <span class="muted">Lang</span>
+        <button type="button" data-setlang="en" aria-pressed="true">EN</button>
+        <button type="button" data-setlang="fr" aria-pressed="false">FR</button>
+        <button type="button" data-setlang="ar" aria-pressed="false">AR</button>
+        <button type="button" data-setlang="zh" aria-pressed="false">中文</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="card">
+    <div class="kicker" role="note">
+      <span class="dot" aria-hidden="true"></span>
+      <span data-lang="en" class="active">Immutable pointers (DOI) • provenance framing • no embedded datasets</span>
+      <span data-lang="fr">Pointeurs immuables (DOI) • provenance • pas de données intégrées</span>
+      <span data-lang="ar" class="rtl">مؤشرات ثابتة (DOI) • تتبّع المصدر • دون بيانات مدمجة</span>
+      <span data-lang="zh">不可变指针（DOI）• 来源谱系 • 不内嵌数据</span>
+    </div>
+
+    <h1>
+      <span data-lang="en" class="active">Evidence</span>
+      <span data-lang="fr">Evidence</span>
+      <span data-lang="ar" class="rtl">الأدلة</span>
+      <span data-lang="zh">证据</span>
+    </h1>
+
+    <p class="muted">
+      <span data-lang="en" class="active">
+        This page lists immutable archival pointers and reference endpoints. It does not reproduce datasets, perform reprocessing, or publish analysis.
+      </span>
+      <span data-lang="fr">Cette page liste des pointeurs d’archive immuables et des endpoints de référence. Aucune reproduction de données ni analyse.</span>
+      <span data-lang="ar" class="rtl">تسرد هذه الصفحة مؤشرات أرشفة ثابتة ونقاط مرجعية. لا إعادة معالجة ولا نشر لتحليل.</span>
+      <span data-lang="zh">本页列出不可变归档指针与参考端点；不复刻数据、不再处理、不发布分析。</span>
+    </p>
+
+    <div class="hr" role="separator"></div>
+
+    <h2>
+      <span data-lang="en" class="active">Immutable archival pointer (primary)</span>
+      <span data-lang="fr">Pointeur d’archive immuable (principal)</span>
+      <span data-lang="ar" class="rtl">مؤشر أرشفة ثابت (أساسي)</span>
+      <span data-lang="zh">不可变归档指针（主）</span>
+    </h2>
+
+    <div class="box">
+      <div class="muted">Resolver</div>
+      <div class="doi-code"><a href="https://doi.org/10.5281/zenodo.18149691" rel="noopener">https://doi.org/10.5281/zenodo.18149691</a></div>
+      <div class="hr"></div>
+      <div class="muted">Identity</div>
+      <div class="doi-code"><a href="https://orcid.org/0009-0003-9884-3697" rel="noopener">https://orcid.org/0009-0003-9884-3697</a></div>
+    </div>
+
+    <div class="hr" role="separator"></div>
+
+    <h2>
+      <span data-lang="en" class="active">Reference endpoints (institutional)</span>
+      <span data-lang="fr">Endpoints de référence (institutionnels)</span>
+      <span data-lang="ar" class="rtl">نقاط مرجعية (مؤسسية)</span>
+      <span data-lang="zh">参考端点（机构）</span>
+    </h2>
+
+    <ul class="doi-list">
+      <li>
+        <div class="doi-date">Minor Planet Center (MPC)</div>
+        <div class="doi-code"><a href="https://minorplanetcenter.net/" rel="noopener">https://minorplanetcenter.net/</a></div>
+      </li>
+      <li>
+        <div class="doi-date">NASA/JPL — Solar System Dynamics (SSD)</div>
+        <div class="doi-code"><a href="https://ssd.jpl.nasa.gov/" rel="noopener">https://ssd.jpl.nasa.gov/</a></div>
+      </li>
+      <li>
+        <div class="doi-date">JPL Horizons</div>
+        <div class="doi-code"><a href="https://ssd.jpl.nasa.gov/horizons/" rel="noopener">https://ssd.jpl.nasa.gov/horizons/</a></div>
+      </li>
+      <li>
+        <div class="doi-date">CNEOS</div>
+        <div class="doi-code"><a href="https://cneos.jpl.nasa.gov/" rel="noopener">https://cneos.jpl.nasa.gov/</a></div>
+      </li>
+      <li>
+        <div class="doi-date">ESA</div>
+        <div class="doi-code"><a href="https://www.esa.int/" rel="noopener">https://www.esa.int/</a></div>
+      </li>
+      <li>
+        <div class="doi-date">Zenodo</div>
+        <div class="doi-code"><a href="https://zenodo.org/" rel="noopener">https://zenodo.org/</a></div>
+      </li>
+    </ul>
+
+    <footer>
+      <div class="smallcaps">Non-interpretation policy</div>
+      <div class="muted">This page is a pointer index. Interpretative publication requires explicit authorization.</div>
+    </footer>
+  </div>
+</main>
+
+<script>
+(function(){
+  const supported = ['en','fr','ar','zh'];
+  const qsLang = new URLSearchParams(location.search).get('lang');
+  const stored = localStorage.getItem('trizel_lang');
+  const lang = supported.includes(qsLang) ? qsLang : (supported.includes(stored) ? stored : 'en');
+
+  function setLang(next){
+    localStorage.setItem('trizel_lang', next);
+    document.documentElement.lang = next === 'zh' ? 'zh' : next;
+
+    document.querySelectorAll('[data-lang]').forEach(el=>{
+      el.classList.toggle('active', el.getAttribute('data-lang') === next);
+    });
+
+    const isRTL = next === 'ar';
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    document.querySelectorAll('.rtl').forEach(el=>{
+      el.style.direction = isRTL ? 'rtl' : 'ltr';
+    });
+
+    const navTitle = document.getElementById('navTitle');
+    if(navTitle){
+      const map = {en:'Evidence', fr:'Evidence', ar:'الأدلة', zh:'证据'};
+      navTitle.textContent = map[next] || 'Evidence';
+    }
+
+    document.querySelectorAll('button[data-setlang]').forEach(b=>{
+      b.setAttribute('aria-pressed', b.getAttribute('data-setlang') === next ? 'true' : 'false');
+    });
+  }
+
+  document.querySelectorAll('button[data-setlang]').forEach(btn=>{
+    btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-setlang')));
+  });
+
+  setLang(lang);
+})();
+</script>
 </body>
 </html>
