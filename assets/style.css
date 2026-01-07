@@ -60,13 +60,13 @@ a:hover{ text-decoration:underline; }
   min-width: 240px;
 }
 
-/* ===== LOGO (FINAL – REAL IMAGE, CASE-SENSITIVE) ===== */
+/* ===== LOGO (FINAL – REAL IMAGE, ABSOLUTE PATH) ===== */
 .logo{
   width:38px;
   height:38px;
   border-radius:12px;
   background-color:#05070f;
-  background-image:url("assets/logo/trizel-ai-logo.PNG");
+  background-image:url("/assets/logo/trizel-ai-logo.PNG");
   background-size:contain;
   background-repeat:no-repeat;
   background-position:center;
