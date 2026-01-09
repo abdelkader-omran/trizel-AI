@@ -1,314 +1,100 @@
+# TRIZEL-AI (Descriptive Interface Repository)
+
+TRIZEL-AI is a **non-authoritative, descriptive interface repository**
+within the broader TRIZEL / AUTO-DZ-ACT research ecosystem.
+
+This repository does **not** execute analysis, enforce governance,
+or operate scientific workflows.
+Its sole purpose is to provide **conceptual orientation, contextual explanation,
+and navigational reference** across related research artifacts.
+
 ---
-title: TRIZEL-AI — Epistemic Monitoring and Scientific Evidence Preservation Framework
+
+## Purpose and Scope
+
+The role of this repository is strictly **descriptive**.
+
+It documents:
+- methodological intent
+- conceptual boundaries
+- historical phase structure
+- relationships between research artifacts
+
+It does **not**:
+- generate hypotheses
+- perform analysis
+- rank theories
+- enforce rules
+- prevent or authorize execution
+
+Any governance rules, execution constraints, or epistemic controls
+are defined and enforced **elsewhere**, or exist only as
+**historical documentation**.
+
 ---
 
-# TRIZEL-AI
+## Relationship to TRIZEL Epistemic Engine
 
-**Epistemic Monitoring and Scientific Evidence Preservation Framework**
+The core epistemic and governance framework of the TRIZEL program
+is documented in the repository:
 
-***
+- **trizel-epistemic-engine** (archival, Phase-5 closed)
 
-## 1. Project Definition
+That repository is finalized and immutable.
+This repository does not extend, govern, or continue that project.
 
-TRIZEL-AI is a scientific infrastructure project dedicated to the systematic preservation of official observational records over time.
+Any references to phases, rules, or constraints are **historical only**
+and carry **no active authority**.
 
-The framework performs continuous, automated acquisition of verbatim institutional data from authoritative scientific sources and archives these records with immutable timestamps.  
-No interpretation, classification, scoring, or theoretical inference is performed or published within this framework.
+---
 
-The public website serves exclusively as a system status and provenance interface, not as a platform for scientific conclusions.
+## Phase References (Historical Context Only)
 
-***
+The TRIZEL program previously operated under bounded phases.
+These phases are referenced here **for historical clarity only**:
 
-## 2. Current System Status
+- Phase-1: Conceptual precursor (external)
+- Phase-2: Epistemic state definitions
+- Phase-3: Deterministic execution boundaries
+- Phase-4: Governance and evaluation limits
+- Phase-5: Documentation finalization and closeout
 
-- **Monitoring Domain:** Institutional observational records of interstellar objects (current monitored case: 3I/ATLAS)
-- **Operational Since:** December 2025
-- **Acquisition Frequency:** Daily automated snapshots
-- **Primary Archival Layer:** Zenodo (DOI-based, immutable records)
-- **Automation and Version Control:** GitHub (auditable repositories)
-- **Interpretation Policy:** Explicitly deferred
-- **Project Phase:** Phase-5 — Documentation and Evidence Freezing
+No phases exist beyond Phase-5 within the TRIZEL Epistemic Engine.
+Any future scientific work constitutes a **new project instance**
+under a separate charter.
 
-***
+---
 
-## 3. Methodological Boundary Statement
+## Repository Ecosystem (Contextual Index)
 
-TRIZEL-AI explicitly does not publish:
-- Scientific interpretations or hypotheses
-- Object classifications or theoretical claims
-- Reprocessed or derived datasets
-- Analytical conclusions or rankings
+During active research, multiple repositories served distinct roles.
+Examples include:
+- data snapshot repositories
+- monitoring layers
+- experimental analysis sandboxes
 
-TRIZEL-AI does publish:
-- Proof of data existence at specific points in time
-- Source provenance and institutional origin
-- Temporal integrity of records
-- Verifiable references to primary archives
+These references are **contextual and descriptive only**.
+This repository does not coordinate, control, or activate them.
 
-This boundary is intentional, enforced, and methodologically fundamental to the project.
+---
 
-***
+## Scientific Position
 
-## 4. Evidence and Provenance Architecture
+This repository makes **no scientific claims**.
 
-The project is composed of interconnected repositories, each fulfilling a strictly delimited role within the overall system.
+It does not:
+- interpret observations
+- endorse models
+- assert theoretical superiority
 
-### A. Core Documentation Repository
-**Repository:** `abdelkader-omran/trizel-AI`
+Its function is to **reduce ambiguity**, not to resolve it.
 
-**Function:**
-- Central methodological documentation
-- Definition of project scope and constraints
-- Phase governance references
+---
 
-**Role:** Defines what the system is authorized to do, not what it concludes.
+## Final Statement
 
-### B. Epistemic Governance Engine
-**Repository:** `trizel-ai/trizel-epistemic-engine`
+TRIZEL-AI is a **documentation and orientation layer only**.
 
-**Function:**
-- Formal definition of epistemic rules
-- Enforcement of phase separation
-- Governance constraints preventing interpretation leakage
-
-**Structure includes:**
-- Phase-2: Epistemic foundations
-- Phase-3: Analytical boundary definitions
-- Phase-4: Governance and control logic
-
-**Role:** Ensures methodological consistency and prevents unauthorized analytical behavior.
-
-### C. Monitoring and Orchestration Layer
-**Repository:** `abdelkader-omran/trizel-monitor`
-
-**Function:**
-- Coordination of monitoring logic
-- Automation scheduling
-- Execution control
-
-**Role:** Maintains continuous operation without subjective intervention.
-
-### D. Daily Official Evidence Archive
-**Repository:** `abdelkader-omran/AUTO-DZ-ACT-3I-ATLAS-DAILY`
-
-**Function:**
-- Daily capture of official institutional records
-- Verbatim HTML and API snapshots
-- Cryptographic integrity hashing and timestamping
-
-**Primary sources include:**
-- Minor Planet Center (MPC)
-- NASA/JPL
-- ESA
-- JPL Horizons
-- CNEOS
-
-**Role:** Serves as the primary evidentiary record of institutional data states.
-
-### E. Analytical Separation Repository
-**Repository:** `abdelkader-omran/AUTO-DZ-ACT-ANALYSIS-3I-ATLAS`
-
-**Function:**
-- Reserved for potential future analytical work
-- Currently inactive for public interpretation
-
-**Role:** Preserves strict separation between evidence preservation and analysis.
-
-***
-
-## 5. External Archival Layer
-
-All daily evidence snapshots are archived on Zenodo with assigned DOIs.
-
-Each DOI corresponds to:
-- A single UTC calendar day
-- A fixed and immutable record state
-- A citable scientific artifact
-
-Zenodo is used exclusively as a preservation and citation layer, not as an interpretative medium.
-
-***
-
-## 6. Rationale for the Architecture
-
-This architecture is designed to:
-- Prevent retrospective alteration of scientific records
-- Preserve temporal priority of observations
-- Enable future independent verification
-- Maintain strict neutrality during active observation phases
-- Treat time as an explicit scientific variable
-
-The system is intentionally non-interpretative.  
-Its scientific value becomes evident when institutional narratives evolve, not at the moment of initial publication.
-
-***
-
-## 7. Public Disclosure Policy
-
-At the current phase:
-- The website exposes system status and provenance only
-- All repositories remain publicly accessible for auditability
-- No scientific claims are advanced
-
-Any transition to interpretative publication requires a formally declared new phase with explicit governance authorization.
-
-***
-
-## 8. Summary Statement
-
-TRIZEL-AI is not a theory-publishing platform; it is a temporal scientific evidence preservation system.
-
-***
-
-# TRIZEL-AI — Website & Infrastructure Integration (Execution Plan)
-
-## Objective
-
-Expose system status, provenance, and project structure on the public website (trizel-ai.com) while preserving strict separation between evidence, governance, and interpretation.
-
-No raw datasets or scientific conclusions will be published.
-
-***
-
-## 1. Architectural Principle
-
-**Single Source of Truth:**
-- GitHub = operational logic, documentation, automation
-- Zenodo = immutable evidence archive
-- Website = read-only public interface (status + provenance)
-
-The website must reflect, not replicate, repositories.
-
-***
-
-## 2. Repository Role Consolidation
-
-### A. Core Governance & Documentation
-- `abdelkader-omran/trizel-AI`
-- Canonical project definition
-- Phase documentation
-- Governance references
-
-**Website usage:** Referenced as Project Core Documentation
-
-### B. Epistemic & Governance Engine
-- `trizel-ai/trizel-epistemic-engine`
-- Phase-2/3/4 logic
-- Epistemic constraints
-- Non-interpretation enforcement
-
-**Website usage:** Referenced as Methodological Framework
-
-### C. Monitoring & Orchestration
-- `abdelkader-omran/trizel-monitor`
-- Automation control
-- Scheduling
-- Execution logic
-
-**Website usage:** Referenced as Operational Layer
-
-### D. Daily Evidence Capture
-- `abdelkader-omran/AUTO-DZ-ACT-3I-ATLAS-DAILY`
-- Verbatim institutional snapshots
-- Integrity hashes
-- Daily cadence
-
-**Website usage:** Referenced as Daily Evidence Archive
-
-### E. Analytical Separation (Inactive)
-- `abdelkader-omran/AUTO-DZ-ACT-ANALYSIS-3I-ATLAS`
-
-**Website usage:** Listed as Reserved / Not Publicly Active
-
-***
-
-## 3. Website Page Structure (Mandatory)
-
-### / — Home (Landing Page)
-**Purpose:** legitimacy + clarity
-
-**Content:**
-- One-paragraph project definition
-- Current phase indicator
-- System operational status
-- Links to: Status, Methodology, Evidence
-
-No theory, no analysis.
-
-### /status
-**Purpose:** live system transparency
-
-**Content:**
-- Monitoring active/inactive
-- Last snapshot date (UTC)
-- Latest Zenodo DOI
-- Institutions monitored
-- Automation state
-
-**Data source:** Static JSON or Markdown generated from GitHub Actions (read-only)
-
-### /methodology
-**Purpose:** scientific protection layer
-
-**Content:**
-- Epistemic boundaries
-- Phase logic
-- Non-interpretation policy
-- Repository role explanations
-
-**Primary source:** Adapted from `trizel-AI` + `trizel-epistemic-engine`
-
-### /evidence
-**Purpose:** provenance index
-
-**Content:**
-- Zenodo community link
-- DOI list (not datasets)
-- Explanation of what a snapshot represents
-- Statement of immutability
-
-No embedded data.
-
-### /repositories
-**Purpose:** transparency & auditability
-
-**Content:**
-- Structured list of all repositories
-- Clear role description for each
-- Explicit dependency graph (textual)
-
-***
-
-## 4. Content Governance Rules
-
-- Website content is manually curated, not auto-generated narratives
-- All dynamic values are factual only (dates, DOIs, status)
-- No interpretative text added without Phase-6 authorization
-- README files redirect users to the website, not the opposite
-
-***
-
-## 5. Implementation Order (Strict)
-
-1. Freeze Phase-5 documentation (no logic changes)
-2. Prepare /methodology content (from reviewed academic text)
-3. Create /status minimal data feed (read-only)
-4. Update homepage to reference system state
-5. Align all READMEs to point to website pages
-6. Validate consistency (no duplicated explanations)
-
-***
-
-## 6. Success Criteria
-
-The update is considered successful when:
-- The website clearly explains what exists and why
-- No visitor can mistake the project for a theory-publishing platform
-- Every public claim is traceable to a repository or DOI
-- The system can remain silent scientifically without appearing inactive
-
-***
-
-## Final One-Line Definition
-
-TRIZEL-AI exposes the state of scientific evidence preservation, not the interpretation of that evidence.
+It exists to help readers understand
+how different artifacts relate historically and conceptually,
+without exercising authority or enabling execution.
