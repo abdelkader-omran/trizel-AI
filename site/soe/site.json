@@ -1,0 +1,32 @@
+{
+  "injected_at": "2026-01-09T15:41:26.307046+00:00",
+  "files_modified": [
+    "index.html",
+    "status/index.html",
+    "methodology/index.html",
+    "evidence/index.html",
+    "repositories/index.html"
+  ],
+  "markers_added": [
+    {
+      "file": "index.html",
+      "section": "hero-section"
+    },
+    {
+      "file": "status/index.html",
+      "section": "status-content"
+    },
+    {
+      "file": "methodology/index.html",
+      "section": "methodology-content"
+    },
+    {
+      "file": "evidence/index.html",
+      "section": "evidence-content"
+    },
+    {
+      "file": "repositories/index.html",
+      "section": "repositories-content"
+    }
+  ]
+}
