@@ -94,3 +94,9 @@ Epistemic Research Infrastructure
 
 All content exposed here remains the intellectual property
 of its respective authors and source repositories.
+
+----------------------------------------------------------------
+PHASE-5 NAVIGATION
+----------------------------------------------------------------
+• System Map → docs/phase5/system-map.md
+• Applications → docs/phase5/applications.md
