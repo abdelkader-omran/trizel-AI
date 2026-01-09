@@ -1,0 +1,213 @@
+name: Phase 2B — SOE Content Injection
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  phase-2b-injection:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Run SOE content injection
+        run: |
+          python3 tools/build_site.py
+      
+      - name: Validate file changes
+        run: |
+          #!/bin/bash
+          set -e
+          
+          echo "=== Validating file changes ==="
+          
+          # List of allowed files
+          ALLOWED_FILES=(
+            "index.html"
+            "status/index.html"
+            "methodology/index.html"
+            "evidence/index.html"
+            "repositories/index.html"
+            "site/soe/site.json"
+          )
+          
+          # Get list of modified files
+          MODIFIED_FILES=$(git diff --name-only)
+          
+          if [ -z "$MODIFIED_FILES" ]; then
+            echo "✗ ERROR: No files were modified by build_site.py"
+            exit 1
+          fi
+          
+          echo "Modified files:"
+          echo "$MODIFIED_FILES"
+          echo ""
+          
+          # Check each modified file is in the allowed list
+          while IFS= read -r file; do
+            if [[ ! " ${ALLOWED_FILES[@]} " =~ " ${file} " ]]; then
+              echo "✗ ERROR: Unexpected file modification detected: $file"
+              echo "Only the following files are allowed to be modified:"
+              printf '%s\n' "${ALLOWED_FILES[@]}"
+              exit 1
+            fi
+          done <<< "$MODIFIED_FILES"
+          
+          # Check that no extra files were modified
+          for file in "${ALLOWED_FILES[@]}"; do
+            if echo "$MODIFIED_FILES" | grep -q "^${file}$"; then
+              echo "✓ Allowed modification: $file"
+            fi
+          done
+          
+          echo ""
+          echo "✓ File change validation passed"
+      
+      - name: Validate HEAD section immutability
+        run: |
+          #!/bin/bash
+          set -e
+          
+          echo "=== Validating <head> section immutability ==="
+          
+          HTML_FILES=(
+            "index.html"
+            "status/index.html"
+            "methodology/index.html"
+            "evidence/index.html"
+            "repositories/index.html"
+          )
+          
+          for file in "${HTML_FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "⚠ Warning: File not found: $file"
+              continue
+            fi
+            
+            # Check if <head> section was modified
+            HEAD_DIFF=$(git diff "$file" | grep -E '^\+.*<head>|^\+.*</head>|^\-.*<head>|^\-.*</head>' || true)
+            
+            if [ -n "$HEAD_DIFF" ]; then
+              echo "✗ ERROR: Changes detected in <head> section of $file"
+              echo "The <head> section must remain immutable."
+              echo "Problematic changes:"
+              echo "$HEAD_DIFF"
+              exit 1
+            fi
+            
+            echo "✓ No <head> changes in: $file"
+          done
+          
+          echo ""
+          echo "✓ HEAD section validation passed"
+      
+      - name: Validate SOE markers
+        run: |
+          #!/bin/bash
+          set -e
+          
+          echo "=== Validating SOE markers ==="
+          
+          HTML_FILES=(
+            "index.html"
+            "status/index.html"
+            "methodology/index.html"
+            "evidence/index.html"
+            "repositories/index.html"
+          )
+          
+          VALIDATION_FAILED=false
+          
+          for file in "${HTML_FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "⚠ Warning: File not found: $file"
+              continue
+            fi
+            
+            echo "Checking: $file"
+            
+            # Extract all SOE markers (section names use letters, numbers, and hyphens)
+            START_MARKERS=$(grep -o "<!-- SOE:START:[a-zA-Z0-9_-]*" "$file" | sed 's/<!-- SOE:START://' || true)
+            END_MARKERS=$(grep -o "<!-- SOE:END:[a-zA-Z0-9_-]*" "$file" | sed 's/<!-- SOE:END://' || true)
+            
+            if [ -z "$START_MARKERS" ] && [ -z "$END_MARKERS" ]; then
+              echo "  ✗ ERROR: No SOE markers found in $file"
+              VALIDATION_FAILED=true
+              continue
+            fi
+            
+            # Check for balanced markers
+            START_COUNT=$(echo "$START_MARKERS" | grep -c . || echo "0")
+            END_COUNT=$(echo "$END_MARKERS" | grep -c . || echo "0")
+            
+            if [ "$START_COUNT" -ne "$END_COUNT" ]; then
+              echo "  ✗ ERROR: Unbalanced SOE markers in $file"
+              echo "    START markers: $START_COUNT"
+              echo "    END markers: $END_COUNT"
+              VALIDATION_FAILED=true
+              continue
+            fi
+            
+            # Check for duplicate markers
+            START_DUPLICATES=$(echo "$START_MARKERS" | sort | uniq -d)
+            END_DUPLICATES=$(echo "$END_MARKERS" | sort | uniq -d)
+            
+            if [ -n "$START_DUPLICATES" ]; then
+              echo "  ✗ ERROR: Duplicate START markers found in $file:"
+              echo "$START_DUPLICATES"
+              VALIDATION_FAILED=true
+              continue
+            fi
+            
+            if [ -n "$END_DUPLICATES" ]; then
+              echo "  ✗ ERROR: Duplicate END markers found in $file:"
+              echo "$END_DUPLICATES"
+              VALIDATION_FAILED=true
+              continue
+            fi
+            
+            # Check that each START has a corresponding END
+            while IFS= read -r marker; do
+              if [ -n "$marker" ]; then
+                if ! echo "$END_MARKERS" | grep -q "^${marker}$"; then
+                  echo "  ✗ ERROR: START marker without END in $file: $marker"
+                  VALIDATION_FAILED=true
+                fi
+              fi
+            done <<< "$START_MARKERS"
+            
+            if [ "$VALIDATION_FAILED" = false ]; then
+              echo "  ✓ SOE markers valid ($START_COUNT marker pairs)"
+            fi
+          done
+          
+          if [ "$VALIDATION_FAILED" = true ]; then
+            echo ""
+            echo "✗ SOE marker validation failed"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✓ SOE marker validation passed"
+      
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Phase 2B – SOE content injection" || echo "No changes to commit"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
