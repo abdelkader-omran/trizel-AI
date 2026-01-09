@@ -142,6 +142,7 @@ class SOEInjector:
         # Update site.json
         site_json_path = self.repo_root / "site" / "soe" / "site.json"
         print(f"\nUpdating {site_json_path.relative_to(self.repo_root)}...")
+        site_json_path.parent.mkdir(parents=True, exist_ok=True)
         site_json_path.write_text(json.dumps(self.soe_data, indent=2), encoding='utf-8')
         self.soe_data["files_modified"].append(str(site_json_path.relative_to(self.repo_root)))
         

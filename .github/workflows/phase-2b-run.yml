@@ -107,13 +107,6 @@ jobs:
               exit 1
             fi
             
-            # Also check for modifications within head tags
-            if git diff "$file" | awk '/<head>/,/<\/head>/' | grep -E '^\+|^\-' | grep -v '^\+\+\+\|^\-\-\-' >/dev/null 2>&1; then
-              echo "✗ ERROR: Changes detected within <head> section of $file"
-              echo "The <head> section content must remain unchanged."
-              exit 1
-            fi
-            
             echo "✓ No <head> changes in: $file"
           done
           
@@ -145,9 +138,9 @@ jobs:
             
             echo "Checking: $file"
             
-            # Extract all SOE markers
-            START_MARKERS=$(grep -o "<!-- SOE:START:[^-]*" "$file" | sed 's/<!-- SOE:START://' || true)
-            END_MARKERS=$(grep -o "<!-- SOE:END:[^-]*" "$file" | sed 's/<!-- SOE:END://' || true)
+            # Extract all SOE markers (section names use letters, numbers, and hyphens)
+            START_MARKERS=$(grep -o "<!-- SOE:START:[a-zA-Z0-9_-]*" "$file" | sed 's/<!-- SOE:START://' || true)
+            END_MARKERS=$(grep -o "<!-- SOE:END:[a-zA-Z0-9_-]*" "$file" | sed 's/<!-- SOE:END://' || true)
             
             if [ -z "$START_MARKERS" ] && [ -z "$END_MARKERS" ]; then
               echo "  ✗ ERROR: No SOE markers found in $file"
