@@ -1,0 +1,203 @@
+<!-- 
+====================================================================
+METADATA (COPY / AUDIT HEADER)
+Repository: abdelkader-omran/trizel-AI
+Branch: main
+File: sitemap/index.html
+Route: /sitemap/
+Comment: Human-readable sitemap page. Automatically populated from sitemap.xml.
+         Evidence-first portal, facts-only policy.
+====================================================================
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Sitemap — TRIZEL-AI</title>
+  <meta name="description" content="Human-readable sitemap for the TRIZEL-AI research and epistemic portal." />
+
+  <!-- CANONICAL & INDEXING LOCK -->
+  <link rel="canonical" href="https://trizel-ai.com/sitemap/" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://trizel-ai.com/sitemap/" />
+  <meta property="og:title" content="Sitemap — TRIZEL-AI" />
+  <meta property="og:site_name" content="TRIZEL-AI" />
+  <meta property="og:image" content="https://trizel-ai.com/assets/logo/trizel-ai-logo.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sitemap — TRIZEL-AI" />
+  <meta name="twitter:image" content="https://trizel-ai.com/assets/logo/trizel-ai-logo.png" />
+
+  <style>
+    :root{
+      --bg:#0b0d12; --panel:#111521; --text:#e9eef7; --muted:#a9b4c6;
+      --soft:rgba(255,255,255,.08); --line:rgba(255,255,255,.14);
+      --accent:#7aa7ff; --accent2:#7dffcf; --warn:#ffdd7a; --ok:#7dffcf;
+      --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      --max:1120px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f8fc; --panel:#fff; --text:#0f172a; --muted:#475569;
+        --soft:rgba(15,23,42,.06); --line:rgba(15,23,42,.12);
+        --accent:#1d4ed8; --accent2:#0f766e; --warn:#8a6a00; --ok:#0f766e;
+        --shadow:0 12px 34px rgba(15,23,42,.10);
+      }
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:var(--sans); color:var(--text); line-height:1.6;
+      background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(122,167,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 10%, rgba(125,255,207,.12), transparent 55%),
+        radial-gradient(800px 500px at 50% 100%, rgba(122,167,255,.10), transparent 65%),
+        var(--bg);
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    a:focus{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:blur(10px);
+      background:color-mix(in srgb, var(--bg), transparent 25%);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{max-width:var(--max); margin:0 auto; padding:14px 20px; display:flex; gap:12px; justify-content:space-between; align-items:center}
+    .brand{display:flex; gap:10px; align-items:baseline; flex-wrap:wrap}
+    .brand b{font-size:14px; letter-spacing:.10em; text-transform:uppercase}
+    .brand span{color:var(--muted); font-size:13px}
+    .navlinks{display:flex; flex-wrap:wrap; gap:10px 14px; justify-content:flex-end; align-items:center}
+    .navlinks a{
+      font-size:13px; color:var(--text); opacity:.85;
+      padding:6px 10px; border-radius:999px; border:1px solid transparent
+    }
+    .navlinks a:hover{opacity:1; border-color:var(--line); background:var(--soft); text-decoration:none}
+    .navlinks a:focus{outline:2px solid var(--accent); outline-offset:2px; border-radius:999px}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 20px 54px}
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow)}
+    h1{margin:0 0 8px; font-size:28px; letter-spacing:-.01em}
+    h2{margin:24px 0 12px; font-size:15px; letter-spacing:.02em; text-transform:uppercase; color:color-mix(in srgb, var(--text), var(--muted) 30%)}
+    h2:first-of-type{margin-top:18px}
+    p{margin:10px 0}
+    .muted{color:var(--muted)}
+    .hr{height:1px; background:var(--line); margin:20px 0}
+    
+    .sitemap-section{margin-bottom:24px}
+    .sitemap-list{list-style:none; margin:12px 0; padding:0}
+    .sitemap-list li{margin:8px 0}
+    .sitemap-list a{
+      display:block; padding:10px 14px; border-radius:12px;
+      border:1px solid var(--line); background:var(--soft);
+      color:var(--text); font-size:14px; transition:all 0.2s ease;
+    }
+    @media (prefers-reduced-motion: reduce){
+      .sitemap-list a{transition:none}
+    }
+    .sitemap-list a:hover{
+      background:color-mix(in srgb, var(--panel), transparent 10%);
+      border-color:var(--accent); text-decoration:none;
+    }
+    .sitemap-list a:focus{
+      outline:2px solid var(--accent); outline-offset:2px;
+      background:color-mix(in srgb, var(--panel), transparent 10%);
+    }
+    .sitemap-url{font-family:var(--mono); font-size:12px; color:var(--muted); margin-left:8px}
+    .priority{
+      display:inline-block; font-size:11px; color:var(--muted);
+      padding:2px 6px; border-radius:6px; background:var(--soft);
+      margin-left:6px; font-family:var(--mono);
+    }
+    .machine-link{
+      display:inline-flex; align-items:center; gap:6px;
+      padding:8px 12px; border-radius:12px; border:1px solid var(--line);
+      background:var(--soft); color:var(--muted); font-size:12px;
+      margin-top:12px;
+    }
+    .machine-link:hover{
+      background:color-mix(in srgb, var(--panel), transparent 10%);
+      color:var(--text); text-decoration:none;
+    }
+    .machine-link:focus{outline:2px solid var(--accent); outline-offset:2px}
+    .loading{
+      text-align:center; padding:40px 20px; color:var(--muted);
+      font-size:14px;
+    }
+    .error{
+      padding:14px; border-radius:12px; background:color-mix(in srgb, var(--warn), transparent 85%);
+      border:1px solid color-mix(in srgb, var(--warn), transparent 70%);
+      color:var(--text); font-size:13px; margin:12px 0;
+    }
+    
+    @media (max-width:768px){
+      .wrap{padding:20px 16px 40px}
+      .card{padding:18px}
+      h1{font-size:24px}
+      .sitemap-list a{padding:8px 12px; font-size:13px}
+      .sitemap-url{display:block; margin-left:0; margin-top:4px}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="/assets/logo/trizel-ai-logo.png" alt="TRIZEL-AI" height="32" style="vertical-align: middle; margin-right: 8px;">
+      <b>TRIZEL-AI</b>
+      <span>Sitemap</span>
+    </div>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/status/">Status</a>
+      <a href="/methodology/">Methodology</a>
+      <a href="/evidence/">Evidence</a>
+      <a href="/repositories/">Repositories</a>
+      <a href="/system-map/">System Map</a>
+      <a href="/applications/">Applications</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="card">
+    <h1>Site Map</h1>
+    <p class="muted">Complete navigation index for the TRIZEL-AI research and epistemic portal.</p>
+
+    <div class="hr" role="separator"></div>
+
+    <div id="sitemap-content">
+      <div class="loading" aria-live="polite" aria-busy="true">
+        Loading sitemap...
+      </div>
+    </div>
+
+    <div class="hr" role="separator"></div>
+
+    <p class="muted">
+      <a href="/sitemap.xml" class="machine-link" aria-label="Machine-readable XML sitemap for search engines">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        Machine Sitemap (XML)
+      </a>
+    </p>
+  </article>
+</main>
+
+<script src="/assets/js/sitemap-human.js"></script>
+</body>
+</html>
