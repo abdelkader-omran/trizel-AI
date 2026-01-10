@@ -213,6 +213,21 @@ Precise scientific reference links:
       </div>
 
       <div class="stat">
+        <div class="label">Build hash</div>
+        <div class="value" id="buildHash">—</div>
+      </div>
+
+      <div class="stat">
+        <div class="label">Last deployment (UTC)</div>
+        <div class="value" id="deployTime">—</div>
+      </div>
+
+      <div class="stat">
+        <div class="label">Hosting source</div>
+        <div class="value">GitHub Pages (main)</div>
+      </div>
+
+      <div class="stat">
         <div class="label">ORCID (verified)</div>
         <div class="value"><a href="https://orcid.org/0009-0003-9884-3697" rel="noopener">0009-0003-9884-3697</a></div>
       </div>
@@ -305,6 +320,19 @@ Precise scientific reference links:
   setLang(lang);
   setUTC();
   setInterval(setUTC, 1000);
+
+  // Load build metadata
+  fetch('/build.json').then(r => r.json()).then(data => {
+    const hashEl = document.getElementById('buildHash');
+    const timeEl = document.getElementById('deployTime');
+    if(hashEl && data.build_hash) hashEl.textContent = data.build_hash;
+    if(timeEl && data.deploy_utc) timeEl.textContent = data.deploy_utc;
+  }).catch(() => {
+    const hashEl = document.getElementById('buildHash');
+    const timeEl = document.getElementById('deployTime');
+    if(hashEl) hashEl.textContent = '—';
+    if(timeEl) timeEl.textContent = '—';
+  });
 })();
 </script>
 </body>

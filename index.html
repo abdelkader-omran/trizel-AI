@@ -43,6 +43,9 @@ Core authoritative sources (examples):
   <meta name="twitter:title" content="TRIZEL-AI — Evidence-First Scientific Portal" />
   <meta name="twitter:image" content="https://trizel-ai.com/assets/logo/trizel-ai-logo.png" />
 
+  <!-- Intro animation styles -->
+  <link rel="stylesheet" href="/assets/css/intro.css" />
+
   <!-- SCHEMA: scientific visibility (locked; non-interpretive) -->
   <script type="application/ld+json">
   {
@@ -380,10 +383,20 @@ Core authoritative sources (examples):
           <div><a href="/evidence/">/evidence/</a></div>
           <div><a href="/repositories/">/repositories/</a></div>
         </div>
+        <div class="hr" role="separator" style="margin-top:14px"></div>
+        <div class="smallcaps" style="margin-top:12px">Build metadata</div>
+        <div class="muted" style="font-size:11px; font-family:var(--mono)">
+          <div>Build: <span id="buildHash">loading...</span></div>
+          <div>Deploy: <span id="deployTime">loading...</span></div>
+          <div>Source: GitHub Pages (main)</div>
+        </div>
       </footer>
     </aside>
   </div>
 </main>
+
+<!-- Intro animation script (runs on first visit only) -->
+<script src="/assets/js/intro.js"></script>
 
 <script>
 (function(){
@@ -422,6 +435,22 @@ Core authoritative sources (examples):
   });
 
   setLang(lang);
+})();
+
+// Load build metadata
+(function(){
+  fetch('/build.json').then(r => r.json()).then(data => {
+    const hashEl = document.getElementById('buildHash');
+    const timeEl = document.getElementById('deployTime');
+    if(hashEl && data.build_hash) hashEl.textContent = data.build_hash;
+    if(timeEl && data.deploy_utc) timeEl.textContent = data.deploy_utc;
+  }).catch(() => {
+    // Fallback if build.json doesn't exist yet
+    const hashEl = document.getElementById('buildHash');
+    const timeEl = document.getElementById('deployTime');
+    if(hashEl) hashEl.textContent = '—';
+    if(timeEl) timeEl.textContent = '—';
+  });
 })();
 </script>
 </body>

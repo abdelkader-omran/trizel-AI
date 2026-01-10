@@ -1,0 +1,43 @@
+name: Production Build Metadata
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-build-metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Generate build.json
+        run: |
+          BUILD_HASH=$(git rev-parse --short HEAD)
+          DEPLOY_UTC=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          
+          cat > build.json << EOF
+          {
+            "build_hash": "$BUILD_HASH",
+            "deploy_utc": "$DEPLOY_UTC",
+            "hosting_source": "GitHub Pages",
+            "branch": "main"
+          }
+          EOF
+          
+          echo "Generated build.json:"
+          cat build.json
+
+      - name: Commit build.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add build.json
+          git diff --staged --quiet || git commit -m "chore: update build metadata [skip ci]"
+          git push
