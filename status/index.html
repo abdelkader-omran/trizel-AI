@@ -236,6 +236,11 @@ Precise scientific reference links:
         <div class="label">Latest DOI (immutable pointer)</div>
         <div class="value"><a href="https://doi.org/10.5281/zenodo.18149691" rel="noopener">10.5281/zenodo.18149691</a></div>
       </div>
+
+      <div class="stat">
+        <div class="label">Evidence count</div>
+        <div class="value" id="evidenceCount">—</div>
+      </div>
     </div>
 
     <div class="hr" role="separator"></div>
@@ -332,6 +337,15 @@ Precise scientific reference links:
     const timeEl = document.getElementById('deployTime');
     if(hashEl) hashEl.textContent = '—';
     if(timeEl) timeEl.textContent = '—';
+  });
+
+  // Load evidence count
+  fetch('/evidence/sources.json').then(r => r.json()).then(data => {
+    const countEl = document.getElementById('evidenceCount');
+    if(countEl && data.entries) countEl.textContent = data.entries.length;
+  }).catch(() => {
+    const countEl = document.getElementById('evidenceCount');
+    if(countEl) countEl.textContent = '—';
   });
 })();
 </script>

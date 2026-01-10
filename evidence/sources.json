@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated_utc": "2026-01-10T13:21:00Z",
+  "entries": [
+    {
+      "id": "E001",
+      "source": "Zenodo",
+      "type": "archive",
+      "pointer": "https://doi.org/10.5281/zenodo.18149691",
+      "timestamp_utc": "2024-01-01T00:00:00Z",
+      "verification_status": true
+    },
+    {
+      "id": "E002",
+      "source": "ORCID",
+      "type": "registry",
+      "pointer": "https://orcid.org/0009-0003-9884-3697",
+      "timestamp_utc": "2024-01-01T00:00:00Z",
+      "verification_status": true
+    },
+    {
+      "id": "E003",
+      "source": "Minor Planet Center",
+      "type": "dataset",
+      "pointer": "https://minorplanetcenter.net/",
+      "timestamp_utc": "2024-01-01T00:00:00Z",
+      "verification_status": true
+    },
+    {
+      "id": "E004",
+      "source": "NASA/JPL Solar System Dynamics",
+      "type": "dataset",
+      "pointer": "https://ssd.jpl.nasa.gov/",
+      "timestamp_utc": "2024-01-01T00:00:00Z",
+      "verification_status": true
+    },
+    {
+      "id": "E005",
+      "source": "JPL Horizons",
+      "type": "dataset",
+      "pointer": "https://ssd.jpl.nasa.gov/horizons/",
+      "timestamp_utc": "2024-01-01T00:00:00Z",
+      "verification_status": true
+    },
+    {
+      "id": "E006",
+      "source": "CNEOS",
+      "type": "dataset",
+      "pointer": "https://cneos.jpl.nasa.gov/",
+      "timestamp_utc": "2024-01-01T00:00:00Z",
+      "verification_status": true
+    },
+    {
+      "id": "E007",
+      "source": "ESA",
+      "type": "dataset",
+      "pointer": "https://www.esa.int/",
+      "timestamp_utc": "2024-01-01T00:00:00Z",
+      "verification_status": true
+    }
+  ]
+}
