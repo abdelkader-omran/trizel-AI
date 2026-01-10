@@ -18,12 +18,12 @@
   
   // Letter meanings (EXACT as specified)
   const meanings = [
-    { letter: 'T', title: 'Traceability', desc: 'verifiable provenance chains' },
-    { letter: 'R', title: 'Reproducibility', desc: 'results rebuildable from archived inputs' },
-    { letter: 'I', title: 'Immutability', desc: 'DOI / hash–based canonical records' },
-    { letter: 'Z', title: 'Zero-Interpretation', desc: 'descriptive boundary; no interpretive claims' },
-    { letter: 'E', title: 'Evidence-First', desc: 'evidence precedes narrative' },
-    { letter: 'L', title: 'Layered Governance', desc: 'governance / execution separation' }
+    { letter: 'T', title: 'Traceability', desc: 'every datum has a verifiable provenance chain' },
+    { letter: 'R', title: 'Reproducibility', desc: 'results are rebuildable from archived inputs' },
+    { letter: 'I', title: 'Immutability', desc: 'canonical pointers via DOI / hashes; tamper-evident' },
+    { letter: 'Z', title: 'Zero-Interpretation', desc: 'descriptive publication boundary; no interpretive claims' },
+    { letter: 'E', title: 'Evidence-First', desc: 'evidence precedes narrative; identifiers precede conclusions' },
+    { letter: 'L', title: 'Layered Governance', desc: 'constitution / governance / execution separation' }
   ];
   
   // Create intro overlay
@@ -84,9 +84,15 @@
     meaningsContainer.appendChild(meaningDiv);
   });
   
+  // Add heritage line
+  const heritageLine = document.createElement('div');
+  heritageLine.className = 'intro-heritage';
+  heritageLine.textContent = 'TRIZEL — organizational activity since 2010 (multi-domain), research portal edition.';
+  
   // Assemble structure
   content.appendChild(lettersContainer);
   content.appendChild(meaningsContainer);
+  content.appendChild(heritageLine);
   intro.appendChild(skipBtn);
   intro.appendChild(content);
   
@@ -97,12 +103,14 @@
   function runIntro() {
     const letters = intro.querySelectorAll('.intro-letter');
     const meaningItems = intro.querySelectorAll('.intro-meaning');
+    const heritage = intro.querySelector('.intro-heritage');
     
     if (prefersReducedMotion) {
       // Fast static display for reduced motion
       letters.forEach(letter => letter.classList.add('visible'));
       meaningsContainer.classList.add('visible');
       meaningItems.forEach(item => item.classList.add('visible'));
+      if (heritage) heritage.classList.add('visible');
       
       // Quick fade out after 1.5s
       setTimeout(() => {
@@ -128,10 +136,16 @@
           item.classList.add('visible');
         }, index * 150); // 150ms delay between meaning items
       });
+      
+      // Show heritage line after meanings
+      const meaningsDelay = meaningItems.length * 150;
+      setTimeout(() => {
+        if (heritage) heritage.classList.add('visible');
+      }, meaningsDelay + 300);
     }, letters.length * 200 + 400);
     
     // Auto-transition to homepage after completion
-    const totalDuration = letters.length * 200 + 400 + meaningItems.length * 150 + 1800;
+    const totalDuration = letters.length * 200 + 400 + meaningItems.length * 150 + 300 + 1500;
     setTimeout(() => {
       endIntro();
     }, totalDuration);
