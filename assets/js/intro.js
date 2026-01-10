@@ -42,6 +42,11 @@
   const content = document.createElement('div');
   content.className = 'intro-content';
   
+  // Create tagline above letters (subtle branding)
+  const tagline = document.createElement('div');
+  tagline.className = 'intro-tagline';
+  tagline.textContent = 'evidence-first governance • verifiable identifiers • immutable pointers';
+  
   // Create letters container
   const lettersContainer = document.createElement('div');
   lettersContainer.className = 'intro-letters';
@@ -90,6 +95,7 @@
   heritageLine.textContent = 'TRIZEL — organizational activity since 2010 (multi-domain), research portal edition.';
   
   // Assemble structure
+  content.appendChild(tagline);
   content.appendChild(lettersContainer);
   content.appendChild(meaningsContainer);
   content.appendChild(heritageLine);
@@ -101,12 +107,14 @@
   
   // Animation logic
   function runIntro() {
+    const tagline = intro.querySelector('.intro-tagline');
     const letters = intro.querySelectorAll('.intro-letter');
     const meaningItems = intro.querySelectorAll('.intro-meaning');
     const heritage = intro.querySelector('.intro-heritage');
     
     if (prefersReducedMotion) {
       // Fast static display for reduced motion
+      if (tagline) tagline.classList.add('visible');
       letters.forEach(letter => letter.classList.add('visible'));
       meaningsContainer.classList.add('visible');
       meaningItems.forEach(item => item.classList.add('visible'));
@@ -119,11 +127,16 @@
       return;
     }
     
-    // Letter-by-letter animation
+    // Show tagline first with subtle fade
+    setTimeout(() => {
+      if (tagline) tagline.classList.add('visible');
+    }, 200);
+    
+    // Letter-by-letter animation starts after tagline
     letters.forEach((letter, index) => {
       setTimeout(() => {
         letter.classList.add('visible');
-      }, index * 200); // 200ms delay between letters
+      }, 600 + (index * 200)); // 200ms delay between letters, starting after tagline
     });
     
     // Show meanings container after all letters
@@ -142,10 +155,10 @@
       setTimeout(() => {
         if (heritage) heritage.classList.add('visible');
       }, meaningsDelay + 300);
-    }, letters.length * 200 + 400);
+    }, 600 + (letters.length * 200) + 400); // Adjusted for tagline delay
     
     // Auto-transition to homepage after completion
-    const totalDuration = letters.length * 200 + 400 + meaningItems.length * 150 + 300 + 1500;
+    const totalDuration = 600 + (letters.length * 200) + 400 + (meaningItems.length * 150) + 300 + 1500;
     setTimeout(() => {
       endIntro();
     }, totalDuration);
@@ -156,11 +169,13 @@
     intro.classList.add('fade-out');
     sessionStorage.setItem('trizel_intro_shown', 'true');
     
+    // Ensure smooth cross-fade with main content
+    // Hide intro overlay after fade-out completes
     setTimeout(() => {
       if (intro.parentNode) {
         intro.parentNode.removeChild(intro);
       }
-    }, 600); // Match fade-out transition duration
+    }, 800); // Match increased fade-out transition duration
   }
   
   // Skip button handler
