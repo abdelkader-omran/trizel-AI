@@ -388,6 +388,7 @@ Core authoritative sources (examples):
         <div class="muted" style="font-size:11px; font-family:var(--mono)">
           <div>Build: <span id="buildHash">loading...</span></div>
           <div>Deploy: <span id="deployTime">loading...</span></div>
+          <div>Evidence: <span id="evidenceCount">loading...</span> entries</div>
           <div>Source: GitHub Pages (main)</div>
         </div>
       </footer>
@@ -442,14 +443,18 @@ Core authoritative sources (examples):
   fetch('/build.json').then(r => r.json()).then(data => {
     const hashEl = document.getElementById('buildHash');
     const timeEl = document.getElementById('deployTime');
+    const countEl = document.getElementById('evidenceCount');
     if(hashEl && data.build_hash) hashEl.textContent = data.build_hash;
     if(timeEl && data.deploy_utc) timeEl.textContent = data.deploy_utc;
+    if(countEl && data.evidence_count !== undefined) countEl.textContent = data.evidence_count;
   }).catch(() => {
     // Fallback if build.json doesn't exist yet
     const hashEl = document.getElementById('buildHash');
     const timeEl = document.getElementById('deployTime');
+    const countEl = document.getElementById('evidenceCount');
     if(hashEl) hashEl.textContent = '—';
     if(timeEl) timeEl.textContent = '—';
+    if(countEl) countEl.textContent = '—';
   });
 })();
 </script>
