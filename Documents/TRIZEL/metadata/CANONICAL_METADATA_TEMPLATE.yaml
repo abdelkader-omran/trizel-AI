@@ -1,6 +1,18 @@
 # Canonical Author and Publication Metadata Template
 # This file is the single source of truth for author and publication metadata.
 # Reuse unchanged across repositories and publication systems.
+# Version: 1.1.0
+# Last Updated: 2026-01-12
+# Schema Status: Stable, Archival-Ready
+
+# Template Metadata (Self-Describing)
+template_info:
+  schema_version: "1.1.0"
+  template_date: "2026-01-12"
+  governance_status: "canonical"
+  archival_ready: true
+  deprecated_terms: []          # List any deprecated field names to avoid
+  validation_schema: "trizel-metadata-v1.1"
 
 author:
   name: "Abdelkader Omran"
@@ -25,7 +37,36 @@ publication_metadata:
   access_right: "open"          # open | closed | embargoed | restricted
   communities: []               # Zenodo communities (optional)
   upload_type: "publication"    # publication | dataset | software | poster | presentation
-  language: "en"
+  language: "en"                # Primary language (ISO 639-1)
+  
+  # Multi-Language Support
+  # Fully Supported: EN (English), FR (French), AR (Arabic)
+  # Planned Support: ZH (Chinese)
+  languages_supported:
+    - code: "en"
+      status: "primary"
+      script: "Latin"
+    - code: "fr"
+      status: "supported"
+      script: "Latin"
+    - code: "ar"
+      status: "supported"
+      script: "Arabic"
+    - code: "zh"
+      status: "planned"
+      script: "Han"
+  
+  # Optional multilingual fields
+  title_translations: {}        # e.g., {"fr": "Titre français", "ar": "العنوان العربي"}
+  description_translations: {}  # e.g., {"fr": "Description française", "ar": "الوصف العربي"}
+  
   description_format: "text/markdown"
   references: []
   grants: []
+  
+  # Governance and Data Protection
+  governance:
+    data_classification: "open"  # open | internal | confidential | restricted
+    retention_policy: "permanent" # permanent | time-limited
+    version_control: "required"
+    validation_required: true
