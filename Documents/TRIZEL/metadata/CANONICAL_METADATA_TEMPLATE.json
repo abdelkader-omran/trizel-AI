@@ -1,4 +1,14 @@
 {
+  "$schema": "https://trizel-ai.com/schemas/metadata-v1.1.json",
+  "$comment": "Canonical Author and Publication Metadata Template - Version 1.1.0 - Last Updated: 2026-01-12 - Schema Status: Stable, Archival-Ready",
+  "template_info": {
+    "schema_version": "1.1.0",
+    "template_date": "2026-01-12",
+    "governance_status": "canonical",
+    "archival_ready": true,
+    "deprecated_terms": [],
+    "validation_schema": "trizel-metadata-v1.1"
+  },
   "author": {
     "name": "Abdelkader Omran",
     "orcid": "0009-0003-9884-3697",
@@ -26,8 +36,38 @@
     "communities": [],
     "upload_type": "publication",
     "language": "en",
+    "languages_supported": [
+      {
+        "code": "en",
+        "status": "primary",
+        "script": "Latin"
+      },
+      {
+        "code": "fr",
+        "status": "supported",
+        "script": "Latin"
+      },
+      {
+        "code": "ar",
+        "status": "supported",
+        "script": "Arabic"
+      },
+      {
+        "code": "zh",
+        "status": "planned",
+        "script": "Han"
+      }
+    ],
+    "title_translations": {},
+    "description_translations": {},
     "description_format": "text/markdown",
     "references": [],
-    "grants": []
+    "grants": [],
+    "governance": {
+      "data_classification": "open",
+      "retention_policy": "permanent",
+      "version_control": "required",
+      "validation_required": true
+    }
   }
 }
