@@ -1,0 +1,196 @@
+# TRIZEL Registry - Canonical Layer-0 Governance Source
+# ========================================================
+# This file is the SINGLE SOURCE OF TRUTH for all TRIZEL repositories,
+# their roles, layers, and relationships within the TRIZEL ecosystem.
+#
+# Governance Rules:
+# - READ ONLY for all consumers
+# - Allowlist-only ingestion
+# - No auto-discovery permitted
+# - No interpretation beyond factual display
+#
+# Version: 1.0.0
+# Last Updated: 2026-01-12
+# Authority: TRIZEL International Group
+
+metadata:
+  schema_version: "1.0.0"
+  canonical_source: "abdelkader-omran/trizel-AI"
+  governance_level: "Layer-0"
+  update_policy: "Manual with provenance tracking"
+  verification_required: true
+  last_sync_utc: "2026-01-12T16:18:00Z"
+
+# Repository Definitions
+# Each repository has a defined role within the TRIZEL architecture
+repositories:
+  - name: "trizel-AI"
+    full_name: "abdelkader-omran/trizel-AI"
+    url: "https://github.com/abdelkader-omran/trizel-AI"
+    layer: "Layer-6"
+    role: "Official Reference Portal"
+    status: "stable"
+    description: "Authoritative governance-compliant portal. Evidence-first methodology, verifiable provenance, immutable archival records (DOI)."
+    purpose: "Public-facing website and scientific documentation hub"
+    epistemic_role: "viewer_aggregator_auditor"
+    visibility: "public"
+    governance_status: "official_reference"
+    
+  - name: "trizel-core"
+    full_name: "trizel-ai/trizel-core"
+    url: "https://github.com/trizel-ai/trizel-core"
+    layer: "Layer-0"
+    role: "Governance & Registry Core"
+    status: "stable"
+    description: "Canonical governance definitions, registry management, and foundational specifications"
+    purpose: "Single source of truth for governance rules and repository registry"
+    epistemic_role: "governance_authority"
+    visibility: "public"
+    governance_status: "canonical_source"
+
+  - name: "trizel-epistemic-engine"
+    full_name: "trizel-ai/trizel-epistemic-engine"
+    url: "https://github.com/trizel-ai/trizel-epistemic-engine"
+    layer: "Layer-1"
+    role: "Epistemic Framework (Historical)"
+    status: "archived"
+    description: "Phase-5 closed. Historical epistemic and governance framework documentation"
+    purpose: "Immutable archival reference for TRIZEL epistemic boundaries and phase governance"
+    epistemic_role: "historical_reference"
+    visibility: "public"
+    governance_status: "immutable_archive"
+
+# Layer Definitions
+# Describes the architectural separation of concerns
+layers:
+  - id: "Layer-0"
+    name: "Governance Layer"
+    purpose: "Canonical governance, registry, and foundational rules"
+    characteristics:
+      - "Single source of truth for repository registry"
+      - "Defines governance invariants"
+      - "No interpretation or analysis"
+      - "Immutable governance contracts"
+    
+  - id: "Layer-1"
+    name: "Monitor Layer"
+    purpose: "Observational data collection without interpretation"
+    characteristics:
+      - "Factual data ingestion from authoritative sources"
+      - "No analysis or inference"
+      - "Timestamped observations"
+      - "Provenance tracking"
+    
+  - id: "Layer-2"
+    name: "Algorithm Layer"
+    purpose: "Deterministic computation on monitored data"
+    characteristics:
+      - "Reproducible calculations"
+      - "No subjective judgments"
+      - "Transparent methodology"
+      - "Version-controlled algorithms"
+    
+  - id: "Layer-3"
+    name: "Analysis Layer"
+    purpose: "Pattern detection and relationship identification"
+    characteristics:
+      - "Evidence-based analysis"
+      - "Explicit epistemic status"
+      - "Traceable to data sources"
+      - "No conclusions beyond evidence"
+    
+  - id: "Layer-4"
+    name: "Evaluation Layer"
+    purpose: "Assessment within governance boundaries"
+    characteristics:
+      - "Criteria-based evaluation"
+      - "No interpretive authority"
+      - "Deferred inference for governance neutrality"
+      - "Explicit evaluation framework"
+    
+  - id: "Layer-6"
+    name: "Portal Layer"
+    purpose: "Public-facing aggregation and display"
+    characteristics:
+      - "Viewer and aggregator only"
+      - "No knowledge generation"
+      - "Provenance-first display"
+      - "Multilingual support (EN/FR/AR, ZH reserved)"
+
+# Authoritative External Sources
+# These are not TRIZEL repositories but are referenced as data sources
+authoritative_sources:
+  - name: "Minor Planet Center (MPC)"
+    url: "https://minorplanetcenter.net/"
+    role: "Astronomical data authority"
+    
+  - name: "NASA/JPL Solar System Dynamics"
+    url: "https://ssd.jpl.nasa.gov/"
+    role: "Planetary ephemeris and orbital data"
+    
+  - name: "JPL Horizons"
+    url: "https://ssd.jpl.nasa.gov/horizons/"
+    role: "Solar system body ephemeris computation"
+    
+  - name: "CNEOS (Center for Near-Earth Object Studies)"
+    url: "https://cneos.jpl.nasa.gov/"
+    role: "Near-Earth object risk assessment"
+    
+  - name: "ESA (European Space Agency)"
+    url: "https://www.esa.int/"
+    role: "European space research authority"
+    
+  - name: "Zenodo"
+    url: "https://zenodo.org/"
+    role: "Open science repository and DOI provider"
+
+# Phase Governance (Historical Reference)
+phases:
+  - id: "Phase-1"
+    name: "Conceptual Precursor"
+    status: "completed"
+    scope: "External conceptual foundation"
+    
+  - id: "Phase-2"
+    name: "Epistemic State Definitions"
+    status: "completed"
+    scope: "Epistemic boundary definitions"
+    
+  - id: "Phase-3"
+    name: "Deterministic Execution Boundaries"
+    status: "completed"
+    scope: "Algorithm and execution constraints"
+    
+  - id: "Phase-4"
+    name: "Governance and Evaluation Limits"
+    status: "completed"
+    scope: "Governance framework establishment"
+    
+  - id: "Phase-5"
+    name: "Documentation Finalization and Closeout"
+    status: "completed"
+    scope: "Freeze phase - final documentation"
+    
+  - id: "Phase-6"
+    name: "Execution Phase"
+    status: "active"
+    scope: "Operationalization of frozen methodology as official reference"
+    governance_declaration: "OFFICIAL_REFERENCE_STATUS"
+
+# Governance Invariants Reference
+governance_invariants:
+  - "Non-appropriation: No external work claimed without consent"
+  - "Epistemic neutrality: No interpretation or inference generation"
+  - "Layer separation: Strict boundary enforcement"
+  - "Provenance requirement: All data traceable to source"
+  - "Multilingual parity: EN/FR/AR with content equivalence, ZH reserved"
+  - "Integrator priority: System-level intelligence displayed first"
+  - "Audit supremacy: Deployment blocked on validation failure"
+  - "Immutability: Published records remain accessible"
+
+# Version History
+version_history:
+  - version: "1.0.0"
+    date: "2026-01-12"
+    changes: "Initial canonical registry for Execution Phase"
+    author: "TRIZEL International Group"

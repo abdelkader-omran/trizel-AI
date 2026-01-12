@@ -205,34 +205,28 @@ Core authoritative sources (examples):
 
       <!-- SOE:START:hero-section -->
 <h1>
-        <span data-lang="en" class="active">TRIZEL-AI — Official Reference Portal</span>
-        <span data-lang="fr">TRIZEL-AI — Portail de référence officiel</span>
-        <span data-lang="ar" class="rtl">TRIZEL-AI — البوابة المرجعية الرسمية</span>
-        <span data-lang="zh">TRIZEL-AI — 官方参考门户</span>
+        <span data-lang="en" class="active">TRIZEL-AI</span>
+        <span data-lang="fr">TRIZEL-AI</span>
+        <span data-lang="ar" class="rtl">TRIZEL-AI</span>
+        <span data-lang="zh">TRIZEL-AI</span>
       </h1>
 <!-- SOE:END:hero-section -->
 
-
-      <div class="badge" style="margin-bottom:12px">
-        <span data-lang="en" class="active">Status: <strong>OFFICIAL REFERENCE</strong> • Phase-6 Execution • Governance-Compliant</span>
-        <span data-lang="fr">Statut : <strong>RÉFÉRENCE OFFICIELLE</strong> • Phase-6 Exécution • Conforme à la gouvernance</span>
-        <span data-lang="ar" class="rtl">الحالة: <strong>مرجع رسمي</strong> • المرحلة 6 التنفيذ • متوافق مع الحوكمة</span>
-        <span data-lang="zh">状态：<strong>官方参考</strong> • 第6阶段执行 • 治理合规</span>
-      </div>
-
       <p class="muted">
         <span data-lang="en" class="active">
-          The <strong>authoritative governance-compliant scientific portal</strong> for the TRIZEL research framework. This portal has transitioned from the Freeze phase to the Execution phase, marking its operationalization as the official public-facing reference for TRIZEL methodology, governance structures, layer separation model, and research artifacts with full provenance tracking.
+          This portal is engineered for scientific auditability: it publishes governance constraints, provenance, and immutable archival pointers (DOI),
+          while explicitly separating descriptive status from interpretive claims.
         </span>
         <span data-lang="fr">
           Ce portail est conçu pour l’audit scientifique : il publie des contraintes de gouvernance, la provenance et des pointeurs immuables (DOI),
           tout en séparant explicitement le descriptif des affirmations interprétatives.
         </span>
         <span data-lang="ar" class="rtl">
-          <strong>البوابة العلمية الموثوقة المتوافقة مع الحوكمة</strong> لإطار بحث TRIZEL. انتقلت هذه البوابة من مرحلة التجميد إلى مرحلة التنفيذ، مما يمثل تفعيلها كمرجع رسمي عام لمنهجية TRIZEL وهياكل الحوكمة ونموذج فصل الطبقات وعناصر البحث مع تتبع كامل للمصدر.
+          تم تصميم هذا البوابة لغايات التدقيق العلمي: تنشر قيود الحوكمة، وتتبّع المصدر، ومؤشرات أرشفة ثابتة (DOI)،
+          مع فصل صارم بين الوصف وأي ادعاءات تفسيرية.
         </span>
         <span data-lang="zh">
-          TRIZEL研究框架的<strong>权威治理合规科学门户</strong>。该门户已从冻结阶段过渡到执行阶段，标志着其作为TRIZEL方法论、治理结构、层分离模型和研究成果的官方公共参考的运作化，具有完整的来源跟踪。
+          本门户面向科学可审计性：发布治理约束、来源谱系与不可变归档指针（DOI），并严格区分描述性状态与解释性主张。
         </span>
       </p>
 
