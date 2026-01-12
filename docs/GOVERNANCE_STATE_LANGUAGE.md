@@ -1,0 +1,1 @@
+Execution remains intentionally locked pending verifiable governance enforcement checks.
