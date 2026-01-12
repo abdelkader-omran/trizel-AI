@@ -1,0 +1,33 @@
+{
+  "author": {
+    "name": "Abdelkader Omran",
+    "orcid": "0009-0003-9884-3697",
+    "affiliation": "TRIZEL-AI — Independent Research Platform",
+    "website": "https://trizel-ai.com/",
+    "email": "admin1@trizel-ai.com"
+  },
+  "publication_metadata": {
+    "title": "",
+    "description": "",
+    "version": "1.0",
+    "creators": [
+      {
+        "name": "Abdelkader Omran",
+        "orcid": "0009-0003-9884-3697",
+        "affiliation": "TRIZEL-AI — Independent Research Platform"
+      }
+    ],
+    "contributors": [],
+    "license": "",
+    "publication_date": "",
+    "keywords": [],
+    "related_identifiers": [],
+    "access_right": "open",
+    "communities": [],
+    "upload_type": "publication",
+    "language": "en",
+    "description_format": "text/markdown",
+    "references": [],
+    "grants": []
+  }
+}
