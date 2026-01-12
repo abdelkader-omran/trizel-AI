@@ -1,11 +1,6 @@
 {
-  "build_hash": "exec-phase-6",
-  "deploy_utc": "2026-01-12 16:18:00 UTC",
+  "build_hash": "cd88ed5",
+  "deploy_utc": "2026-01-12 16:46:42 UTC",
   "hosting_source": "GitHub Pages",
-  "branch": "main",
-  "phase": "Execution (Phase-6)",
-  "status": "OFFICIAL_REFERENCE",
-  "governance_compliant": true,
-  "registry_version": "1.0.0",
-  "evidence_count": 0
+  "branch": "main"
 }
