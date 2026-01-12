@@ -27,7 +27,11 @@
     "enabled": true,
     "languages": [
       "EN",
-      "FR"
+      "FR",
+      "AR"
+    ],
+    "languages_planned": [
+      "ZH"
     ],
     "public_scope": "ALL_PUBLIC_CONTENT",
     "parity": {
@@ -38,12 +42,15 @@
       "strategy": "PREFIX",
       "prefix_map": {
         "EN": "/en",
-        "FR": "/fr"
+        "FR": "/fr",
+        "AR": "/ar",
+        "ZH": "/zh"
       },
       "root_redirect": "EN",
       "hreflang_required": true,
       "canonical_required": true
-    }
+    },
+    "rtl_languages": ["AR"]
   },
   "epistemic_model": {
     "role": "VIEWER_AGGREGATOR_AUDITOR_ONLY",

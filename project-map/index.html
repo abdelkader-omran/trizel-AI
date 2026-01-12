@@ -1,0 +1,457 @@
+<!--
+====================================================================
+METADATA (COPY / AUDIT HEADER)
+Repository: abdelkader-omran/trizel-AI
+Branch: main
+File: project-map/index.html
+Route: /project-map
+Comment: TRIZEL Project Map — Registry consumption display (non-interpretive)
+         Displays structure/status/provenance only from canonical registry
+         Multilingual: EN/FR/AR (active) + ZH (reserved/planned)
+Canonical Source:
+  - Registry: trizel-ai/trizel-core/TRIZEL_REGISTRY.yaml (allowlisted)
+  - Allowlist-only ingestion, no auto-discovery
+Authoritative identifiers:
+  - ORCID: https://orcid.org/0009-0003-9884-3697
+  - Latest DOI (record): https://doi.org/10.5281/zenodo.18149691
+====================================================================
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>TRIZEL Project Map — Registry & Ecosystem Structure</title>
+  <meta name="description" content="TRIZEL Project Map displays the canonical registry of repositories, their roles, layers, and relationships within the TRIZEL ecosystem." />
+
+  <!-- CANONICAL & INDEXING LOCK -->
+  <link rel="canonical" href="https://trizel-ai.com/project-map/" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://trizel-ai.com/project-map/" />
+  <meta property="og:title" content="TRIZEL Project Map — Registry & Ecosystem Structure" />
+  <meta property="og:site_name" content="TRIZEL-AI" />
+  <meta property="og:image" content="https://trizel-ai.com/assets/logo/trizel-ai-logo.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="TRIZEL Project Map — Registry & Ecosystem Structure" />
+  <meta name="twitter:image" content="https://trizel-ai.com/assets/logo/trizel-ai-logo.png" />
+
+  <!-- SCHEMA: scientific visibility (locked; non-interpretive) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://trizel-ai.com/project-map/#webpage",
+    "name": "TRIZEL Project Map",
+    "description": "Canonical registry of TRIZEL repositories and ecosystem structure",
+    "url": "https://trizel-ai.com/project-map/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "TRIZEL-AI",
+      "url": "https://trizel-ai.com/"
+    }
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b0d12; --panel:#111521; --text:#e9eef7; --muted:#a9b4c6;
+      --soft:rgba(255,255,255,.08); --line:rgba(255,255,255,.14);
+      --accent:#7aa7ff; --accent2:#7dffcf; --warn:#ffdd7a; --ok:#7dffcf;
+      --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      --max:1120px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f8fc; --panel:#fff; --text:#0f172a; --muted:#475569;
+        --soft:rgba(15,23,42,.06); --line:rgba(15,23,42,.12);
+        --accent:#1d4ed8; --accent2:#0f766e; --warn:#8a6a00; --ok:#0f766e;
+        --shadow:0 12px 34px rgba(15,23,42,.10);
+      }
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{
+      margin:0; font-family:var(--sans); color:var(--text); line-height:1.6;
+      background:
+        radial-gradient(1200px 600px at 15% 0%, rgba(122,167,255,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 10%, rgba(125,255,207,.12), transparent 55%),
+        radial-gradient(800px 500px at 50% 100%, rgba(122,167,255,.10), transparent 65%),
+        var(--bg);
+    }
+    a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--bg), transparent 25%);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{max-width:var(--max); margin:0 auto; padding:14px 20px; display:flex; gap:12px; justify-content:space-between; align-items:center}
+    .brand{display:flex; gap:10px; align-items:baseline; flex-wrap:wrap}
+    .brand b{font-size:14px; letter-spacing:.10em; text-transform:uppercase}
+    .brand span{color:var(--muted); font-size:13px}
+    .navlinks{display:flex; flex-wrap:wrap; gap:10px 14px; justify-content:flex-end; align-items:center}
+    .navlinks a{
+      font-size:13px; color:var(--text); opacity:.85;
+      padding:6px 10px; border-radius:999px; border:1px solid transparent
+    }
+    .navlinks a:hover{opacity:1; border-color:var(--line); background:var(--soft); text-decoration:none}
+    .lang{
+      display:flex; gap:8px; align-items:center;
+      padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:var(--soft);
+      font-size:12px; color:var(--muted);
+    }
+    .lang button{
+      border:1px solid transparent; background:transparent; color:var(--text);
+      padding:4px 8px; border-radius:999px; cursor:pointer; font-size:12px; opacity:.85;
+    }
+    .lang button:hover{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
+    .lang button[aria-pressed="true"]{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 20px 54px}
+    .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); margin-bottom:18px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px; padding:7px 10px;
+      border:1px solid var(--line); border-radius:999px; background:color-mix(in srgb, var(--panel), transparent 10%);
+      box-shadow:var(--shadow); font-size:12px; color:var(--muted);
+    }
+    .dot{width:8px; height:8px; border-radius:999px; background:var(--ok); box-shadow:0 0 0 6px color-mix(in srgb, var(--ok), transparent 85%)}
+    h1{margin:10px 0 8px; font-size:30px; letter-spacing:-.01em}
+    h2{margin:18px 0 10px; font-size:15px; letter-spacing:.02em; text-transform:uppercase; color:color-mix(in srgb, var(--text), var(--muted) 30%)}
+    h3{margin:14px 0 8px; font-size:16px;}
+    p{margin:10px 0}
+    .muted{color:var(--muted)}
+    .hr{height:1px; background:var(--line); margin:18px 0}
+    .box{border:1px solid var(--line); background:color-mix(in srgb, var(--panel), transparent 12%); border-radius:12px; padding:12px}
+    .mono{font-family:var(--mono); font-size:12px}
+    ul{margin:8px 0 0 20px}
+    li{margin:6px 0}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px; padding:7px 10px;
+      border:1px solid var(--line); border-radius:12px; background:color-mix(in srgb, var(--panel), transparent 10%);
+      font-size:12px; color:var(--muted);
+    }
+    .status-stable{color:var(--ok)}
+    .status-beta{color:var(--warn)}
+    .status-progress{color:var(--muted)}
+    footer{margin-top:18px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:12px}
+    .smallcaps{letter-spacing:.08em; text-transform:uppercase; font-size:11px; color:color-mix(in srgb, var(--muted), var(--text) 10%)}
+
+    /* i18n */
+    [data-lang]{display:none}
+    [data-lang].active{display:block}
+    .rtl{direction:rtl; text-align:right}
+    .rtl ul{margin:8px 20px 0 0}
+    .provenance{background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:14px; margin:14px 0; font-size:13px}
+    .provenance dt{font-weight:600; color:var(--text); margin-top:8px}
+    .provenance dt:first-child{margin-top:0}
+    .provenance dd{margin:2px 0 0 0; color:var(--muted)}
+    .repo-item{margin:14px 0; padding:14px; border:1px solid var(--line); border-radius:12px; background:color-mix(in srgb, var(--panel), transparent 5%)}
+    .repo-item h3{margin-top:0}
+    .repo-meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .notice{background:color-mix(in srgb, var(--warn), transparent 90%); border:1px solid color-mix(in srgb, var(--warn), transparent 70%); border-radius:12px; padding:14px; margin:14px 0}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="/assets/logo/trizel-ai-logo.png" alt="TRIZEL-AI" height="32" style="vertical-align: middle; margin-right: 8px;">
+      <b>TRIZEL-AI</b>
+      <span id="navTitle">Project Map</span>
+    </div>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/status/">Status</a>
+      <a href="/methodology/">Methodology</a>
+      <a href="/evidence/">Evidence</a>
+      <a href="/repositories/">Repositories</a>
+      <a href="/system-map/">System Map</a>
+      <a href="/project-map/">Project Map</a>
+      <a href="/applications/">Applications</a>
+
+      <div class="lang" aria-label="Language selector">
+        <span class="muted">Lang</span>
+        <button type="button" data-setlang="en" aria-pressed="true">EN</button>
+        <button type="button" data-setlang="fr" aria-pressed="false">FR</button>
+        <button type="button" data-setlang="ar" aria-pressed="false">AR</button>
+        <button type="button" data-setlang="zh" aria-pressed="false" title="Chinese - Planned">中文*</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- ENGLISH VERSION -->
+  <div data-lang="en" class="active">
+    <section class="card">
+      <div class="kicker" role="note">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Canonical registry • Non-interpretive display • Allowlist-only</span>
+      </div>
+
+      <h1>TRIZEL Project Map</h1>
+      <p>This page displays the canonical registry of TRIZEL repositories and their roles within the ecosystem. Data is consumed from the authoritative registry in <strong>trizel-ai/trizel-core</strong> following strict allowlist-only rules.</p>
+
+      <div class="hr"></div>
+
+      <h2>Registry Provenance</h2>
+      <dl class="provenance">
+        <dt>Canonical Source</dt>
+        <dd><code class="mono">trizel-ai/trizel-core/TRIZEL_REGISTRY.yaml</code></dd>
+        
+        <dt>Source Status</dt>
+        <dd>Verified Allowlisted Source (Layer-0 Governance)</dd>
+        
+        <dt>Consumption Policy</dt>
+        <dd>Allowlist-only ingestion • No auto-discovery • Non-interpretive display</dd>
+        
+        <dt>Last Sync</dt>
+        <dd>Manual sync pending (placeholder: 2026-01-12 13:00 UTC)</dd>
+        
+        <dt>Source Commit</dt>
+        <dd class="mono">Pending initial registry integration</dd>
+      </dl>
+
+      <h2>Canonical Repository Registry</h2>
+      <p class="muted">The following repositories are registered in the canonical TRIZEL_REGISTRY.yaml file. Data is displayed exactly as stated in the source; no interpretation or ranking is applied.</p>
+
+      <div class="notice">
+        <strong>⚠️ Integration Status:</strong> Registry consumption is configured but requires initial sync from trizel-ai/trizel-core. Repository data below is placeholder pending integration.
+      </div>
+
+      <!-- Placeholder repository structure - to be populated from actual registry -->
+      <div class="repo-item">
+        <h3>trizel-ai/trizel-core</h3>
+        <p>Canonical governance and registry source (Layer-0)</p>
+        <div class="repo-meta">
+          <span class="badge"><strong>Layer:</strong> Layer-0</span>
+          <span class="badge"><strong>Role:</strong> Governance</span>
+          <span class="badge status-stable"><strong>Status:</strong> Stable</span>
+        </div>
+        <p class="muted" style="margin-top:8px"><a href="https://github.com/trizel-ai/trizel-core" target="_blank" rel="noopener">View Repository →</a></p>
+      </div>
+
+      <div class="repo-item">
+        <h3>abdelkader-omran/trizel-AI</h3>
+        <p>Public-facing website and documentation portal (Layer-6)</p>
+        <div class="repo-meta">
+          <span class="badge"><strong>Layer:</strong> Layer-6</span>
+          <span class="badge"><strong>Role:</strong> Website</span>
+          <span class="badge status-stable"><strong>Status:</strong> Stable</span>
+        </div>
+        <p class="muted" style="margin-top:8px"><a href="https://github.com/abdelkader-omran/trizel-AI" target="_blank" rel="noopener">View Repository →</a></p>
+      </div>
+
+      <footer>
+        <p class="smallcaps">TRIZEL Project Map — Registry Display</p>
+        <p>Canonical source: <a href="https://github.com/trizel-ai/trizel-core">trizel-ai/trizel-core</a></p>
+        <p>Policy: Allowlist-only • Non-interpretive • Evidence-first</p>
+      </footer>
+    </section>
+  </div>
+
+  <!-- FRENCH VERSION -->
+  <div data-lang="fr">
+    <section class="card">
+      <div class="kicker" role="note">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Registre canonique • Affichage non-interprétatif • Liste autorisée uniquement</span>
+      </div>
+
+      <h1>Carte du Projet TRIZEL</h1>
+      <p>Cette page affiche le registre canonique des dépôts TRIZEL et leurs rôles dans l'écosystème. Les données sont consommées à partir du registre faisant autorité dans <strong>trizel-ai/trizel-core</strong> en suivant des règles strictes de liste autorisée uniquement.</p>
+
+      <div class="hr"></div>
+
+      <h2>Provenance du Registre</h2>
+      <dl class="provenance">
+        <dt>Source Canonique</dt>
+        <dd><code class="mono">trizel-ai/trizel-core/TRIZEL_REGISTRY.yaml</code></dd>
+        
+        <dt>Statut de la Source</dt>
+        <dd>Source Autorisée Vérifiée (Gouvernance Couche-0)</dd>
+        
+        <dt>Politique de Consommation</dt>
+        <dd>Ingestion par liste autorisée uniquement • Pas de découverte automatique • Affichage non-interprétatif</dd>
+        
+        <dt>Dernière Synchronisation</dt>
+        <dd>Synchronisation manuelle en attente (placeholder: 2026-01-12 13:00 UTC)</dd>
+        
+        <dt>Commit Source</dt>
+        <dd class="mono">Intégration initiale du registre en attente</dd>
+      </dl>
+
+      <h2>Registre Canonique des Dépôts</h2>
+      <p class="muted">Les dépôts suivants sont enregistrés dans le fichier canonique TRIZEL_REGISTRY.yaml. Les données sont affichées exactement comme indiqué dans la source ; aucune interprétation ou classement n'est appliqué.</p>
+
+      <div class="notice">
+        <strong>⚠️ Statut d'Intégration:</strong> La consommation du registre est configurée mais nécessite une synchronisation initiale depuis trizel-ai/trizel-core. Les données de dépôt ci-dessous sont des espaces réservés en attente d'intégration.
+      </div>
+
+      <div class="repo-item">
+        <h3>trizel-ai/trizel-core</h3>
+        <p>Source de gouvernance et de registre canonique (Couche-0)</p>
+        <div class="repo-meta">
+          <span class="badge"><strong>Couche:</strong> Couche-0</span>
+          <span class="badge"><strong>Rôle:</strong> Gouvernance</span>
+          <span class="badge status-stable"><strong>Statut:</strong> Stable</span>
+        </div>
+        <p class="muted" style="margin-top:8px"><a href="https://github.com/trizel-ai/trizel-core" target="_blank" rel="noopener">Voir le Dépôt →</a></p>
+      </div>
+
+      <div class="repo-item">
+        <h3>abdelkader-omran/trizel-AI</h3>
+        <p>Site web public et portail de documentation (Couche-6)</p>
+        <div class="repo-meta">
+          <span class="badge"><strong>Couche:</strong> Couche-6</span>
+          <span class="badge"><strong>Rôle:</strong> Site Web</span>
+          <span class="badge status-stable"><strong>Statut:</strong> Stable</span>
+        </div>
+        <p class="muted" style="margin-top:8px"><a href="https://github.com/abdelkader-omran/trizel-AI" target="_blank" rel="noopener">Voir le Dépôt →</a></p>
+      </div>
+
+      <footer>
+        <p class="smallcaps">Carte du Projet TRIZEL — Affichage du Registre</p>
+        <p>Source canonique: <a href="https://github.com/trizel-ai/trizel-core">trizel-ai/trizel-core</a></p>
+        <p>Politique: Liste autorisée uniquement • Non-interprétatif • Evidence-first</p>
+      </footer>
+    </section>
+  </div>
+
+  <!-- ARABIC VERSION -->
+  <div data-lang="ar" class="rtl">
+    <section class="card">
+      <div class="kicker" role="note">
+        <span class="dot" aria-hidden="true"></span>
+        <span>سجل معياري • عرض غير تفسيري • قائمة مسموح بها فقط</span>
+      </div>
+
+      <h1>خريطة مشروع TRIZEL</h1>
+      <p>تعرض هذه الصفحة السجل المعياري لمستودعات TRIZEL وأدوارها ضمن النظام البيئي. يتم استهلاك البيانات من السجل الموثوق في <strong>trizel-ai/trizel-core</strong> باتباع قواعد صارمة للقائمة المسموح بها فقط.</p>
+
+      <div class="hr"></div>
+
+      <h2>مصدر السجل</h2>
+      <dl class="provenance">
+        <dt>المصدر المعياري</dt>
+        <dd><code class="mono">trizel-ai/trizel-core/TRIZEL_REGISTRY.yaml</code></dd>
+        
+        <dt>حالة المصدر</dt>
+        <dd>مصدر مسموح به تم التحقق منه (حوكمة الطبقة-0)</dd>
+        
+        <dt>سياسة الاستهلاك</dt>
+        <dd>استيعاب بقائمة مسموح بها فقط • لا اكتشاف تلقائي • عرض غير تفسيري</dd>
+        
+        <dt>آخر مزامنة</dt>
+        <dd>مزامنة يدوية معلقة (عنصر نائب: 2026-01-12 13:00 UTC)</dd>
+        
+        <dt>التزام المصدر</dt>
+        <dd class="mono">التكامل الأولي للسجل معلق</dd>
+      </dl>
+
+      <h2>سجل المستودعات المعياري</h2>
+      <p class="muted">المستودعات التالية مسجلة في ملف TRIZEL_REGISTRY.yaml المعياري. يتم عرض البيانات تمامًا كما هو مذكور في المصدر؛ لا يتم تطبيق أي تفسير أو تصنيف.</p>
+
+      <div class="notice">
+        <strong>⚠️ حالة التكامل:</strong> تم تكوين استهلاك السجل ولكنه يتطلب مزامنة أولية من trizel-ai/trizel-core. بيانات المستودع أدناه هي عناصر نائبة في انتظار التكامل.
+      </div>
+
+      <div class="repo-item">
+        <h3>trizel-ai/trizel-core</h3>
+        <p>مصدر الحوكمة والسجل المعياري (الطبقة-0)</p>
+        <div class="repo-meta">
+          <span class="badge"><strong>الطبقة:</strong> الطبقة-0</span>
+          <span class="badge"><strong>الدور:</strong> الحوكمة</span>
+          <span class="badge status-stable"><strong>الحالة:</strong> مستقر</span>
+        </div>
+        <p class="muted" style="margin-top:8px"><a href="https://github.com/trizel-ai/trizel-core" target="_blank" rel="noopener">عرض المستودع ←</a></p>
+      </div>
+
+      <div class="repo-item">
+        <h3>abdelkader-omran/trizel-AI</h3>
+        <p>الموقع العام وبوابة الوثائق (الطبقة-6)</p>
+        <div class="repo-meta">
+          <span class="badge"><strong>الطبقة:</strong> الطبقة-6</span>
+          <span class="badge"><strong>الدور:</strong> الموقع الإلكتروني</span>
+          <span class="badge status-stable"><strong>الحالة:</strong> مستقر</span>
+        </div>
+        <p class="muted" style="margin-top:8px"><a href="https://github.com/abdelkader-omran/trizel-AI" target="_blank" rel="noopener">عرض المستودع ←</a></p>
+      </div>
+
+      <footer>
+        <p class="smallcaps">خريطة مشروع TRIZEL — عرض السجل</p>
+        <p>المصدر المعياري: <a href="https://github.com/trizel-ai/trizel-core">trizel-ai/trizel-core</a></p>
+        <p>السياسة: قائمة مسموح بها فقط • غير تفسيري • الأدلة أولاً</p>
+      </footer>
+    </section>
+  </div>
+
+  <!-- CHINESE VERSION (PLANNED/STUB) -->
+  <div data-lang="zh">
+    <section class="card">
+      <div class="notice">
+        <h1>TRIZEL 项目地图（中文）— 计划中</h1>
+        <p><strong>语言本地化状态：</strong>计划中</p>
+        <p>中文本地化正在计划中，将在稍后添加。此页面是一个占位符，用于保留语言支持。</p>
+        <div class="hr"></div>
+        <h2>Language Localization — Planned</h2>
+        <p>Chinese localization is planned and will be added later. This page is a placeholder to reserve language support.</p>
+        <p class="muted">For current content, please switch to English (EN), French (FR), or Arabic (AR) using the language selector above.</p>
+      </div>
+
+      <footer>
+        <p class="smallcaps">TRIZEL Project Map — Chinese Version (Planned)</p>
+        <p>Status: Language support reserved for future implementation</p>
+      </footer>
+    </section>
+  </div>
+</main>
+
+<script>
+  // Language switcher
+  const langButtons = document.querySelectorAll('[data-setlang]');
+  const langSections = document.querySelectorAll('[data-lang]');
+  
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetLang = btn.dataset.setlang;
+      
+      // Update button states
+      langButtons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      
+      // Update content visibility
+      langSections.forEach(section => {
+        section.classList.remove('active');
+        if (section.dataset.lang === targetLang) {
+          section.classList.add('active');
+        }
+      });
+      
+      // Update document language
+      document.documentElement.lang = targetLang;
+      
+      // Store preference
+      localStorage.setItem('trizel-lang', targetLang);
+    });
+  });
+  
+  // Restore language preference
+  const savedLang = localStorage.getItem('trizel-lang');
+  if (savedLang) {
+    const targetBtn = document.querySelector(`[data-setlang="${savedLang}"]`);
+    if (targetBtn) targetBtn.click();
+  }
+</script>
+
+</body>
+</html>
