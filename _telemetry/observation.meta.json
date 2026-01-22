@@ -1,0 +1,21 @@
+{
+  "repo_name": "trizel-AI",
+  "layer": "Layer-1",
+  "role": "analysis-modeling-theoretical-execution",
+  "domains_supported": ["cosmic-phenomena", "multi-phenomena"],
+  "phenomena_scope": "general-cosmic-phenomena-not-atlas-only",
+  "date_range": {
+    "start": "DECLARED",
+    "end": "DECLARED"
+  },
+  "artifact_types": ["models", "analysis-notebooks", "theoretical-outputs"],
+  "sources": [
+    "https://github.com/trizel-ai/trizel-core"
+  ],
+  "governance": {
+    "authority_repo": "trizel-core",
+    "authority_ref": "docs/governance/LAYER1_CANONICAL_OBSERVATORY_REFERENCE.md",
+    "note": "reference-only"
+  },
+  "last_update": "2026-01-22"
+}
