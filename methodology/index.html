@@ -29,6 +29,10 @@ Precise scientific reference links:
 
   <!-- CANONICAL & INDEXING LOCK -->
   <link rel="canonical" href="https://trizel-ai.com/methodology/" />
+  <link rel="alternate" hreflang="en" href="https://trizel-ai.com/methodology/?lang=en" />
+  <link rel="alternate" hreflang="fr" href="https://trizel-ai.com/methodology/?lang=fr" />
+  <link rel="alternate" hreflang="ar" href="https://trizel-ai.com/methodology/?lang=ar" />
+  <link rel="alternate" hreflang="x-default" href="https://trizel-ai.com/methodology/" />
   <meta name="robots" content="index,follow" />
 
   <!-- Open Graph -->
@@ -115,6 +119,7 @@ Precise scientific reference links:
     }
     .lang button:hover{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
     .lang button[aria-pressed="true"]{opacity:1; border-color:var(--line); background:color-mix(in srgb, var(--panel), transparent 10%)}
+    .lang button:disabled{opacity:.4; cursor:not-allowed}
 
     .wrap{max-width:var(--max); margin:0 auto; padding:28px 20px 54px}
     .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px; box-shadow:var(--shadow)}
@@ -145,7 +150,7 @@ Precise scientific reference links:
 </head>
 
 <body>
-<header>
+<header role="banner">
   <div class="nav">
     <div class="brand">
       <img src="/assets/logo/trizel-ai-logo.png" alt="TRIZEL-AI" height="32" style="vertical-align: middle; margin-right: 8px;">
@@ -168,7 +173,7 @@ Precise scientific reference links:
         <button type="button" data-setlang="en" aria-pressed="true">EN</button>
         <button type="button" data-setlang="fr" aria-pressed="false">FR</button>
         <button type="button" data-setlang="ar" aria-pressed="false">AR</button>
-        <button type="button" data-setlang="zh" aria-pressed="false">中文</button>
+        <button type="button" data-setlang="zh" aria-pressed="false" disabled title="Chinese - Planned">中文*</button>
       </div>
     </nav>
   </div>
@@ -315,7 +320,7 @@ Precise scientific reference links:
 
 <script>
 (function(){
-  const supported = ['en','fr','ar','zh'];
+  const supported = ['en','fr','ar'];
   const qsLang = new URLSearchParams(location.search).get('lang');
   const stored = localStorage.getItem('trizel_lang');
   const lang = supported.includes(qsLang) ? qsLang : (supported.includes(stored) ? stored : 'en');
